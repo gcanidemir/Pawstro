@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: f0978dc9fcab1a04795c03fd67d81ca6
+  productGUID: 61feb2770e2edc045a13e7f4843a21ce
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -706,10 +706,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 3b0440f5-7c2b-4d44-b16c-ce1c0c785c4b
+  cloudProjectId: a7eee4ea-d63f-4e83-a6e2-3cc8f404665f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BrackeysGameJam 2024-09-08_15-43-21
+  projectName: BrackeysGameJam 2024-09-08_15-51-53
   organizationId: gcanidemir
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
