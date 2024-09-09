@@ -21,6 +21,9 @@ public class BorderDialogue : MonoBehaviour
     void Update(){
         if (Input.GetMouseButtonDown(0)){
             if (textComponent.text == lines[index]){
+                if(index >= 4 && index <= 8){
+                    index++;
+                }
                 NextLine();
             }
             else{
@@ -30,7 +33,23 @@ public class BorderDialogue : MonoBehaviour
         }
     }
     void StartDialogue(){
-        index=Random.Range(1, 5);
+        int probability=Random.Range(0, 100);//decides on witch line will be used
+        switch (probability)
+    {
+        case int n when (n >= 0 && n < 1):
+            index = 4; 
+            break;
+        case int n when (n >= 1 && n <= 34):
+            index = 1;
+            break;
+        case int n when (n > 34 && n <= 67):
+            index = 2;
+            break;
+        default:
+           index = 3;
+            break;
+    }
+
         StartCoroutine(TypeLine());
     }
     IEnumerator TypeLine(){
@@ -40,13 +59,21 @@ public class BorderDialogue : MonoBehaviour
         }
     }
     void NextLine(){
-        if(index != 0){
+
+        if(index != 0 && index < 4){
             index = 0;
             textComponent.text =string.Empty;
             StartCoroutine(TypeLine());
         }
+
+        else if(index >= 4 && index <=8){
+            textComponent.text =string.Empty;
+            StartCoroutine(TypeLine()); 
+        }
+
         else{
             gameObject.SetActive(false);
         }
+        
     }
 }
