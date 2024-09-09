@@ -6,7 +6,9 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     public float multiplier = 1;
-    private float targetspeed = 10f;
+    private float targetspeedX = 10f;
+    private float targetspeedY = 10f;
+
     private float speedConstant ;
     public float acceleration = 1f; 
     public float deceleration = 1f;
@@ -19,7 +21,7 @@ public class player : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody2D>();
-        speedConstant = targetspeed;
+        speedConstant = 10;
 
 
     }
@@ -28,72 +30,90 @@ public class player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            targetspeed = 2 * speedConstant * multiplier;
+            targetspeedX = 2 * speedConstant * multiplier;
+            targetspeedY = 2 * speedConstant * multiplier;
+
           acceleration = 3;
         }
            
         else if (!Input.GetKey(KeyCode.LeftShift))
         {
-            targetspeed = speedConstant * multiplier;
+            targetspeedX = speedConstant * multiplier;
+            targetspeedY = speedConstant * multiplier;
             acceleration = 1;
         }
           
 
         speedx = Input.GetAxisRaw("Horizontal");
         speedy = Input.GetAxisRaw("Vertical");
-        if (Mathf.Abs(speedx) > 0 || Mathf.Abs(speedy) > 0)
-        {   
+        if (Mathf.Abs(speedx) > 0)
+        {
             if (!Input.GetKey(KeyCode.LeftShift))
-                 targetspeed = 10;
+                 targetspeedX = 10;
 
             if (Mathf.Abs(speedx) > 0 && Mathf.Abs(speedy) > 0)
             {
-                targetspeed = targetspeed / Mathf.Sqrt(2);
-            }
+                targetspeedX = targetspeedX / Mathf.Sqrt(2);
+            }     
 
         }
-        
+
         else
         {
-            targetspeed = 0;
+            targetspeedX = 0;
+        }
+
+        if(Mathf.Abs(speedy) > 0){
+            if (!Input.GetKey(KeyCode.LeftShift))
+                 targetspeedY = 10;
+
+            if (Mathf.Abs(speedx) > 0 && Mathf.Abs(speedy) > 0)
+            {
+                targetspeedY = targetspeedY / Mathf.Sqrt(2);
+            }
+        }
+
+        else
+        {
+            targetspeedY = 0;
         }
 
        
-        if (Mathf.Abs(currentSpeedx) <= targetspeed && speedx > 0)
+        if (Mathf.Abs(currentSpeedx) <= targetspeedX && speedx > 0)
         {
-            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeed, acceleration * Time.deltaTime);
+            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeedX, acceleration * Time.deltaTime);
         }
-        else if (Mathf.Abs(currentSpeedx) <= targetspeed && speedx < 0)
+        else if (Mathf.Abs(currentSpeedx) <= targetspeedX && speedx < 0)
         {
-            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeed*-1, acceleration * Time.deltaTime);
+            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeedX*-1, acceleration * Time.deltaTime);
         }
         //X axis acceleration
-        if (Mathf.Abs(currentSpeedx) >= targetspeed && speedx >= 0)
+        if (Mathf.Abs(currentSpeedx) >= targetspeedX && speedx >= 0)
         {
-            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeed, deceleration * Time.deltaTime);
+            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeedX, deceleration * Time.deltaTime);
         }
-        else if (Mathf.Abs(currentSpeedx) >= targetspeed && speedx < 0)
+        else if (Mathf.Abs(currentSpeedx) >= targetspeedX && speedx < 0)
         {
-            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeed * -1, deceleration * Time.deltaTime);
+            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeedX * -1, deceleration * Time.deltaTime);
         }
         //X axis deceleration
 
-        if (Mathf.Abs(currentSpeedy) <= targetspeed && speedy > 0)
+        if (Mathf.Abs(currentSpeedy) <= targetspeedY && speedy > 0)
         {
-            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeed, acceleration * Time.deltaTime);
+            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeedY, acceleration * Time.deltaTime);
         }
-        else if (Mathf.Abs(currentSpeedy) <= targetspeed && speedy < 0)
+        else if (Mathf.Abs(currentSpeedy) <= targetspeedY && speedy < 0)
         {
-            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeed * -1, acceleration * Time.deltaTime);
+            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeedY * -1, acceleration * Time.deltaTime);
         }
         //Y axis acceleration
-        if (Mathf.Abs(currentSpeedy) >= targetspeed && speedy >= 0)
+        if (Mathf.Abs(currentSpeedy) >= targetspeedY && speedy >= 0)
         {
-            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeed, deceleration * Time.deltaTime);
+            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeedY, deceleration * Time.deltaTime);
         }
-        else if (Mathf.Abs(currentSpeedy) >= targetspeed && speedy < 0)
+        else if (Mathf.Abs(currentSpeedy) >= targetspeedY && speedy < 0)
         {
-            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeed * -1, deceleration * Time.deltaTime);
+            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeedY * -1, deceleration * Time.deltaTime);
         }
         //Y axis deceleration
 
