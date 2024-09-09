@@ -1898,6 +1898,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canFire: 1
   timeBetweenFire: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  meteorLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  attackPoint: {fileID: 2034053160}
+  attackRange: 0.3
 --- !u!1 &1494793642
 GameObject:
   m_ObjectHideFlags: 0
