@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DemoScript : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public InventoryManager inventoryManager;
+    public Item[] ItemToPick;
+
+    public void PickItem(int id){
+       bool result = inventoryManager.AddItem(ItemToPick[id]);
+       if(result){
+        Debug.Log("Added");
+       }
+       else{
+        Debug.Log("Not added");
+       }    
+    
+    }
+
+}
