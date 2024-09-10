@@ -10,7 +10,6 @@ public class PlayerItemPickUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Check if the DemoScript is already attached to the GameObject
         demoScript = GetComponent<DemoScript>();
     }
     // Start is called before the first frame update
@@ -20,10 +19,7 @@ public class PlayerItemPickUp : MonoBehaviour
         if (collision.CompareTag("Item")){
             demoScript.PickItem(4);
             Destroy(pickedItem);
-        Debug.Log("aldim");
         }
-        Debug.Log("Verdim");
-        Debug.Log("Ben seni yendim");
     }
 
 
