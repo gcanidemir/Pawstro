@@ -220,7 +220,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d86089304f7a2794ab3c7e984388a02e, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -315,6 +315,8 @@ MonoBehaviour:
   dropCount: 10
   spread: 2
   rarity: 10
+  maxHealth: 4
+  animator: {fileID: 827926372}
 --- !u!1 &931883441
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +372,7 @@ MonoBehaviour:
     m_Bits: 128
   attackPoint: {fileID: 1818440154}
   attackRange: 0.3
+  attackDamage: 1
 --- !u!1 &1133887245
 GameObject:
   m_ObjectHideFlags: 0

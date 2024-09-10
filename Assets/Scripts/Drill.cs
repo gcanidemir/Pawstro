@@ -13,6 +13,7 @@ public class Drill : MonoBehaviour
     public LayerMask meteorLayer;
     public Transform attackPoint;
     public float attackRange;
+    public int attackDamage = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +56,7 @@ public class Drill : MonoBehaviour
 
             foreach (Collider2D meteor in hitMeteor)
             {
-                meteor.GetComponent<MeteorExplode>().explode();
+                meteor.GetComponent<MeteorExplode>().takeDamage(attackDamage);
             }
 
             canFire = false;
