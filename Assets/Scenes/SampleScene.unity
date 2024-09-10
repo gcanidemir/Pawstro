@@ -1058,7 +1058,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1666409927}
     m_Modifications:
-<<<<<<< Updated upstream
     - target: {fileID: 3063293260523012533, guid: c6e1f0a633010a141b839e666c85eca2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1083,8 +1082,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -15
       objectReference: {fileID: 0}
-=======
->>>>>>> Stashed changes
     - target: {fileID: 3719136752757346539, guid: c6e1f0a633010a141b839e666c85eca2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1450,7 +1447,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot (2)
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 7493566925614884308, guid: 6512c2d25381eb84480eceb78f64d894, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1475,12 +1471,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -15
       objectReference: {fileID: 0}
-=======
     - target: {fileID: 7896135556485495414, guid: 6512c2d25381eb84480eceb78f64d894, type: 3}
       propertyPath: image
       value: 
       objectReference: {fileID: 939218940}
->>>>>>> Stashed changes
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1510,7 +1504,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot (4)
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 5303219802133425704, guid: 9b67be7ea4b3bfe448a84edf97cb910b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1535,8 +1528,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -15
       objectReference: {fileID: 0}
-=======
->>>>>>> Stashed changes
     - target: {fileID: 6161084810745944669, guid: 9b67be7ea4b3bfe448a84edf97cb910b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2168,7 +2159,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 3440710371913889303, guid: 6b3da7f1b69315b449e4ed64fe7d9b05, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2192,11 +2182,9 @@ PrefabInstance:
     - target: {fileID: 3440710371913889303, guid: 6b3da7f1b69315b449e4ed64fe7d9b05, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -15
-=======
     - target: {fileID: 8993739102445878152, guid: 6b3da7f1b69315b449e4ed64fe7d9b05, type: 3}
       propertyPath: image
       value: 
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -2625,7 +2613,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot (8)
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 8417770728328167759, guid: 3c93a43ebbf6c0f478a4d409a0a6279b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2650,8 +2637,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -15
       objectReference: {fileID: 0}
-=======
->>>>>>> Stashed changes
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
