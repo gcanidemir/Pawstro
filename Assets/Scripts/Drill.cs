@@ -55,7 +55,7 @@ public class Drill : MonoBehaviour
 
             foreach (Collider2D meteor in hitMeteor)
             {
-                Debug.Log("Meteor hit");
+                meteor.GetComponent<MeteorExplode>().explode();
             }
 
             canFire = false;
