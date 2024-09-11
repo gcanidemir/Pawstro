@@ -18,9 +18,15 @@ public class OreProccess : MonoBehaviour
             inArea = false;
         }
     }
-    void Update(){
-        if (inArea){
+    public void SellInventory(){
             Debug.Log("a");
+        
+    }
+    void Update(){
+        if (Input.GetKeyDown(KeyCode.E) && inArea){
+            SellInventory();
         }
+
+        
     }
 }

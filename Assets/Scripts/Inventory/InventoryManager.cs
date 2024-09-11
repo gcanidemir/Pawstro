@@ -38,4 +38,8 @@ public class InventoryManager : MonoBehaviour
         inventoryItem.InitialiseItem(item);
     }
     
+    public void RemoveItem(Item item){
+        
     }
+
+}
