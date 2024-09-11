@@ -5,12 +5,14 @@ using UnityEngine;
 public class GunsControls : MonoBehaviour
 {
     public GameObject player;
+    public GameObject Laser;
     private bool inArea =false;
     private Rigidbody2D rb;
     void Start()
     {
 
     rb = player.GetComponent<Rigidbody2D>();
+    Laser.SetActive(false);
 
     }
 
@@ -29,6 +31,7 @@ public class GunsControls : MonoBehaviour
     }
 
     public void ToggleGuns(){
+        Laser.SetActive(!Laser.activeSelf);
         bool hasActiveChild = false;
 
         foreach (Transform child in player.transform)
@@ -64,6 +67,7 @@ public class GunsControls : MonoBehaviour
             }
 
         }
+
         
     }
 
