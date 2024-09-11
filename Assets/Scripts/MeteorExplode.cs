@@ -11,11 +11,20 @@ public class MeteorExplode : MonoBehaviour
     public int rarity = 10;
     public int maxHealth = 4;
     int currentHealth;
+    public Upgrades upgrade;
     public Animator animator;
+
+    private ParticleSystem particle;
+    private SpriteRenderer sr;
+    private BoxCollider2D bc;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        particle = GetComponentInChildren<ParticleSystem>();
+        sr = GetComponentInChildren<SpriteRenderer>();  
+        bc = GetComponent<BoxCollider2D>(); 
     }
 
     // Update is called once per frame
@@ -49,10 +58,11 @@ public class MeteorExplode : MonoBehaviour
 
     public void takeDamage(int damage) {
         currentHealth -= damage;
-        Debug.Log("Meteor taken damage");
+        particle.Play();
             animator.SetInteger("Health", currentHealth);
         if(currentHealth <= 0)
         {
+
             explode();
         }
     }

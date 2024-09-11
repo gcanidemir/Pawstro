@@ -6,6 +6,7 @@ public class MeteorSpawner : MonoBehaviour
 {
     public GameObject[] Meteors;
     public float minDistanceBetweenMeteors = 2f; // Minimum distance between meteors
+    public int lvl = 0;
 
     public float rareMinRadius = 50f;  // Min distance for rare meteors
     public float rareMaxRadius = 60f;  // Max distance for rare meteors
@@ -20,7 +21,12 @@ public class MeteorSpawner : MonoBehaviour
 
     void Start()
     {
-        int meteorCount = Random.Range(525, 550);
+        Meteor(lvl);
+    }
+
+    public void Meteor(int lvl)
+    {
+        int meteorCount = Random.Range(25, 50);
 
         for (int i = 0; i < meteorCount; i++)
         {
