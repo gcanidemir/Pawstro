@@ -9,75 +9,54 @@ public class Enemy : MonoBehaviour
     /* Enemy Variables */
     enum Type
     {
-        BOMBER,
         BOSS,
-        DEMOLISHER,
-        LONG_RANGED,
         MELEE,
-        MID_RANGED,
         MINI_BOSS,
-        TANK
+        RANGED
     }
 
-    [SerializeField] private int maxHealth;
-    private int currentHealth;
-    [SerializeField] private int damage;
     [SerializeField] private Type type;
-
-    [SerializeField] private Transform targetLocation;
+    public float maxhealth;
+    public float currenthealth;
+    public HealthBar healthBar;
+    private int damage;
+    private Vector3 targetLocation;
     private NavMeshAgent navMeshAgent;
     /* --------------- */
-
 
     /* Enemy stats are set */
     private void EnemyInit()
     {
+
         //TODO: Change magic numbers later. 
         switch (type)
         {
-            case Type.BOMBER:
-                maxHealth = 10;
-                damage = 10;
-                break;
-
             case Type.BOSS:
-                maxHealth = 20;
+                maxhealth = 50;
                 damage = 20;
                 break;
 
-            case Type.DEMOLISHER:
-                maxHealth = 30;
-                damage = 30;
-                break;
-
-            case Type.LONG_RANGED:
-                maxHealth = 40;
-                damage = 40;
-                break;
-
             case Type.MELEE:
-                maxHealth = 50;
+                maxhealth = 100;
                 damage = 50;
                 break;
 
-            case Type.MID_RANGED:
-                maxHealth = 60;
-                damage = 60;
-                break;
-
             case Type.MINI_BOSS:
-                maxHealth = 70;
+                maxhealth = 100;
                 damage = 70;
                 break;
 
-            case Type.TANK:
-                maxHealth = 80;
-                damage = 80;
+            case Type.RANGED:
+                navMeshAgent.stoppingDistance = 10;
+                maxhealth = 100;
+                damage = 40;
                 break;
         }
 
-        currentHealth = maxHealth;
+        currenthealth = maxhealth;
+        healthBar.SetMaxHealth(maxhealth);
     }
+    /* ------------------- */
 
     /* Chase mechanic for the enemies. Uses NavMeshPlus package. */
     private void ChaseInit()
@@ -89,19 +68,58 @@ public class Enemy : MonoBehaviour
 
     private void Chase()
     {
-        navMeshAgent.SetDestination(targetLocation.position);
+        DecideWhichToFollow();
+        navMeshAgent.SetDestination(targetLocation);
+    }
+
+    private void DecideWhichToFollow()
+    {
+        /* To follow player when gets too close while enemy is attacking the building */
+        float offset = 1.5f;
+
+        Vector3 enemyLocation = this.transform.position;
+        Vector3 playerLocation = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+        /* Takes closest point on the surface between base and enemy */
+        Vector3 buildingLocation = GameObject.FindGameObjectWithTag("Building").GetComponent<Collider2D>().ClosestPoint(enemyLocation);
+
+        /*Distance between player and enemy*/
+        float distPlayerEnemy = CommonUtils.Distance2D(buildingLocation, enemyLocation);
+        /*Distance between building and enemy*/
+        float distBuildingEnemy = CommonUtils.Distance2D(playerLocation, enemyLocation);
+
+        if (distPlayerEnemy + offset < distBuildingEnemy)
+            targetLocation = buildingLocation;
+        else
+            targetLocation = playerLocation;
     }
     /* --------------------------------------------------------- */
 
+    private void TakeDamage(float damage)
+    {
+        this.transform.Find("Canvas").Find("Healthbar").gameObject.SetActive(true);
+
+        if (damage < currenthealth)
+            currenthealth -= damage;
+        else
+            currenthealth = 0;
+        healthBar.SetHealth(currenthealth);
+    }
+
     private void Start()
     {
-        EnemyInit();
         ChaseInit();
+        EnemyInit();
     }
 
     private void Update()
     {
         Chase();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(25f);
+        }
     }
 
 }
