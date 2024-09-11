@@ -13,11 +13,12 @@ public class Upgrades : MonoBehaviour
     public Oxygen oxygen;
     public HealthBar FuelBar;
     public Fuel fuel;
+    public Drill drill;
     public Trigger trigger;
     public PlayerMoney playerMoney;
-    public int Dash, MaxHealth, OxygenUp, HPregen, Speed;
+    public int Dash, MaxHealth, OxygenUp, HPregen, Speed, UpgradedDrill;
     public int Success;
-    public TextMeshProUGUI DashUpgrade, HealthUpgrade, OxygenUpgrade, HPregenUpgrade, SpeedUpgrade;
+    public TextMeshProUGUI DashUpgrade, HealthUpgrade, OxygenUpgrade, HPregenUpgrade, SpeedUpgrade,DrillUpgrade;
     public void UpgradeDashSpeed()
     {
         Success = playerMoney.SpendMoney(100*(Dash + 1));
@@ -78,5 +79,18 @@ public class Upgrades : MonoBehaviour
             Speed = Speed + 1;
             SpeedUpgrade.text = (100 * (Speed + 1)).ToString();
         }
+    }
+    public void UpgradeDrillPower()
+    {
+        Success = playerMoney.SpendMoney(100 * (UpgradedDrill + 1));
+        if (Success == 1)
+        {
+            drill.damagemod = drill.damagemod + 1;
+            UpgradedDrill = UpgradedDrill + 1;
+            DrillUpgrade.text = (100 * (UpgradedDrill + 1)).ToString();
+
+        }
+
+
     }
 }

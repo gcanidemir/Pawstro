@@ -14,6 +14,7 @@ public class Drill : MonoBehaviour
     public Transform attackPoint;
     public float attackRange;
     public int attackDamage = 1;
+    public int damagemod = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +57,7 @@ public class Drill : MonoBehaviour
 
             foreach (Collider2D meteor in hitMeteor)
             {
-                meteor.GetComponent<MeteorExplode>().takeDamage(attackDamage);
+                meteor.GetComponent<MeteorExplode>().takeDamage(attackDamage*damagemod);
             }
 
             canFire = false;
