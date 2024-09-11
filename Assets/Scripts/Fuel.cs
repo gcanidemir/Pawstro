@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Fuel : MonoBehaviour
 {
     public float maxhealth = 100;
     public float currenthealth;
@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
         currenthealth = maxhealth;
         healthBar.SetMaxHealth(maxhealth);
     }
+
 
     public void takedamage(float damage)
     {

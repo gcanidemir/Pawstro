@@ -11,6 +11,10 @@ public class OpenInventory : MonoBehaviour
     }
     // Start is called before the first frame update
     public void EnableInventory(){
-        inventory.SetActive(!inventory.activeSelf);
+        inventory.SetActive(true);
+    }
+    public void disableInv()
+    {
+        inventory.SetActive(false);
     }
 }
