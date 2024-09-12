@@ -3846,7 +3846,6 @@ GameObject:
   m_Component:
   - component: {fileID: 478472566}
   - component: {fileID: 478472569}
-  - component: {fileID: 478472568}
   - component: {fileID: 478472567}
   m_Layer: 5
   m_Name: Fuel Bar
@@ -3890,18 +3889,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 478472569}
---- !u!114 &478472568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478472565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7044d0315253946940b4346efef8c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &478472569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6586,6 +6573,7 @@ GameObject:
   - component: {fileID: 803168965}
   - component: {fileID: 803168966}
   - component: {fileID: 803168968}
+  - component: {fileID: 803168969}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6634,8 +6622,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.8584906, g: 0.20652366, b: 0.20652366, a: 1}
+  m_Sprite: {fileID: 1446251458, guid: 72de22d84be739340bcd245d19a5f4d4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6653,7 +6641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803168950}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1203.7969, y: 99.83423, z: 0}
   m_LocalScale: {x: 4.26, y: 4.26, z: 4.26}
   m_ConstrainProportionsScale: 1
@@ -6893,6 +6881,27 @@ MonoBehaviour:
   maxhealth: 100
   currenthealth: 0
   healthBar: {fileID: 478472567}
+--- !u!95 &803168969
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803168950}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d89197a9ec20e084d890fad94f03f58d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &838932677
 GameObject:
   m_ObjectHideFlags: 0
@@ -15243,8 +15252,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1601042850}
-  - {fileID: 803168952}
   - {fileID: 1823543006}
   - {fileID: 543172085}
   - {fileID: 638765065}
   - {fileID: 1312615014}
+  - {fileID: 803168952}
