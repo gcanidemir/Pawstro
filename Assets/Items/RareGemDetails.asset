@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9737279fe970df4d845b644d002c2e9, type: 3}
-  m_Name: Common ore
+  m_Name: RareGemDetails
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   itemType: 0
   actionType: 0
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 21300000, guid: 7b95e3bf786eafc478454a712167807c, type: 3}
+  image: {fileID: 21300000, guid: 99b57390b562960489f70648d8d24317, type: 3}

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3eec766b4c01a334b8e54f9d9792c0ca
+guid: c410322a9a4a2354a9aca22b550553d2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,358 +97,358 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GunTurret_0
+      name: HolyGunOfDen-Sheet-export_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 150
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cae6c7679107e44e97502b78d11ede2
-      internalID: 226807879
+      spriteID: 33bb3260e6e695d42bb91cf022eb05f6
+      internalID: 484466057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_1
+      name: HolyGunOfDen-Sheet-export_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 60
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7aac8d2d09def8940ad59b0ef1c3b6a0
-      internalID: 834636188
+      spriteID: e3172f3a141230d4084b2c2153b9dbb8
+      internalID: 1598518602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_2
+      name: HolyGunOfDen-Sheet-export_2
       rect:
         serializedVersion: 2
-        x: 321
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 120
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d267db41931bfe4bbb469b88b1cc5ed
-      internalID: 1328049454
+      spriteID: b248c3e213516fb45907497eefc75574
+      internalID: 1472627465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_3
+      name: HolyGunOfDen-Sheet-export_3
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2452b9b28e7a6b4f8d907309d253518
+      internalID: 1682872982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyGunOfDen-Sheet-export_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 697de1b5ec77af14e8c598a7fd0462d6
+      internalID: 1472778713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyGunOfDen-Sheet-export_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6178e6c51795f4f42a3a5abf9637eebc
+      internalID: -944341916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyGunOfDen-Sheet-export_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c47e7633cac9ef44b8fd4d401dfc96c9
+      internalID: 1959974574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyGunOfDen-Sheet-export_7
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52117c4a380ff5a44abe2fef6a3d0537
+      internalID: -1029127968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyGunOfDen-Sheet-export_8
       rect:
         serializedVersion: 2
         x: 480
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aca9f232dc192c54d9376bcdb4b30626
-      internalID: 392660621
+      spriteID: 7d157775f8bbe074c8cf42e62e5feca1
+      internalID: 387107546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_4
+      name: HolyGunOfDen-Sheet-export_9
       rect:
         serializedVersion: 2
-        x: 641
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 540
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c56393722cf42f34cb720417459d9ed2
-      internalID: -44898698
+      spriteID: 13df54ec4991f0c4cb55ef97ce374d0a
+      internalID: 1213123385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_5
+      name: HolyGunOfDen-Sheet-export_10
       rect:
         serializedVersion: 2
-        x: 801
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 600
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0231de9c3ba53041a71ff606e25c7a2
-      internalID: 599086909
+      spriteID: 69d876008bfb2ac448a17e6dcb95ad4f
+      internalID: 296288222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_6
+      name: HolyGunOfDen-Sheet-export_11
       rect:
         serializedVersion: 2
-        x: 961
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 660
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d42450059369ef4ab84627c08fe5d1d
-      internalID: 788879222
+      spriteID: 8664be82ada611749978e27dd8dffe40
+      internalID: 1394700634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_7
+      name: HolyGunOfDen-Sheet-export_12
       rect:
         serializedVersion: 2
-        x: 1122
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 720
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8956819524190e4b9975ab2e25afc47
-      internalID: -250801333
+      spriteID: a70c691d68b18de409301907cc95749d
+      internalID: -569049880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_8
+      name: HolyGunOfDen-Sheet-export_13
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 780
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89b3206ca6da2ae4c9e59809ee08cf76
-      internalID: 757758288
+      spriteID: 2d260ef259c488244b106d4a38f1b40a
+      internalID: 214495320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_9
+      name: HolyGunOfDen-Sheet-export_14
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 840
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06a529d237187c145b97fb9913c6e19c
-      internalID: -1373106837
+      spriteID: 19d5f9d29ede7604683ba759937a9481
+      internalID: 1839442051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_10
+      name: HolyGunOfDen-Sheet-export_15
       rect:
         serializedVersion: 2
-        x: 1602
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 900
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a63708a0674081448aabdfbe973c1070
-      internalID: -78720571
+      spriteID: 829eee9f288f3474da4b4e9414cc68c7
+      internalID: -1501003742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunTurret_11
+      name: HolyGunOfDen-Sheet-export_16
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+        x: 960
+        y: 10
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 921e35a99ed9ffc40ab1759a190ebe4c
-      internalID: 577157997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GunTurret_12
-      rect:
-        serializedVersion: 2
-        x: 1918
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32cdcefc767f2544f8de0680a371468d
-      internalID: -1723745063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GunTurret_13
-      rect:
-        serializedVersion: 2
-        x: 2080
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7dfcd28232fca284a9a6349bf948fb1f
-      internalID: 803410197
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GunTurret_14
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.26}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8592364c9e5e0ab4ab55c8ee817da596
-      internalID: -1217609821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GunTurret_15
-      rect:
-        serializedVersion: 2
-        x: 2401
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.34}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 78b660f57797382458c9b7dd722d48ff
-      internalID: 1085414850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GunTurret_16
-      rect:
-        serializedVersion: 2
-        x: 2561
-        y: 0
-        width: 149
-        height: 280
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4fa138bf04da0304dba699dd90640404
-      internalID: 899899100
+      spriteID: 4ce19d9b37bb8e64a805841fb4f3b6de
+      internalID: 909873238
       vertices: []
       indices: 
       edges: []
@@ -464,23 +464,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GunTurret_0: 226807879
-      GunTurret_1: 834636188
-      GunTurret_10: -78720571
-      GunTurret_11: 577157997
-      GunTurret_12: -1723745063
-      GunTurret_13: 803410197
-      GunTurret_14: -1217609821
-      GunTurret_15: 1085414850
-      GunTurret_16: 899899100
-      GunTurret_2: 1328049454
-      GunTurret_3: 392660621
-      GunTurret_4: -44898698
-      GunTurret_5: 599086909
-      GunTurret_6: 788879222
-      GunTurret_7: -250801333
-      GunTurret_8: 757758288
-      GunTurret_9: -1373106837
+      HolyGunOfDen-Sheet-export_0: 484466057
+      HolyGunOfDen-Sheet-export_1: 1598518602
+      HolyGunOfDen-Sheet-export_10: 296288222
+      HolyGunOfDen-Sheet-export_11: 1394700634
+      HolyGunOfDen-Sheet-export_12: -569049880
+      HolyGunOfDen-Sheet-export_13: 214495320
+      HolyGunOfDen-Sheet-export_14: 1839442051
+      HolyGunOfDen-Sheet-export_15: -1501003742
+      HolyGunOfDen-Sheet-export_16: 909873238
+      HolyGunOfDen-Sheet-export_2: 1472627465
+      HolyGunOfDen-Sheet-export_3: 1682872982
+      HolyGunOfDen-Sheet-export_4: 1472778713
+      HolyGunOfDen-Sheet-export_5: -944341916
+      HolyGunOfDen-Sheet-export_6: 1959974574
+      HolyGunOfDen-Sheet-export_7: -1029127968
+      HolyGunOfDen-Sheet-export_8: 387107546
+      HolyGunOfDen-Sheet-export_9: 1213123385
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

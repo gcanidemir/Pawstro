@@ -17,7 +17,8 @@ public class PlayerItemPickUp : MonoBehaviour
     {
         pickedItem = collision.gameObject;
         if (collision.CompareTag("Item")){
-            demoScript.PickItem(4);
+            demoScript.PickItem(0);
+            
             Destroy(pickedItem);
         }
     }

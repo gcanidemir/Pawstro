@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GunsLookAt : MonoBehaviour
 {
+    public float min;
+    public float max;
     private Rigidbody2D rb;
 
     void Start()
@@ -28,8 +30,10 @@ public class GunsLookAt : MonoBehaviour
             // Calculate the angle to rotate towards the closest enemy
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
+            float clampedAngle = Mathf.Clamp(angle, min, max);
+
             // Apply the rotation on the Z axis while keeping X and Y positions frozen
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, clampedAngle-90));
         }
     }
 
