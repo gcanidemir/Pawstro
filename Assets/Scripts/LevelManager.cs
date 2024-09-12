@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float timeUntilSpawn;
     [SerializeField] private float time;
     [SerializeField] private bool stormNotified;
+    [SerializeField] private bool isAllEnemyDead;
     [SerializeField] private EnemySpawnManager enemySpawnManager;
     [SerializeField] private MeteorSpawner meteorSpawnManager;
     [SerializeField] private int mobCount;
