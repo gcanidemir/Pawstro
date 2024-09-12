@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class Item : ScriptableObject
 {
     [Header("Only gameplay")]
+    public int id;
     public TileBase tile;
     public ItemType itemType;
     public ActionType actionType;

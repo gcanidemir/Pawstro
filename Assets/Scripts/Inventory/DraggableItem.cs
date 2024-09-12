@@ -35,6 +35,14 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         bool textActive = count > 1;
         countText.gameObject.SetActive(textActive);
     }
+    public void StartFakeDrag()
+    {
+        // Simulate what OnBeginDrag does without requiring PointerEventData
+        parentAfterDrag = transform.parent;
+        transform.SetParent(transform.root);
+        transform.SetAsLastSibling();
+        GetComponent<Image>().raycastTarget = false;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {

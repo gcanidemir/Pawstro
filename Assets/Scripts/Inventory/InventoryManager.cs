@@ -11,6 +11,8 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot[] inventorySlots;
     public DemoScript demoScript;
 
+    private Dictionary<Item, GameObject> itemGameObjectMap = new Dictionary<Item, GameObject>();
+
     public bool AddItem(Item item, int id)
     {
         // First check if it's an item (ID 0-5)
@@ -48,48 +50,55 @@ public class InventoryManager : MonoBehaviour
 
     void SpawnNewItem(Item item, ItemSlot slot, int id)
     {
-        // Instantiate the main item
-        GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
-        DraggableItem inventoryItem = newItemGo.GetComponentInChildren<DraggableItem>();
-        inventoryItem.InitialiseItem(item, true, id);
-        int detailId = id + 6;
-        demoScript.Deneme(newItemGo, detailId);
-        GameObject newItemDetailGo = SpawnNewItemDetail(demoScript.Deneme(newItemGo, detailId), newItemGo, detailId);
-        AddPointerEvents(newItemGo, newItemDetailGo);
-        
-    }
+    GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
+    DraggableItem inventoryItem = newItemGo.GetComponentInChildren<DraggableItem>();
+    inventoryItem.InitialiseItem(item, true, id);
+    int detailId = id + 6;
+    GameObject newItemDetailGo = SpawnNewItemDetail(demoScript.Deneme(newItemGo, detailId), newItemGo, detailId);
+    AddPointerEvents(newItemGo, newItemDetailGo);
 
-    GameObject SpawnNewItemDetail(Item item, GameObject parent, int detailId)
-{
-    // Instantiate the item detail as a child of the parent item
-    GameObject newItemDetailGo = Instantiate(inventoryItemDetailsPrefab, parent.transform);
-    DraggableItem inventoryItemDetail = newItemDetailGo.GetComponentInChildren<DraggableItem>();
-
-    if (inventoryItemDetail != null)
+    // Update the dictionary with the new item
+    if (itemGameObjectMap.ContainsKey(item))
     {
-        // Initialize the item detail
-        inventoryItemDetail.InitialiseItem(item, false, detailId);
+        // If item already exists, update the reference
+        itemGameObjectMap[item] = newItemGo;
     }
-
-    Vector3 worldPosition = new Vector3(900, 250, 0);
-        Vector3 localPosition = parent.transform.InverseTransformPoint(worldPosition);
-        newItemDetailGo.transform.localPosition = localPosition;
-
-    return newItemDetailGo;
+    else
+    {
+        // Otherwise, add a new entry
+        itemGameObjectMap.Add(item, newItemGo);
+    }
 }
 
+    GameObject SpawnNewItemDetail(Item item, GameObject parent, int detailId)
+    {
+        GameObject newItemDetailGo = Instantiate(inventoryItemDetailsPrefab, parent.transform);
+        DraggableItem inventoryItemDetail = newItemDetailGo.GetComponentInChildren<DraggableItem>();
 
+        if (inventoryItemDetail != null)
+        {
+            inventoryItemDetail.InitialiseItem(item, false, detailId);
+        }
+
+        AddPointerEvents(parent, newItemDetailGo);
+        return newItemDetailGo;
+    }
 
     void AddPointerEvents(GameObject item, GameObject child)
     {
         EventTrigger trigger = item.AddComponent<EventTrigger>();
-        EventTrigger.Entry enterEntry = new EventTrigger.Entry();
-        enterEntry.eventID = EventTriggerType.PointerEnter;
+
+        EventTrigger.Entry enterEntry = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.PointerEnter
+        };
         enterEntry.callback.AddListener((eventData) => { OnPointerEnter(child); });
         trigger.triggers.Add(enterEntry);
 
-        EventTrigger.Entry exitEntry = new EventTrigger.Entry();
-        exitEntry.eventID = EventTriggerType.PointerExit;
+        EventTrigger.Entry exitEntry = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.PointerExit
+        };
         exitEntry.callback.AddListener((eventData) => { OnPointerExit(child); });
         trigger.triggers.Add(exitEntry);
     }
@@ -97,6 +106,9 @@ public class InventoryManager : MonoBehaviour
     void OnPointerEnter(GameObject child)
     {
         child.SetActive(true);
+         DraggableItem draggableItem = child.GetComponentInChildren<DraggableItem>();
+            draggableItem.StartFakeDrag();
+        
     }
 
     void OnPointerExit(GameObject child)
@@ -104,9 +116,51 @@ public class InventoryManager : MonoBehaviour
         child.SetActive(false);
     }
 
-    public void RemoveItem(Item item)
+        public void RemoveItem(Item item)
     {
-        // Implement item removal logic here
+        Debug.Log($"Attempting to Remove Item: {item.name}");
+
+        bool itemRemoved = false;
+
+        // Iterate through all inventory slots to find and remove the item
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            ItemSlot slot = inventorySlots[i];
+            DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>();
+
+            if (itemInSlot != null && itemInSlot.item == item)
+            {
+                Debug.Log($"Found Item in Slot: {item.name}, Quantity: {itemInSlot.count}");
+
+                // Remove the entire stack
+                Destroy(itemInSlot.gameObject);
+                itemGameObjectMap.Remove(item);
+                Debug.Log($"Removed Entire Stack of {item.name}");
+
+                itemRemoved = true;
+            }
+        }
+
+        if (!itemRemoved)
+        {
+        Debug.LogError($"Item not found in inventory for removal: {item.name}");
+        }
     }
+    public List<Item> GetAllItems()
+    {
+        List<Item> items = new List<Item>();
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            ItemSlot slot = inventorySlots[i];
+            DraggableItem itemInSlot = slot.GetComponentInChildren<DraggableItem>();
+
+            if (itemInSlot != null && itemInSlot.item != null && !items.Contains(itemInSlot.item))
+            {
+                items.Add(itemInSlot.item);
+            }
+        }
+        return items;
+    }
+
     
 }
