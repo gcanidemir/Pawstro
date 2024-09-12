@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private EnemySpawnManager enemySpawnManager;
     [SerializeField] private MeteorSpawner meteorSpawnManager;
     [SerializeField] private int mobCount;
+    [SerializeField] private bool isAllEnemyDead;
+
 
     private void LevelManagerInit()
     {
