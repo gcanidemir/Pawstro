@@ -6,14 +6,13 @@ public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     private float minDistanceBetweenEnemies = 1f;
-    private float minRadius = 10f;
+    private readonly float minRadius = 10f;
     private float maxRadius = 30f;
 
     private List<Vector3> spawnPoints = new List<Vector3>();
 
-    private void EnemySpawnManagerInit()
+    public void SpawnEnemies(int enemyCount, bool doesSpawnMiniBoss, bool doesSpawnBoss)
     {
-        int enemyCount = 100;
 
         for (int i = 0; i < enemyCount; i++)
         {
@@ -49,15 +48,5 @@ public class EnemySpawnManager : MonoBehaviour
             }
 
         }
-    }
-
-    void Start()
-    {
-        EnemySpawnManagerInit();   
-    }
-
-    void Update()
-    {
-        
     }
 }
