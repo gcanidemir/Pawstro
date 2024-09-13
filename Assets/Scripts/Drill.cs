@@ -44,7 +44,7 @@ public class Drill : MonoBehaviour
 
     private void fire()
     {
-        if (Input.GetMouseButtonDown(0) && canFire)
+        if (Input.GetMouseButton(0) && canFire)
         {
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
             Collider2D[] hitMeteor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, meteorLayer);
