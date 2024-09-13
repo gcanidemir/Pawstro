@@ -36,20 +36,15 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void StartFakeDrag()
     {
-         Debug.Log(parentAfterDrag);
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         GetComponent<Image>().raycastTarget = false;
-        Debug.Log(parentAfterDrag);
     }
     public void EndFakeDrag()
     {
-        
-         Debug.Log(parentAfterDrag);
         transform.SetParent(parentAfterDrag, true);
         image.raycastTarget = true;
-         Debug.Log(parentAfterDrag);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
