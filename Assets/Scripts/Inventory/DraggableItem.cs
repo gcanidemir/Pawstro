@@ -30,18 +30,26 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void CountRefresh()
     {
-
         countText.text = count.ToString();
         bool textActive = count > 1;
         countText.gameObject.SetActive(textActive);
     }
     public void StartFakeDrag()
     {
-        // Simulate what OnBeginDrag does without requiring PointerEventData
+         Debug.Log(parentAfterDrag);
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         GetComponent<Image>().raycastTarget = false;
+        Debug.Log(parentAfterDrag);
+    }
+    public void EndFakeDrag()
+    {
+        
+         Debug.Log(parentAfterDrag);
+        transform.SetParent(parentAfterDrag, true);
+        image.raycastTarget = true;
+         Debug.Log(parentAfterDrag);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -52,6 +60,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -63,9 +72,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
+
         if (!isDraggable) return;  // Prevent dragging if it's not draggable
 
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
+
     }
 }

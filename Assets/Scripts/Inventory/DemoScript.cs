@@ -12,22 +12,12 @@ public class DemoScript : MonoBehaviour
     public void PickItem(int id){
         if (id >= 0 && id <= 5) // Only allow IDs for items, not details
         {
-            Debug.Log(id);
             inventoryManager.AddItem(ItemToPick[id], id);
             int detailId = id + 6;
-            
-                Debug.Log(detailId);
-            
-
-
-
-         
         }
     }
     public Item Deneme(GameObject parent, int id){
-        Debug.Log(id);
-        return ItemToPick[id];
-        
+        return ItemToPick[id];        
     }
 
 }

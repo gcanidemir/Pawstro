@@ -46,13 +46,7 @@ public class Drill : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && canFire)
         {
-            Debug.Log("týkladýn");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-
-            foreach(Collider2D enemy in hitEnemies)
-            {
-                Debug.Log("Enemy hit");
-            }
             Collider2D[] hitMeteor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, meteorLayer);
 
             foreach (Collider2D meteor in hitMeteor)
