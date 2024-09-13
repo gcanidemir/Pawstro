@@ -19,22 +19,28 @@ public class GunsLookAt : MonoBehaviour
 
     void Update()
     {
-        // Find the closest enemy
-        GameObject closestEnemy = FindClosestEnemy();
+         GameObject closestEnemy = FindClosestEnemy();
 
-        if (closestEnemy != null)
-        {
-            // Calculate the direction to the closest enemy
-            Vector3 direction = closestEnemy.transform.position - transform.position;
+    if (closestEnemy != null)
+    {
+        // Calculate the direction to the closest enemy
+        Vector3 direction = closestEnemy.transform.position - transform.position;
 
-            // Calculate the angle to rotate towards the closest enemy
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // Calculate the angle in degrees
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            float clampedAngle = Mathf.Clamp(angle, min, max);
+        // Get the current rotation angle of the turret
+        float currentAngle = transform.eulerAngles.z;
 
-            // Apply the rotation on the Z axis while keeping X and Y positions frozen
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, clampedAngle-90));
-        }
+        // Calculate the shortest angle difference using Mathf.DeltaAngle
+        float deltaAngle = Mathf.DeltaAngle(currentAngle, angle - 90); // Subtract 90 to align rotation correctly
+
+        // Clamp the angle difference between the defined min and max range
+        float clampedDelta = Mathf.Clamp(deltaAngle, min, max);
+
+        // Apply the rotation smoothly by adding the clamped delta to the current angle
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, currentAngle + clampedDelta));
+    }
     }
 
     // Method to find the closest enemy
