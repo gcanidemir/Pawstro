@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
+using System.Text;
+using TMPro;
 using UnityEngine;
 
 public class player : MonoBehaviour
@@ -17,7 +19,13 @@ public class player : MonoBehaviour
     private float speedx, speedy;
     public float scale = 1;
     public float speedbonus = 1;
-    public bool FuelEmpty = false;
+    private Vector2 bouncepoint = Vector2.zero;
+    private Vector2 playerposition = Vector2.zero;
+    private Vector2 bounceboxposition = Vector2.zero;
+    private bool FuelEmpty = false;
+    public Transform bouncebox;
+    public GameObject playerpos;
+
     public Fuel fuel;
 
     Rigidbody2D rb;
@@ -138,5 +146,33 @@ public class player : MonoBehaviour
       
 
 
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        ContactPoint2D[] contacts = new ContactPoint2D[col.contactCount];
+        col.GetContacts(contacts);
+        bouncepoint = new Vector2(currentSpeedx,currentSpeedy);
+        bouncebox.localPosition = bouncepoint;
+        playerposition = playerpos.transform.position;
+        bounceboxposition = bouncebox.transform.position;
+        Vector2 directionVector = bounceboxposition - playerposition;
+
+        if (contacts.Length > 0)
+        {
+            Vector2 normal = contacts[0].normal;
+
+          
+            if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+            {
+                directionVector.x = -directionVector.x;
+            }
+            else
+            {
+                directionVector.y = -directionVector.y;
+            }
+     
+        }
+        currentSpeedx = directionVector.x/5;
+        currentSpeedy = directionVector.y/5;
     }
 }
