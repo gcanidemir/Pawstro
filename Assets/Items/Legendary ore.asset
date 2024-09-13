@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9737279fe970df4d845b644d002c2e9, type: 3}
   m_Name: Legendary ore
   m_EditorClassIdentifier: 
+  id: 0
   tile: {fileID: 0}
   itemType: 0
   actionType: 0
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 21300000, guid: 038978a8e80e5e845901fbbb41b45ad6, type: 3}
+  image: {fileID: 21300000, guid: 3f6adaae574adf945bed8917e9f6fae5, type: 3}

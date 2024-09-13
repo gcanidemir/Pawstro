@@ -17,7 +17,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private EnemySpawnManager enemySpawnManager;
     [SerializeField] private MeteorSpawner meteorSpawnManager;
     [SerializeField] private int mobCount;
-    [SerializeField] private bool isAllEnemyDead;
 
 
     private void LevelManagerInit()
@@ -118,7 +117,7 @@ public class LevelManager : MonoBehaviour
             SpawnEnemies(level);
         }
 
-        //TOOD sýçýyo düzelt. Çok geliyo
+        //TOOD sï¿½ï¿½ï¿½yo dï¿½zelt. ï¿½ok geliyo
         if (!isEnemyExist())
         {
             TeleportPlayer();

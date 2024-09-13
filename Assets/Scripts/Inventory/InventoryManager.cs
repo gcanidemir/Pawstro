@@ -118,9 +118,6 @@ public class InventoryManager : MonoBehaviour
 
         public void RemoveItem(Item item)
     {
-        Debug.Log($"Attempting to Remove Item: {item.name}");
-
-        bool itemRemoved = false;
 
         // Iterate through all inventory slots to find and remove the item
         for (int i = 0; i < inventorySlots.Length; i++)
@@ -135,15 +132,8 @@ public class InventoryManager : MonoBehaviour
                 // Remove the entire stack
                 Destroy(itemInSlot.gameObject);
                 itemGameObjectMap.Remove(item);
-                Debug.Log($"Removed Entire Stack of {item.name}");
 
-                itemRemoved = true;
             }
-        }
-
-        if (!itemRemoved)
-        {
-        Debug.LogError($"Item not found in inventory for removal: {item.name}");
         }
     }
     public List<Item> GetAllItems()

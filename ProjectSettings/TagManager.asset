@@ -6,6 +6,14 @@ TagManager:
   tags:
   - Enemy
   - Item
+  - OpenShop
+  - Heal
+  - CommonOre
+  - CommonGem
+  - RareOre
+  - RareGem
+  - LegendaryOre
+  - LegendaryGem
   layers:
   - Default
   - TransparentFX

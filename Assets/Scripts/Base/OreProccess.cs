@@ -31,9 +31,6 @@ public class OreProcess : MonoBehaviour
             {
                 inventoryManager.RemoveItem(item);
             }
-        
-            Debug.Log("Item removed from inventory");
-        
 
     }
 

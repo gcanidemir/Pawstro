@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9737279fe970df4d845b644d002c2e9, type: 3}
   m_Name: Rare Gem
   m_EditorClassIdentifier: 
+  id: 0
   tile: {fileID: 0}
   itemType: 0
   actionType: 0
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 21300000, guid: 7b95e3bf786eafc478454a712167807c, type: 3}
+  image: {fileID: 21300000, guid: 094812fb9c6f8f548809cb349de2aeca, type: 3}
