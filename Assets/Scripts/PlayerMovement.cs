@@ -17,6 +17,7 @@ public class player : MonoBehaviour
     private float speedx, speedy;
     public float scale = 1;
     public float speedbonus = 1;
+    public bool FuelEmpty = false;
     public Fuel fuel;
 
     Rigidbody2D rb;
@@ -32,12 +33,19 @@ public class player : MonoBehaviour
 
     void Update()
     {
+        if (Mathf.Abs(speedx) > 0 || Mathf.Abs(speedy) > 0)
+        {
+            fuel.takedamage(0.01f);
+        }
 
-
+        if (fuel.currenthealth == 0)
+            FuelEmpty = true;
+        else
+            FuelEmpty = false;
 
         if (Input.GetKey(KeyCode.LeftShift) && fuel.currenthealth > 0)
         {
-            fuel.takedamage(0.01f);
+            fuel.takedamage(0.05f);
             targetspeedX = 2 * speedConstant * multiplier * speedbonus;
             targetspeedY = 2 * speedConstant * multiplier * speedbonus;
 
@@ -113,10 +121,21 @@ public class player : MonoBehaviour
         }
         //Y axis deceleration
 
-        if (Mathf.Abs(speedx) > 0 && Mathf.Abs(speedy) > 0)
-            rb.velocity = new Vector2(currentSpeedx/Mathf.Sqrt(2), currentSpeedy/Mathf.Sqrt(2));
+        if (FuelEmpty)
+        {
+            if (Mathf.Abs(speedx) > 0 && Mathf.Abs(speedy) > 0)
+                rb.velocity = new Vector2(currentSpeedx / 10*Mathf.Sqrt(2), currentSpeedy / 10*Mathf.Sqrt(2));
+            else
+                rb.velocity = new Vector2(currentSpeedx/10, currentSpeedy/10);
+        }
         else
-            rb.velocity = new Vector2(currentSpeedx, currentSpeedy);
+        {
+            if (Mathf.Abs(speedx) > 0 && Mathf.Abs(speedy) > 0)
+                rb.velocity = new Vector2(currentSpeedx / Mathf.Sqrt(2), currentSpeedy / Mathf.Sqrt(2));
+            else
+                rb.velocity = new Vector2(currentSpeedx, currentSpeedy);
+        }
+      
 
 
     }
