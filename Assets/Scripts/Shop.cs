@@ -34,13 +34,18 @@ public class Shop : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.CompareTag("OpenShop"))
         inShop = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        inShop = false;
-        shopOpenable = true;
+        if (collision.CompareTag("OpenShop"))
+        {
+            inShop = false;
+            shopOpenable = true;
+        }
+          
     }
 
     private void Update()

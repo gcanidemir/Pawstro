@@ -22,7 +22,6 @@ public class Trigger : MonoBehaviour
             if (damagetimer >= damageInterval)
             {
                 health.takedamage(20);
-                Debug.Log("ah!");
                 damagetimer = 0f;
             }
             
@@ -31,8 +30,7 @@ public class Trigger : MonoBehaviour
         
         if (collision.tag == "Heal")
         {
-                health.Heal(0.02f*HPregen);
-                Debug.Log("Yuppie!");         
+                health.Heal(0.02f*HPregen);         
         }
 
 
