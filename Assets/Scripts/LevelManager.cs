@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor.SearchService;
+using UnityEngine.Rendering.PostProcessing;
 
 public class LevelManager : MonoBehaviour
 {
@@ -13,24 +14,31 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float timeUntilSpawn;
     [SerializeField] private float time;
     [SerializeField] private bool stormNotified;
-    [SerializeField] private bool isAllEnemyDead;
     [SerializeField] private EnemySpawnManager enemySpawnManager;
     [SerializeField] private MeteorSpawner meteorSpawnManager;
     [SerializeField] private int mobCount;
-
+    [SerializeField] private bool spawnEnemies;
+    [SerializeField] private bool screenFlash;
+    [SerializeField] private PostProcessVolume volume;
+    [SerializeField] private Vignette vignette;
+    [SerializeField] private float intensity;
+    [SerializeField] private TextMeshProUGUI enemyAlertText;
 
     private void LevelManagerInit()
     {
         enemySpawnManager = this.GetComponent<EnemySpawnManager>();
         meteorSpawnManager = this.GetComponent<MeteorSpawner>();
-        isAllEnemyDead = false;
+        enemyAlertText.color = new Color(255, 255, 255, 0);
+
+        volume.profile.TryGetSettings<Vignette>(out vignette);
+        vignette.enabled.Override(false);
     }
 
     private void SetTimer()
     {
-        time = 30f;
+        time = 10f;
         minimumSpawnTime = time;
-        maximumSpawnTime = minimumSpawnTime + 30f;
+        maximumSpawnTime = minimumSpawnTime;
         timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
         stormNotified = false;
     }
@@ -66,12 +74,19 @@ public class LevelManager : MonoBehaviour
 
     private void DestroyMeteors()
     {
-        Debug.Log("Meteor Destroyed");
+        //TODO change with tag later.
+        GameObject temp = GameObject.Find("Circle(Clone)");
+        while (temp)
+        {
+            Destroy(temp);
+            temp.SetActive(false);
+            temp = GameObject.Find("Circle(Clone)");
+        }
     }
 
     private void TeleportPlayer()
     {
-        Debug.Log("Player Teleported");
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0,0,0);
     }
 
     private bool IsFiveSecBeforeStorm()
@@ -88,6 +103,53 @@ public class LevelManager : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    private IEnumerator FlashScreen()
+    {
+        screenFlash = false;
+        intensity = 0f;
+
+        vignette.enabled.Override(true);
+        vignette.intensity.Override(intensity);
+
+        for(int i = 0; i < 5; i++)
+        {
+            while (intensity < 0.2f)
+            {
+                enemyAlertText.color = new Color(255, 255, 255, enemyAlertText.color.a + 0.12f);
+
+                intensity += 0.01f;
+
+                if (intensity > 0.2f)
+                    intensity = 0.2f;
+
+                vignette.intensity.Override(intensity);
+
+                yield return new WaitForSeconds(0.02f);
+            }
+
+            yield return new WaitForSeconds(0.1f);
+
+            while (intensity > 0)
+            {
+                enemyAlertText.color = new Color(255, 255, 255, enemyAlertText.color.a - 0.12f);
+
+                intensity -= 0.01f;
+
+                if (intensity < 0)
+                    intensity = 0;
+
+                vignette.intensity.Override(intensity);
+
+
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+
+        vignette.enabled.Override(false);
+
+        yield break;
     }
 
     private bool isEnemyExist()
@@ -108,17 +170,24 @@ public class LevelManager : MonoBehaviour
 
         if(IsFiveSecBeforeStorm() && !stormNotified)
         {
-            Debug.Log("Storm is coming");
             stormNotified = true;
+            spawnEnemies = true;
+            screenFlash = true;
         }
 
-        if(HasStromAproached())
+        if (screenFlash && intensity <= 0.01)
+        {
+            StartCoroutine(FlashScreen());
+        }
+
+        if (HasStromAproached() && !isEnemyExist() && spawnEnemies)
         {
             SpawnEnemies(level);
+            spawnEnemies = false;
+            screenFlash = false;
         }
 
-        //TOOD s���yo d�zelt. �ok geliyo
-        if (!isEnemyExist())
+        if (!isEnemyExist() && timeUntilSpawn <= 0)
         {
             TeleportPlayer();
             DestroyMeteors();
