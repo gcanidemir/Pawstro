@@ -10,7 +10,11 @@ public class Shop : MonoBehaviour
     public GameObject Background;
     public GameObject ToolTip;
     public bool inShop = false;
+    public bool inGuns = false;
+    public bool inOre = false;
     public bool shopOpenable = true;
+    public bool inGunsOpenable = true;
+    public bool inOreOpenable = true;
     private Vector3 scaleChange;
     public Transform tran;
     private float x = 0f;
@@ -36,6 +40,14 @@ public class Shop : MonoBehaviour
     {
         if (collision.CompareTag("OpenShop"))
         inShop = true;
+        if (collision.CompareTag("GunControl"))
+        {
+            inGuns = true; 
+        }
+        if (collision.CompareTag("OreProcess"))
+        {
+            inOre = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -45,7 +57,14 @@ public class Shop : MonoBehaviour
             inShop = false;
             shopOpenable = true;
         }
-          
+        if (collision.CompareTag("GunControl"))
+        {
+            inGuns = false;
+        }
+        if (collision.CompareTag("OreProcess"))
+        {
+            inOre = false;
+        }
     }
 
     private void Update()
@@ -54,17 +73,22 @@ public class Shop : MonoBehaviour
         {
             ToolTip.SetActive(true);
         }
+        else if (inGuns && shopOpenable)
+            ToolTip.SetActive(true);
+        else if (inOre && shopOpenable)
+            ToolTip.SetActive(true);
         else
         {
             ToolTip.SetActive(false);
         }
 
+
+ 
         if (Input.GetKeyDown(KeyCode.E) && inShop && shopOpenable)
         {
             EnableInv();
             shopOpenable = false;
-            
-      
+
         }
 
         else if (Input.GetKeyDown(KeyCode.E) && inShop && !shopOpenable)

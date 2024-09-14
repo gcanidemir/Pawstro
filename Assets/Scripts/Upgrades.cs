@@ -18,7 +18,12 @@ public class Upgrades : MonoBehaviour
     public PlayerMoney playerMoney;
     public int Dashlvl, MaxHealthlvl, Oxygenlvl, HPregenlvl, Speedlvl, Drillvl, Fuellvl;
     public int Success;
+    [Header("------------------Player Upgrades------------------")]
     public TextMeshProUGUI DashUpgrade, HealthUpgrade, OxygenUpgrade, HPregenUpgrade, SpeedUpgrade,DrillUpgrade,FuelUpgrade;
+
+
+    [Header("------------------Base Upgrades------------------")]
+    public TextMeshProUGUI FuelRegen;
     public void UpgradeDashSpeed()
     {
         Success = playerMoney.SpendMoney(100*(Dashlvl + 1));
@@ -89,7 +94,6 @@ public class Upgrades : MonoBehaviour
             FuelBar.SetHealth(oxygen.currenthealth + 50);
             fuel.maxhealth = fuel.maxhealth + 50;
             fuel.currenthealth = fuel.currenthealth + 50;
-            Player.fuelmod = Player.fuelmod + 0.2f;
             Fuellvl = Fuellvl + 1;
             FuelUpgrade.text = (100 * (Fuellvl + 1)).ToString();
 
@@ -108,5 +112,10 @@ public class Upgrades : MonoBehaviour
         }
 
 
+    }
+
+    public void UpgradeFuelRegen()
+    {
+        Player.fuelmod = Player.fuelmod + 0.2f;
     }
 }

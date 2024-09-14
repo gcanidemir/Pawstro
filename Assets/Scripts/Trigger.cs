@@ -10,33 +10,11 @@ public class Trigger : MonoBehaviour
     public Fuel fuel;
     public Health health;
     public Oxygen oxygen;
-    public float damagetimer = 0f;
-    public float damageInterval = 2f;
     public float oxregen = 1f;
     public float oxlast = 1f;
     public float HPregen = 1f;
     public bool inspace = true;
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Enemy")
-        {
-            damagetimer += Time.deltaTime;
-            if (damagetimer >= damageInterval)
-            {
-                health.takedamage(20);
-                damagetimer = 0f;
-            }
-            
-        } 
-        else
-        if (collision.tag == "Heal")
-        {
-            health.Heal(0.02f * HPregen);
-            fuel.Heal(0.1f * Player.fuelmod);
-        }
-
-
-    }
+ 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Heal")
@@ -50,19 +28,19 @@ public class Trigger : MonoBehaviour
         {
             inspace = true;
         }
-        damagetimer = 0f;
 
     }
-
 
     void Update()
     {
         if (inspace)
-            oxygen.takedamage(0.01f/oxlast);
+            oxygen.takedamage(0.01f / oxlast);
         else if (!inspace)
-            oxygen.Heal(0.01f*oxregen);
-
-
-
+        {
+            oxygen.Heal(0.01f * oxregen);
+        health.Heal(0.02f * HPregen);
+        fuel.Heal(0.1f * Player.fuelmod);
+         }
+       
     }
 }
