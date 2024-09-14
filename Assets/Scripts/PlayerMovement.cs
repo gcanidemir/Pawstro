@@ -41,7 +41,6 @@ public class player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         speedConstant = 10;
 
-
     }
 
     void Update()
@@ -161,9 +160,7 @@ public class player : MonoBehaviour
 
         if (Speedtolerance >= currentSpeedx && currentSpeedx >= -Speedtolerance) 
         {
-            Debug.Log("inLoop");
             float Drillrotation = Drill.transform.rotation.z;
-            Debug.Log(Drillrotation);
             if(0.9 >= Drillrotation &&  Drillrotation >= -0.9)
             {
                 PlayerSprite.localScale = new Vector3(1, 1, 1);
@@ -195,15 +192,17 @@ public class player : MonoBehaviour
           
             if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
             {
-                directionVector.x = -directionVector.x;
+                directionVector.x = -1*directionVector.x;
+                currentSpeedx = directionVector.x / 5;
             }
-            else
+            else if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
             {
-                directionVector.y = -directionVector.y;
+                directionVector.y = -1*directionVector.y;
+                currentSpeedy = directionVector.y / 5;
             }
      
         }
-        currentSpeedx = directionVector.x/5;
-        currentSpeedy = directionVector.y/5;
+        
+        
     }
 }
