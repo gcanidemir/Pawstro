@@ -58,7 +58,7 @@ public class MeteorExplode : MonoBehaviour
 
     public void takeDamage(int damage) {
         currentHealth -= damage;
-        particle.Play();
+        //particle.Play();
             animator.SetInteger("Health", currentHealth);
         if(currentHealth <= 0)
         {
