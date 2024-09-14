@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     public float maxhealth = 100;
     public float currenthealth;
     public HealthBar healthBar;
+    public SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,10 +15,21 @@ public class Health : MonoBehaviour
         healthBar.SetMaxHealth(maxhealth);
     }
 
+    public IEnumerator FlashRed()
+    {
+        sprite.color = new Color32(233, 108, 108, 255);
+        yield return new WaitForSeconds(0.5f);
+        sprite.color = Color.white;
+    }
+
     public void takedamage(float damage)
     {
         if (damage < currenthealth)
+        {
             currenthealth -= damage;
+        StartCoroutine(FlashRed());
+
+        }
         else
             currenthealth = 0;
         healthBar.SetHealth(currenthealth);

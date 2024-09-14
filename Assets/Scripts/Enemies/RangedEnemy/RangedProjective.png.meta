@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7e1b78c9ede4e07479eb96f01e7624d2
+guid: 1cb3bdcae8729bf4e9e958dfbc9bd8eb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy_Tesla-Sheet_0
+      name: RangedProjective_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 100
         y: 0
-        width: 470
-        height: 470
+        width: 240
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 125ad2392e6d1c041ac193d34f402068
-      internalID: 678220494
+      spriteID: 0aa0a785f199f874088407efa9563825
+      internalID: 823495309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_Tesla-Sheet_1
+      name: RangedProjective_1
       rect:
         serializedVersion: 2
-        x: 480
+        x: 350
         y: 0
-        width: 420
-        height: 470
+        width: 240
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 885289338a529a94e91d7be2f6ad74ea
-      internalID: 1773974057
+      spriteID: ec6f152a79439c54b9eb9d85f0e114d1
+      internalID: -648296463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_Tesla-Sheet_2
+      name: RangedProjective_2
       rect:
         serializedVersion: 2
-        x: 910
+        x: 600
         y: 0
-        width: 450
-        height: 470
+        width: 240
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d00a744450a852408d1be3eda8c1120
-      internalID: 390433079
+      spriteID: e8b491cc7f4b24e4f84ef826d0e15d25
+      internalID: -2015780649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_Tesla-Sheet_3
+      name: RangedProjective_3
       rect:
         serializedVersion: 2
-        x: 1370
+        x: 840
         y: 0
-        width: 430
-        height: 470
+        width: 240
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f521729f09e7b314a84f926ed7333ce7
-      internalID: 1027583988
+      spriteID: 22f9045d3a9581b439053a5dc55e0b9d
+      internalID: 2117612546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RangedProjective_4
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 0
+        width: 240
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8038931364acf1b49b2c84e9f0247136
+      internalID: -1664152916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RangedProjective_5
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 0
+        width: 240
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db0d991e10007654bb5fc3431f34a0b9
+      internalID: -1583853098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RangedProjective_6
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 0
+        width: 240
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 558f74808d0707947bfa730071d6a8a3
+      internalID: -141201331
       vertices: []
       indices: 
       edges: []
@@ -191,10 +254,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemy_Tesla-Sheet_0: 678220494
-      enemy_Tesla-Sheet_1: 1773974057
-      enemy_Tesla-Sheet_2: 390433079
-      enemy_Tesla-Sheet_3: 1027583988
+      RangedProjective_0: 823495309
+      RangedProjective_1: -648296463
+      RangedProjective_2: -2015780649
+      RangedProjective_3: 2117612546
+      RangedProjective_4: -1664152916
+      RangedProjective_5: -1583853098
+      RangedProjective_6: -141201331
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

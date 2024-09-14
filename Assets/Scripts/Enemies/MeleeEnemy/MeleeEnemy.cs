@@ -38,13 +38,15 @@ public class MeleeEnemy : MonoBehaviour
             foreach (Collider2D player in hitPlayer)
             {
                 player.GetComponent<Health>().takedamage(attackDamage);
+                anim.SetTrigger("Bite");
             }
             foreach (Collider2D construct in hitBase)
             {
                 construct.GetComponent<Health>().takedamage(attackDamage);
+                anim.SetTrigger("Bite");
             }
             canAttack = false;
-            anim.SetTrigger("Bite");
+            
 
         }
         else
