@@ -16,36 +16,36 @@ public class Upgrades : MonoBehaviour
     public Drill drill;
     public Trigger trigger;
     public PlayerMoney playerMoney;
-    public int Dash, MaxHealth, OxygenUp, HPregen, Speed, UpgradedDrill;
+    public int Dashlvl, MaxHealthlvl, Oxygenlvl, HPregenlvl, Speedlvl, Drillvl, Fuellvl;
     public int Success;
-    public TextMeshProUGUI DashUpgrade, HealthUpgrade, OxygenUpgrade, HPregenUpgrade, SpeedUpgrade,DrillUpgrade;
+    public TextMeshProUGUI DashUpgrade, HealthUpgrade, OxygenUpgrade, HPregenUpgrade, SpeedUpgrade,DrillUpgrade,FuelUpgrade;
     public void UpgradeDashSpeed()
     {
-        Success = playerMoney.SpendMoney(100*(Dash + 1));
+        Success = playerMoney.SpendMoney(100*(Dashlvl + 1));
         if (Success == 1)
         {
             Player.multiplier = Player.multiplier + 0.5f;
-            Dash = Dash + 1;
-            DashUpgrade.text = (100*(Dash+1)).ToString();
+            Dashlvl = Dashlvl + 1;
+            DashUpgrade.text = (100*(Dashlvl+1)).ToString();
         }
         
     }
     public void UpgradeHealth()
     {
-        Success = playerMoney.SpendMoney(100 * (MaxHealth + 1));
+        Success = playerMoney.SpendMoney(100 * (MaxHealthlvl + 1));
         if (Success == 1)
         {
             healthBar.SetMaxHealth(health.maxhealth + 50);
             healthBar.SetHealth(health.currenthealth + 50);
             health.maxhealth = health.maxhealth + 50;
             health.currenthealth = health.currenthealth + 50;
-            MaxHealth = MaxHealth + 1;
-            HealthUpgrade.text = (100 * (MaxHealth + 1)).ToString();
+            MaxHealthlvl = MaxHealthlvl + 1;
+            HealthUpgrade.text = (100 * (MaxHealthlvl + 1)).ToString();
         }
     }
     public void UpgradeOxygen()
     {
-        Success = playerMoney.SpendMoney(100 * (OxygenUp + 1));
+        Success = playerMoney.SpendMoney(100 * (Oxygenlvl + 1));
         if (Success == 1)
         {
             OxygenBar.SetMaxHealth(oxygen.maxhealth + 50);
@@ -53,41 +53,57 @@ public class Upgrades : MonoBehaviour
             oxygen.maxhealth = oxygen.maxhealth + 50;
             oxygen.currenthealth = oxygen.currenthealth + 50;
 
-            trigger.oxregen = trigger.oxregen + 0.2f;
             trigger.oxlast = trigger.oxlast + 0.2f;
-            OxygenUp = OxygenUp + 1;
-            OxygenUpgrade.text = (100 * (OxygenUp + 1)).ToString();
+            Oxygenlvl = Oxygenlvl + 1;
+            OxygenUpgrade.text = (100 * (Oxygenlvl + 1)).ToString();
         }
     }
     public void UpgradeHPregen()
     {
-        Success = playerMoney.SpendMoney(100 * (HPregen + 1));
+        Success = playerMoney.SpendMoney(100 * (HPregenlvl + 1));
         if (Success == 1)
         {
             trigger.HPregen = trigger.HPregen + 0.2f;
-            HPregen = HPregen + 1;
-            HPregenUpgrade.text = (100 * (HPregen + 1)).ToString();
+            HPregenlvl = HPregenlvl + 1;
+            HPregenUpgrade.text = (100 * (HPregenlvl + 1)).ToString();
         }
     }
 
     public void UpgradeSpeed()
     {
-        Success = playerMoney.SpendMoney(100 * (Speed + 1));
+        Success = playerMoney.SpendMoney(100 * (Speedlvl + 1));
         if (Success == 1)
         {
             Player.speedbonus = Player.speedbonus + 0.5f;
-            Speed = Speed + 1;
-            SpeedUpgrade.text = (100 * (Speed + 1)).ToString();
+            Speedlvl = Speedlvl + 1;
+            SpeedUpgrade.text = (100 * (Speedlvl + 1)).ToString();
         }
+    }
+
+    public void UpgradeFuel()
+    {
+        Success = playerMoney.SpendMoney(100 * (Fuellvl + 1));
+        if (Success == 1)
+        {
+            FuelBar.SetMaxHealth(oxygen.maxhealth + 50);
+            FuelBar.SetHealth(oxygen.currenthealth + 50);
+            fuel.maxhealth = fuel.maxhealth + 50;
+            fuel.currenthealth = fuel.currenthealth + 50;
+            Player.fuelmod = Player.fuelmod + 0.2f;
+            Fuellvl = Fuellvl + 1;
+            FuelUpgrade.text = (100 * (Fuellvl + 1)).ToString();
+
+        }
+
     }
     public void UpgradeDrillPower()
     {
-        Success = playerMoney.SpendMoney(100 * (UpgradedDrill + 1));
+        Success = playerMoney.SpendMoney(100 * (Drillvl + 1));
         if (Success == 1)
         {
             drill.damagemod = drill.damagemod + 1;
-            UpgradedDrill = UpgradedDrill + 1;
-            DrillUpgrade.text = (100 * (UpgradedDrill + 1)).ToString();
+            Drillvl = Drillvl + 1;
+            DrillUpgrade.text = (100 * (Drillvl + 1)).ToString();
 
         }
 

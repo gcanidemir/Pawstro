@@ -19,12 +19,17 @@ public class player : MonoBehaviour
     private float speedx, speedy;
     public float scale = 1;
     public float speedbonus = 1;
+    public float fuelmod = 1;
+    public float Speedtolerance = 0.1f;
     private Vector2 bouncepoint = Vector2.zero;
     private Vector2 playerposition = Vector2.zero;
     private Vector2 bounceboxposition = Vector2.zero;
     private bool FuelEmpty = false;
     public Transform bouncebox;
+    public Transform PlayerSprite;
+    public Transform DrillSprite;
     public GameObject playerpos;
+    public GameObject Drill;
 
     public Fuel fuel;
 
@@ -43,7 +48,7 @@ public class player : MonoBehaviour
     {
         if (Mathf.Abs(speedx) > 0 || Mathf.Abs(speedy) > 0)
         {
-            fuel.takedamage(0.01f);
+            fuel.takedamage(0.01f/fuelmod);
         }
 
         if (fuel.currenthealth == 0)
@@ -53,7 +58,7 @@ public class player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && fuel.currenthealth > 0)
         {
-            fuel.takedamage(0.05f);
+            fuel.takedamage(0.05f/ fuelmod);
             targetspeedX = 2 * speedConstant * multiplier * speedbonus;
             targetspeedY = 2 * speedConstant * multiplier * speedbonus;
 
@@ -62,7 +67,6 @@ public class player : MonoBehaviour
 
         else if (!Input.GetKey(KeyCode.LeftShift))
         {
-            fuel.Heal(0.005f);
             targetspeedX = speedConstant * multiplier;
             targetspeedY = speedConstant * multiplier;
             acceleration = 1 * speedbonus;
@@ -143,7 +147,34 @@ public class player : MonoBehaviour
             else
                 rb.velocity = new Vector2(currentSpeedx, currentSpeedy);
         }
-      
+
+        if (currentSpeedx < -Speedtolerance) 
+        {
+            PlayerSprite.localScale = new Vector3 (-1,1,1);
+            DrillSprite.localScale = new Vector3(-1, 1, 1);
+        }
+        else if(currentSpeedx > Speedtolerance)
+        {
+            PlayerSprite.localScale = new Vector3(1, 1, 1);
+            DrillSprite.localScale = new Vector3(1, 1, 1);
+        }
+
+        if (Speedtolerance >= currentSpeedx && currentSpeedx >= -Speedtolerance) 
+        {
+            Debug.Log("inLoop");
+            float Drillrotation = Drill.transform.rotation.z;
+            Debug.Log(Drillrotation);
+            if(0.9 >= Drillrotation &&  Drillrotation >= -0.9)
+            {
+                PlayerSprite.localScale = new Vector3(1, 1, 1);
+                DrillSprite.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                PlayerSprite.localScale = new Vector3(-1, 1, 1);
+                DrillSprite.localScale = new Vector3(-1, 1, 1);
+            }
+        }
 
 
     }

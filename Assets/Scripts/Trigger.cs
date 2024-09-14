@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class Trigger : MonoBehaviour
 
 {
+    public player Player;
+    public Fuel fuel;
     public Health health;
     public Oxygen oxygen;
     public float damagetimer = 0f;
@@ -25,12 +27,12 @@ public class Trigger : MonoBehaviour
                 damagetimer = 0f;
             }
             
-        }
+        } 
         else
-        
         if (collision.tag == "Heal")
         {
-                health.Heal(0.02f*HPregen);         
+            health.Heal(0.02f * HPregen);
+            fuel.Heal(0.005f * Player.fuelmod);
         }
 
 
