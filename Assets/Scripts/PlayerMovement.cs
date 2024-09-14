@@ -30,7 +30,7 @@ public class player : MonoBehaviour
     public Transform DrillSprite;
     public GameObject playerpos;
     public GameObject Drill;
-
+    public AudioManager audioManager;
     public Fuel fuel;
 
     Rigidbody2D rb;
