@@ -5,17 +5,17 @@ using UnityEngine;
 public class MeteorSpawner : MonoBehaviour
 {
     public GameObject[] Meteors;
-    public float minDistanceBetweenMeteors = 2f; // Minimum distance between meteors
-    public int lvl = 0;
+    public float minDistanceBetweenMeteors; // Minimum distance between meteors
+    public int lvl;
 
-    public float rareMinRadius = 50f;  // Min distance for rare meteors
-    public float rareMaxRadius = 60f;  // Max distance for rare meteors
+    public float rareMinRadius;  // Min distance for rare meteors
+    public float rareMaxRadius;  // Max distance for rare meteors
 
-    public float uncommonMinRadius = 32f; // Min distance for less common meteors
-    public float uncommonMaxRadius = 47f; // Max distance for less common meteors
+    public float uncommonMinRadius; // Min distance for less common meteors
+    public float uncommonMaxRadius; // Max distance for less common meteors
 
-    public float commonMinRadius = 10f;   // Min distance for common meteors
-    public float commonMaxRadius = 30f;  // Max distance for common meteors
+    public float commonMinRadius;   // Min distance for common meteors
+    public float commonMaxRadius;  // Max distance for common meteors
 
     private List<Vector3> spawnPoints = new List<Vector3>();
 
@@ -26,7 +26,7 @@ public class MeteorSpawner : MonoBehaviour
 
     public void Meteor(int lvl)
     {
-        int meteorCount = Random.Range(25, 50);
+        int meteorCount = Random.Range(10, 20);
 
         for (int i = 0; i < meteorCount; i++)
         {
@@ -40,17 +40,17 @@ public class MeteorSpawner : MonoBehaviour
             if (randomIndex >= 8 && randomIndex < 10)
             {
                 randomMeteor = 2; // Rarest meteor type
-                radius = Random.Range(50f, 60f); // Farthest from the center
+                radius = Random.Range(rareMinRadius, rareMaxRadius); // Farthest from the center
             }
             else if (randomIndex >= 4 && randomIndex < 8)
             {
                 randomMeteor = 1; // Less common meteor
-                radius = Random.Range(32f, 47f); // Medium distance from the center
+                radius = Random.Range(uncommonMinRadius, uncommonMaxRadius); // Medium distance from the center
             }
             else
             {
                 randomMeteor = 0; // Most common meteor
-                radius = Random.Range(20f, 30f); // Closest to the center
+                radius = Random.Range(commonMinRadius, commonMaxRadius); // Closest to the center
             }
 
             // Generate random angle for position around the center of the rectangle
