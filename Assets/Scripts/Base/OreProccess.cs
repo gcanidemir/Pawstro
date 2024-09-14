@@ -7,6 +7,7 @@ public class OreProcess : MonoBehaviour
     public GameObject player;
     private bool inArea = false;
     public InventoryManager inventoryManager;
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

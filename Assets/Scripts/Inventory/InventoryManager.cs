@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryItemDetailsPrefab;
     public ItemSlot[] inventorySlots;
     public DemoScript demoScript;
+    public PlayerMoney moneyScript;
 
     private Dictionary<Item, GameObject> itemGameObjectMap = new Dictionary<Item, GameObject>();
 
@@ -171,10 +172,6 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot != null && itemInSlot.item == item)
             {
                 Transform itemDetailTransform = itemInSlot.transform.Find("ItemDetail(Clone)");
-                if (itemDetailTransform == null){
-                    Debug.Log("anan");
-                    return;
-                }
                 GameObject newItemDetailGo = itemDetailTransform.gameObject;
                 TMP_Text[] tmpTexts = newItemDetailGo.GetComponentsInChildren<TMP_Text>();
                 foreach (TMP_Text tmpText in tmpTexts)
@@ -184,6 +181,7 @@ public class InventoryManager : MonoBehaviour
                         string text = tmpText.text;
                         int total = int.Parse(text);
                         int totalstackprice = total * itemInSlot.count;
+                        moneyScript.EarnMoney(totalstackprice);
                         Debug.Log(totalstackprice + " " + total);
                     }
                     

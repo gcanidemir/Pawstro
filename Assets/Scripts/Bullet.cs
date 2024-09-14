@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float force = 10f;  // Force to apply to the bullet
     public float lifetime = 5f;  // How long the bullet lasts
 
+
     private Rigidbody2D rb;
 
     void Start()
@@ -25,13 +26,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        // Handle collision with enemies or other objects
-        if (collision.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);  // Destroy enemy
-            Destroy(gameObject);  // Destroy bullet
+            Destroy(gameObject);
         }
     }
 }
