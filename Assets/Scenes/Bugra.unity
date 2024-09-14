@@ -1025,8 +1025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068b0cbd9d6f49741b02280d796068a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min: -14.989
-  max: 105.011
+  min: -15
+  max: 105
+  bulletPrefab: {fileID: 5629358837054899760, guid: ef67a84cd2139044f854816019f8e648, type: 3}
+  firePoint: {fileID: 434308845}
 --- !u!212 &200337350
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1255,8 +1257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068b0cbd9d6f49741b02280d796068a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min: -14.989
-  max: 105.011
+  min: -182
+  max: -62
+  bulletPrefab: {fileID: 5629358837054899760, guid: ef67a84cd2139044f854816019f8e648, type: 3}
+  firePoint: {fileID: 1147795483}
 --- !u!212 &265215088
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3179,6 +3183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   min: 75
   max: 195
+  bulletPrefab: {fileID: 5629358837054899760, guid: ef67a84cd2139044f854816019f8e648, type: 3}
+  firePoint: {fileID: 590157884}
 --- !u!212 &1030937396
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5949,6 +5955,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   min: -103.07
   max: 16.93
+  bulletPrefab: {fileID: 5629358837054899760, guid: ef67a84cd2139044f854816019f8e648, type: 3}
+  firePoint: {fileID: 429523616}
 --- !u!212 &1915903862
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6857,7 +6865,7 @@ Transform:
   m_GameObject: {fileID: 2118082275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.1, y: 21.6, z: 0}
+  m_LocalPosition: {x: -12.08, y: 21.39, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

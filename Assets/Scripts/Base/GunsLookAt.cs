@@ -6,7 +6,11 @@ public class GunsLookAt : MonoBehaviour
 {
     public float min;
     public float max;
+    public GameObject bulletPrefab;  // Bullet prefab to instantiate
+    public Transform firePoint;      // The position from where the bullets are fired
     private Rigidbody2D rb;
+    private bool InBound = false;
+    private bool isShooting = false;
 
     void Start()
     {
@@ -19,28 +23,55 @@ public class GunsLookAt : MonoBehaviour
 
     void Update()
     {
-         GameObject closestEnemy = FindClosestEnemy();
+        GameObject closestEnemy = FindClosestEnemy();
 
-    if (closestEnemy != null)
-    {
-        // Calculate the direction to the closest enemy
-        Vector3 direction = closestEnemy.transform.position - transform.position;
+        if (closestEnemy != null)
+        {
+            // Calculate the direction to the closest enemy
+            Vector3 direction = closestEnemy.transform.position - transform.position;
 
-        // Calculate the angle in degrees
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            // Calculate the angle in degrees (relative to the X-axis)
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Get the current rotation angle of the turret
-        float currentAngle = transform.eulerAngles.z;
+            // Check if the angle is within bounds
+            if (angle <= max && angle >= min)
+            {
+                InBound = true;
+            }
+            else
+            {
+                InBound = false;
+            }
 
-        // Calculate the shortest angle difference using Mathf.DeltaAngle
-        float deltaAngle = Mathf.DeltaAngle(currentAngle, angle - 90); // Subtract 90 to align rotation correctly
+            // Clamp the angle to be within the range of min and max
+            float clampedAngle = Mathf.Clamp(angle, min, max);
 
-        // Clamp the angle difference between the defined min and max range
-        float clampedDelta = Mathf.Clamp(deltaAngle, min, max);
+            // Apply the rotation with clamped angle, subtracting 90 to align properly
+            transform.rotation = Quaternion.Euler(0, 0, clampedAngle - 90);
+        }
 
-        // Apply the rotation smoothly by adding the clamped delta to the current angle
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, currentAngle + clampedDelta));
+        // If in bounds and not already shooting, start shooting
+        if (InBound && !isShooting)
+        {
+            StartCoroutine(Shoot());
+        }
     }
+
+    // Coroutine to handle shooting every 3 seconds
+    IEnumerator Shoot()
+    {
+        isShooting = true;
+
+        while (InBound)
+        {
+            // Instantiate the bullet at the firePoint position
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+            // Wait for 3 seconds before shooting again
+            yield return new WaitForSeconds(3f);
+        }
+
+        isShooting = false;
     }
 
     // Method to find the closest enemy
@@ -70,4 +101,3 @@ public class GunsLookAt : MonoBehaviour
         return closest;
     }
 }
-
