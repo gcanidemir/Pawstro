@@ -13,9 +13,7 @@ public class MeteorExplode : MonoBehaviour
     int currentHealth;
     public Upgrades upgrade;
     public Animator animator;
-
     private ParticleSystem particle;
-    private SpriteRenderer sr;
     private BoxCollider2D bc;
 
     // Start is called before the first frame update
@@ -23,7 +21,6 @@ public class MeteorExplode : MonoBehaviour
     {
         currentHealth = maxHealth;
         particle = GetComponentInChildren<ParticleSystem>();
-        sr = GetComponentInChildren<SpriteRenderer>();  
         bc = GetComponent<BoxCollider2D>(); 
     }
 
@@ -41,6 +38,7 @@ public class MeteorExplode : MonoBehaviour
             pos.y += spread * UnityEngine.Random.value - spread / 2;
             GameObject go = Instantiate(drop);
             go.transform.position = pos;
+
             }
             else
             {
@@ -53,17 +51,16 @@ public class MeteorExplode : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 0.7f);
     }
 
     public void takeDamage(int damage) {
         currentHealth -= damage;
-        //particle.Play();
+        particle.Play();
             animator.SetInteger("Health", currentHealth);
-        if(currentHealth <= 0)
+        if(currentHealth == 0)
         {
-
-            explode();
+                explode();
         }
     }
 }
