@@ -11,7 +11,6 @@ public class MeteorExplode : MonoBehaviour
     public int rarity = 10;
     public int maxHealth = 4;
     int currentHealth;
-    public Upgrades upgrade;
     public Animator animator;
     private ParticleSystem particle;
     private BoxCollider2D bc;
