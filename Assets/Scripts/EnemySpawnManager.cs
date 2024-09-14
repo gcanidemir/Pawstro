@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
-    private float minDistanceBetweenEnemies = 1f;
-    private readonly float minRadius = 10f;
-    private float maxRadius = 30f;
+    [SerializeField] private GameObject[] enemyPrefabs;
+    private float minDistanceBetweenEnemies = 3f;
+    private float minRadius = 55f;
+    private float maxRadius = 70f;
 
     private List<Vector3> spawnPoints = new List<Vector3>();
 
@@ -16,8 +16,24 @@ public class EnemySpawnManager : MonoBehaviour
 
         for (int i = 0; i < enemyCount; i++)
         {
-            float radius = 50f;
+            float radius = Random.Range(minRadius,maxRadius);
             float angle = Random.Range(0f, 360f);
+            int enemy;
+
+            if(doesSpawnBoss)
+            {
+                enemy = 3;
+                doesSpawnBoss = false;
+            }
+            else if(doesSpawnMiniBoss)
+            {
+                enemy = 2;
+                doesSpawnMiniBoss = false;
+            }
+            else
+            {
+                enemy = Random.Range(0, 2);
+            }
 
             float posX = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
             float posY = Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
@@ -44,7 +60,7 @@ public class EnemySpawnManager : MonoBehaviour
             if (validSpawn)
             {
                 spawnPoints.Add(randomSpawnPoint);
-                Instantiate(enemyPrefab, randomSpawnPoint, Quaternion.identity);
+                Instantiate(enemyPrefabs[enemy], randomSpawnPoint, Quaternion.identity);
             }
 
         }

@@ -4,25 +4,27 @@ using UnityEngine;
 using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine.Rendering.PostProcessing;
+using NavMeshPlus.Components;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int level;
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private float minimumSpawnTime;
-    [SerializeField] private float maximumSpawnTime;
-    [SerializeField] private float timeUntilSpawn;
-    [SerializeField] private float time;
-    [SerializeField] private bool stormNotified;
+    private float minimumSpawnTime;
+    private float maximumSpawnTime;
+    private float timeUntilSpawn;
+    private float time;
+    private bool stormNotified;
     [SerializeField] private EnemySpawnManager enemySpawnManager;
     [SerializeField] private MeteorSpawner meteorSpawnManager;
     [SerializeField] private int mobCount;
-    [SerializeField] private bool spawnEnemies;
-    [SerializeField] private bool screenFlash;
+    private bool spawnEnemies;
+    private bool screenFlash;
     [SerializeField] private PostProcessVolume volume;
-    [SerializeField] private Vignette vignette;
-    [SerializeField] private float intensity;
+    private Vignette vignette;
+    private float intensity;
     [SerializeField] private TextMeshProUGUI enemyAlertText;
+    [SerializeField] private NavMeshSurface navMeshSurface;
 
     private void LevelManagerInit()
     {
@@ -38,15 +40,19 @@ public class LevelManager : MonoBehaviour
     {
         time = 10f;
         minimumSpawnTime = time;
-        maximumSpawnTime = minimumSpawnTime;
+        maximumSpawnTime = minimumSpawnTime + 5f;
         timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
         stormNotified = false;
     }
 
     private void TimerTick()
     {
-        time -= Time.deltaTime;
-        timeUntilSpawn -= Time.deltaTime;   
+        if (time - Time.deltaTime <= 0.1)
+            time = 0;
+        else
+            time -= Time.deltaTime;
+
+        timeUntilSpawn -= Time.deltaTime;
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
 
@@ -55,9 +61,9 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnEnemies(int level)
     {
-        if(level % 15 == 0)
+        if (level % 15 == 0)
             enemySpawnManager.SpawnEnemies(mobCount, true, true);
-        else if(level % 10 == 0)
+        else if (level % 10 == 0)
             enemySpawnManager.SpawnEnemies(mobCount, false, true);
         else if (level % 5 == 0)
             enemySpawnManager.SpawnEnemies(mobCount, true, false);
@@ -67,31 +73,33 @@ public class LevelManager : MonoBehaviour
         mobCount += 2;
     }
 
-    private void SpawnMeteors(int level)
+    private IEnumerator SpawnMeteors(int level)
     {
         meteorSpawnManager.Meteor(level);
+        yield return null;
+        navMeshSurface.BuildNavMesh();
     }
 
     private void DestroyMeteors()
     {
         //TODO change with tag later.
-        GameObject temp = GameObject.Find("Circle(Clone)");
-        while (temp)
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("Meteor");
+
+        foreach (var item in temp)
         {
-            Destroy(temp);
-            temp.SetActive(false);
-            temp = GameObject.Find("Circle(Clone)");
+            Destroy(item);
+            item.SetActive(false);
         }
     }
 
     private void TeleportPlayer()
     {
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0,0,0);
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0, 0, 0);
     }
 
     private bool IsFiveSecBeforeStorm()
     {
-        if(timeUntilSpawn <= 5f)
+        if (timeUntilSpawn <= 5f)
             return true;
 
         return false;
@@ -99,7 +107,7 @@ public class LevelManager : MonoBehaviour
 
     private bool HasStromAproached()
     {
-        if(timeUntilSpawn <= 0f)
+        if (timeUntilSpawn <= 0f)
             return true;
 
         return false;
@@ -113,7 +121,7 @@ public class LevelManager : MonoBehaviour
         vignette.enabled.Override(true);
         vignette.intensity.Override(intensity);
 
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             while (intensity < 0.2f)
             {
@@ -161,14 +169,14 @@ public class LevelManager : MonoBehaviour
     {
         SetTimer();
         LevelManagerInit();
-        SpawnMeteors(level);
+        StartCoroutine(SpawnMeteors(level));
     }
     private void Update()
     {
-        if(timeUntilSpawn >= 0)
+        if (timeUntilSpawn >= 0)
             TimerTick();
 
-        if(IsFiveSecBeforeStorm() && !stormNotified)
+        if (IsFiveSecBeforeStorm() && !stormNotified)
         {
             stormNotified = true;
             spawnEnemies = true;
@@ -193,7 +201,7 @@ public class LevelManager : MonoBehaviour
             DestroyMeteors();
             level++;
             SetTimer();
-            SpawnMeteors(level);
+            StartCoroutine(SpawnMeteors(level));
         }
     }
 }

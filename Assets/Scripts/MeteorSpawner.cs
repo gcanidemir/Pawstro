@@ -50,7 +50,7 @@ public class MeteorSpawner : MonoBehaviour
             else
             {
                 randomMeteor = 0; // Most common meteor
-                radius = Random.Range(10f, 30f); // Closest to the center
+                radius = Random.Range(20f, 30f); // Closest to the center
             }
 
             // Generate random angle for position around the center of the rectangle

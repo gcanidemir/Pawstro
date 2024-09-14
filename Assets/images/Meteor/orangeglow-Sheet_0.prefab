@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3916378018909840047}
   - component: {fileID: 2815255959570833166}
   - component: {fileID: 7353419922796797825}
+  - component: {fileID: 243137325313711360}
   m_Layer: 7
   m_Name: orangeglow-Sheet_0
-  m_TagString: Untagged
+  m_TagString: Meteor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,6 +198,22 @@ PolygonCollider2D:
       - {x: 1.35, y: -0.62}
       - {x: 1.35, y: 0.14}
   m_UseDelaunayMesh: 0
+--- !u!114 &243137325313711360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641291435868610357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &3764309940825459631
 GameObject:
   m_ObjectHideFlags: 0

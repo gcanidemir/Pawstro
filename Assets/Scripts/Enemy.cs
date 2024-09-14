@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,44 +16,28 @@ public class Enemy : MonoBehaviour
         RANGED
     }
 
+
+    [SerializeField] private int maxhealth;
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private int attackDamage;
+    [SerializeField] private int attackSpeed;
+    [SerializeField] private float attackRange;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private LayerMask baseLayer;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private Animator anim;
+    [SerializeField] private bool canAttack;
     [SerializeField] private Type type;
-    public float maxhealth;
-    public float currenthealth;
-    public HealthBar healthBar;
-    private int damage;
+    private float timer;
     private Vector3 targetLocation;
-    private NavMeshAgent navMeshAgent;
+    private Transform targetTransform;
+    private int currenthealth;
     /* --------------- */
 
     /* Enemy stats are set */
     private void EnemyInit()
     {
-
-        //TODO: Change magic numbers later. 
-        switch (type)
-        {
-            case Type.BOSS:
-                maxhealth = 50;
-                damage = 20;
-                break;
-
-            case Type.MELEE:
-                maxhealth = 100;
-                damage = 50;
-                break;
-
-            case Type.MINI_BOSS:
-                maxhealth = 100;
-                damage = 70;
-                break;
-
-            case Type.RANGED:
-                navMeshAgent.stoppingDistance = 10;
-                maxhealth = 100;
-                damage = 40;
-                break;
-        }
-
         currenthealth = maxhealth;
         healthBar.SetMaxHealth(maxhealth);
     }
@@ -61,7 +46,6 @@ public class Enemy : MonoBehaviour
     /* Chase mechanic for the enemies. Uses NavMeshPlus package. */
     private void ChaseInit()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.updateRotation = false;
         navMeshAgent.updateUpAxis = false;
     }
@@ -89,21 +73,79 @@ public class Enemy : MonoBehaviour
         float distBuildingEnemy = CommonUtils.Distance2D(playerLocation, enemyLocation);
 
         if (distPlayerEnemy + offset < distBuildingEnemy)
+        {
             targetLocation = buildingLocation;
+            switch(type)
+            {
+                case Type.MELEE:
+                    navMeshAgent.stoppingDistance = 2.75f;
+                    break;
+            }
+            
+        }
         else
+        {
             targetLocation = playerLocation;
+            navMeshAgent.stoppingDistance = 0.0f; //TODO change later.
+        }
+
+        Vector3 look = this.transform.GetChild(0).InverseTransformPoint(targetLocation);
+        float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg - 90;
+
+        transform.GetChild(0).Rotate(0, 0, angle);
     }
     /* --------------------------------------------------------- */
 
-    private void TakeDamage(float damage)
+    private void TakeDamage(int damage)
     {
         this.transform.Find("Canvas").Find("Healthbar").gameObject.SetActive(true);
 
         if (damage < currenthealth)
             currenthealth -= damage;
         else
+        {
             currenthealth = 0;
+            die();
+        }
         healthBar.SetHealth(currenthealth);
+    }
+
+    void die()
+    {
+        if (currenthealth <= 0)
+        {
+            Destroy(gameObject, 0.8f);
+        }
+    }
+    void enemyAttack()
+    {
+        if (canAttack)
+        {
+            Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+            Collider2D[] hitBase = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, baseLayer);
+            foreach (Collider2D player in hitPlayer)
+            {
+                player.GetComponent<Health>().takedamage(attackDamage);
+                anim.SetTrigger("Bite");
+            }
+            foreach (Collider2D construct in hitBase)
+            {
+                construct.GetComponent<Health>().takedamage(attackDamage);
+                anim.SetTrigger("Bite");
+            }
+            canAttack = false;
+
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            if (timer > attackSpeed)
+            {
+                canAttack = true;
+                timer = 0;
+            }
+        }
+
     }
 
     private void Start()
@@ -115,11 +157,6 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         Chase();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(25f);
-        }
+        enemyAttack();
     }
-
 }

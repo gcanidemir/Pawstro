@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1723061812193163866}
   - component: {fileID: 6562837989650462193}
   - component: {fileID: 640480013370247361}
+  - component: {fileID: 5365936353612536409}
   m_Layer: 7
   m_Name: purpleglow-Sheet_0
-  m_TagString: Untagged
+  m_TagString: Meteor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,6 +200,22 @@ PolygonCollider2D:
       - {x: 0.835, y: -1.43}
       - {x: 1.055, y: -1.24}
   m_UseDelaunayMesh: 0
+--- !u!114 &5365936353612536409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551887699271479284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &6661095281478933859
 GameObject:
   m_ObjectHideFlags: 0
