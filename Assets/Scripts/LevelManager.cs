@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
     {
         time = 10f;
         minimumSpawnTime = time;
-        maximumSpawnTime = minimumSpawnTime + 5f;
+        maximumSpawnTime = minimumSpawnTime + 10f;
         timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
         stormNotified = false;
     }
@@ -123,14 +123,14 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            while (intensity < 0.2f)
+            while (intensity < 0.3f)
             {
-                enemyAlertText.color = new Color(255, 255, 255, enemyAlertText.color.a + 0.12f);
+                enemyAlertText.color = new Color(255, 255, 255, enemyAlertText.color.a + 0.17f);
 
                 intensity += 0.01f;
 
-                if (intensity > 0.2f)
-                    intensity = 0.2f;
+                if (intensity > 0.3f)
+                    intensity = 0.3f;
 
                 vignette.intensity.Override(intensity);
 
@@ -141,7 +141,7 @@ public class LevelManager : MonoBehaviour
 
             while (intensity > 0)
             {
-                enemyAlertText.color = new Color(255, 255, 255, enemyAlertText.color.a - 0.12f);
+                enemyAlertText.color = new Color(255, 255, 255, enemyAlertText.color.a - 0.17f);
 
                 intensity -= 0.01f;
 

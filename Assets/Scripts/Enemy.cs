@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
     private void DecideWhichToFollow()
     {
         /* To follow player when gets too close while enemy is attacking the building */
-        float offset = 1.5f;
+        float offset = 3f;
 
         Vector3 enemyLocation = this.transform.position;
         Vector3 playerLocation = GameObject.FindGameObjectWithTag("Player").transform.position;
@@ -86,7 +86,12 @@ public class Enemy : MonoBehaviour
         else
         {
             targetLocation = playerLocation;
-            navMeshAgent.stoppingDistance = 0.0f; //TODO change later.
+            switch (type)
+            {
+                case Type.MELEE:
+                    navMeshAgent.stoppingDistance = 4f;
+                    break;
+            }
         }
 
         Vector3 look = this.transform.GetChild(0).InverseTransformPoint(targetLocation);

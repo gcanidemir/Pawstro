@@ -6,8 +6,8 @@ public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemyPrefabs;
     private float minDistanceBetweenEnemies = 3f;
-    private float minRadius = 55f;
-    private float maxRadius = 70f;
+    private float minRadius = 80f;
+    private float maxRadius = 100f;
 
     private List<Vector3> spawnPoints = new List<Vector3>();
 
