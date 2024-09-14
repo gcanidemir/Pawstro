@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialCharSelect : MonoBehaviour
 {
@@ -91,13 +92,13 @@ public class TutorialCharSelect : MonoBehaviour
                     y = Mathf.Lerp(y, 1, OCT * Time.deltaTime);
                     color.a = y;
                     blackscreen.color = color;
+                    toGame(1);
                 }
 
                 break;
-
-
+    
         }
-        ErrorMessage(5);
+        ErrorMessage(2);
 
         if (tutorialtext == true) 
         {  
@@ -109,6 +110,15 @@ public class TutorialCharSelect : MonoBehaviour
     void ErrorMessage(float delayTime)
     {
         StartCoroutine(DelayAction(delayTime));
+    }
+    void toGame(float delayTime)
+    {
+        StartCoroutine(DelayOpen(delayTime));
+    }
+    IEnumerator DelayOpen(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+         SceneManager.LoadScene("MainGame");
     }
     IEnumerator DelayAction(float delayTime)
     {

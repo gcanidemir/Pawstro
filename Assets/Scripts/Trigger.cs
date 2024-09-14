@@ -32,7 +32,7 @@ public class Trigger : MonoBehaviour
         if (collision.tag == "Heal")
         {
             health.Heal(0.02f * HPregen);
-            fuel.Heal(0.005f * Player.fuelmod);
+            fuel.Heal(0.1f * Player.fuelmod);
         }
 
 

@@ -1148,7 +1148,7 @@ MonoBehaviour:
   - {fileID: 1847201017}
   - {fileID: 1259599123}
   - {fileID: 1722565273}
-  delayForFirstImage: 3
+  delayForFirstImage: 2
   delayForOtherImages: 1
 --- !u!114 &1965845625
 MonoBehaviour:
