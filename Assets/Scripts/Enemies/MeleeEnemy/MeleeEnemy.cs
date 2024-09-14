@@ -12,6 +12,7 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private LayerMask baseLayer;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Animator anim;
+    [SerializeField] private Transform player;
     int currentHealth;
     private float timer;
     private bool canAttack = true;
@@ -20,6 +21,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
@@ -74,5 +76,14 @@ public class MeleeEnemy : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+    private void look()
+    {
+
+        Vector2 rotation = player.position - transform.position;
+
+        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 }
