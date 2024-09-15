@@ -6,6 +6,7 @@ public class GunsLookAt : MonoBehaviour
 {
     public float min;
     public float max;
+    public float detectionRange = 1200f;
     public GameObject bulletPrefab;  // Bullet prefab to instantiate
     public Transform firePoint;      // The position from where the bullets are fired
     private Rigidbody2D rb;
@@ -25,8 +26,11 @@ public class GunsLookAt : MonoBehaviour
     {
         GameObject closestEnemy = FindClosestEnemy();
 
+        // Check if an enemy is found and still exists
         if (closestEnemy != null)
         {
+            //Debug.Log("Closest Enemy: " + closestEnemy.name);
+
             // Calculate the direction to the closest enemy
             Vector3 direction = closestEnemy.transform.position - transform.position;
 
@@ -34,20 +38,19 @@ public class GunsLookAt : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             // Check if the angle is within bounds
-            if (angle <= max && angle >= min)
-            {
-                InBound = true;
-            }
-            else
-            {
-                InBound = false;
-            }
+            InBound = angle <= max && angle >= min;
 
             // Clamp the angle to be within the range of min and max
             float clampedAngle = Mathf.Clamp(angle, min, max);
 
             // Apply the rotation with clamped angle, subtracting 90 to align properly
             transform.rotation = Quaternion.Euler(0, 0, clampedAngle - 90);
+        }
+        else
+        {
+            // No enemies found, stop shooting
+            InBound = false;
+            StopShooting();
         }
 
         // If in bounds and not already shooting, start shooting
@@ -74,19 +77,33 @@ public class GunsLookAt : MonoBehaviour
         isShooting = false;
     }
 
-    // Method to find the closest enemy
+    // Method to stop shooting
+    void StopShooting()
+    {
+        if (isShooting)
+        {
+            StopCoroutine(Shoot());  // Stop the shooting coroutine
+            isShooting = false;
+        }
+    }
+
+    // Method to find the closest enemy within detection range
     GameObject FindClosestEnemy()
     {
         // Find all enemies tagged "Enemy"
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         GameObject closest = null;
-        float minDistance = Mathf.Infinity;
+        float minDistance = detectionRange;
         Vector3 currentPosition = transform.position;
 
         // Loop through all enemies to find the closest one
         foreach (GameObject enemy in enemies)
         {
+            // Check if the enemy is destroyed (enemy can be null)
+            if (enemy == null)
+                continue;
+
             // Calculate the distance to the enemy
             float distance = Vector3.Distance(enemy.transform.position, currentPosition);
 
@@ -98,6 +115,7 @@ public class GunsLookAt : MonoBehaviour
             }
         }
 
+        // Return the closest enemy or null if none found
         return closest;
     }
 }

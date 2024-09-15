@@ -19,6 +19,7 @@ TagManager:
   - GunControl
   - OreProcess
   - base
+  - Border
   layers:
   - Default
   - TransparentFX

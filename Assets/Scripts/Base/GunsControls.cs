@@ -6,6 +6,7 @@ public class GunsControls : MonoBehaviour
 {
     public GameObject player;
     public GameObject Laser;
+    public GameObject GunCam;
     private bool inArea =false;
     private Rigidbody2D rb;
     void Start()
@@ -13,6 +14,7 @@ public class GunsControls : MonoBehaviour
 
     rb = player.GetComponent<Rigidbody2D>();
     Laser.SetActive(false);
+    GunCam.SetActive(false);
 
     }
 
@@ -32,6 +34,7 @@ public class GunsControls : MonoBehaviour
 
     public void ToggleGuns(){
         Laser.SetActive(!Laser.activeSelf);
+        GunCam.SetActive(!GunCam.activeSelf);
         bool hasActiveChild = false;
 
         foreach (Transform child in player.transform)

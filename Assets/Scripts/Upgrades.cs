@@ -183,7 +183,7 @@ public class Upgrades : MonoBehaviour
             health.shieldmod = health.shieldmod * (8 / 10);
             forcefield.SetActive(true);
             ForceShieldlvl = ForceShieldlvl + 1;
-            BaseTPUpgrade.text = ("Sold");
+            ForcceShieldUpgrade.text = ("Sold");
         }
     }
 }

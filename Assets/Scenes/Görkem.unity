@@ -3108,6 +3108,7 @@ MonoBehaviour:
   currenthealth: 0
   healthBar: {fileID: 476556811}
   sprite: {fileID: 246214428}
+  shieldmod: 0
 --- !u!114 &246214425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4196,9 +4197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
+  - {fileID: 8205723204480922084, guid: f570879c4349a4847958bf6e1b647728, type: 3}
   - {fileID: 8205723204480922084, guid: 71bfd453df520f8409ab2d05f798dfd9, type: 3}
-  - {fileID: 8205723204480922084, guid: 71bfd453df520f8409ab2d05f798dfd9, type: 3}
-  - {fileID: 8205723204480922084, guid: 71bfd453df520f8409ab2d05f798dfd9, type: 3}
+  - {fileID: 8205723204480922084, guid: 4192454f43e1f5e48a1695fbb6e72c53, type: 3}
 --- !u!114 &321149884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4828,6 +4829,11 @@ MonoBehaviour:
   drill: {fileID: 109460651}
   trigger: {fileID: 440765967}
   playerMoney: {fileID: 440765966}
+  inventoryManager: {fileID: 0}
+  drillrange: {fileID: 0}
+  meteorexplode: {fileID: 0}
+  teleport: {fileID: 0}
+  forcefield: {fileID: 0}
   Dashlvl: 0
   MaxHealthlvl: 0
   Oxygenlvl: 0
@@ -4835,6 +4841,12 @@ MonoBehaviour:
   Speedlvl: 0
   Drillvl: 0
   Fuellvl: 0
+  FuelRegenlvl: 0
+  StackSizelvl: 0
+  MiningRangelvl: 0
+  Fortunelvl: 0
+  BaseTPlvl: 0
+  ForceShieldlvl: 0
   Success: 0
   DashUpgrade: {fileID: 707088343}
   HealthUpgrade: {fileID: 2018508041}
@@ -4843,7 +4855,12 @@ MonoBehaviour:
   SpeedUpgrade: {fileID: 1712756179}
   DrillUpgrade: {fileID: 1114618352}
   FuelUpgrade: {fileID: 2127534182}
-  FuelRegen: {fileID: 0}
+  StackSizeUpgrade: {fileID: 0}
+  MiningRangeUpgrade: {fileID: 0}
+  FortuneUpgrade: {fileID: 0}
+  BaseTPUpgrade: {fileID: 0}
+  ForcceShieldUpgrade: {fileID: 0}
+  FuelRegenUpgrade: {fileID: 0}
 --- !u!114 &440765966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4861,6 +4878,7 @@ MonoBehaviour:
   ErrorTimer: 0
   ErrorInterval: 120
   MoneyError: {fileID: 1907908486}
+  LimitError: {fileID: 0}
   Moneytext: {fileID: 279271267}
 --- !u!114 &440765967
 MonoBehaviour:
@@ -4945,6 +4963,7 @@ MonoBehaviour:
   currenthealth: 0
   healthBar: {fileID: 2063386829}
   sprite: {fileID: 440765972}
+  shieldmod: 0
 --- !u!212 &440765972
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12189,6 +12208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e822ffbc00a985f4ba7c51df905a57a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  canHit: 0
 --- !u!61 &1165986318
 BoxCollider2D:
   m_ObjectHideFlags: 0
