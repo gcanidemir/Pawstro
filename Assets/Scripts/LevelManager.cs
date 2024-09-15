@@ -5,6 +5,8 @@ using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine.Rendering.PostProcessing;
 using NavMeshPlus.Components;
+using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -23,7 +25,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PostProcessVolume volume;
     private Vignette vignette;
     private float intensity;
-    [SerializeField] private TextMeshProUGUI enemyAlertText;
+    [SerializeField] private UnityEngine.UI.Image enemyAlertText;
     [SerializeField] private NavMeshSurface navMeshSurface;
 
     private void LevelManagerInit()
@@ -38,10 +40,10 @@ public class LevelManager : MonoBehaviour
 
     private void SetTimer()
     {
-        time = 10f;
-        minimumSpawnTime = time;
-        maximumSpawnTime = minimumSpawnTime + 10f;
+        minimumSpawnTime = 120f;
+        maximumSpawnTime = minimumSpawnTime + 30f;
         timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
+        time = timeUntilSpawn;
         stormNotified = false;
     }
 
@@ -94,7 +96,7 @@ public class LevelManager : MonoBehaviour
 
     private void TeleportPlayer()
     {
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0, 0, 0);
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-5, 0, 0);
     }
 
     private bool IsFiveSecBeforeStorm()
