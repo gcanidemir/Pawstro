@@ -9,13 +9,12 @@ public class PlayerMoney : MonoBehaviour
     public int StartMoney;
     public float ErrorTimer = 0f;
     public float ErrorInterval = 120f;
-    public GameObject MoneyError,LimitError;
+    public GameObject MoneyError;
     public TextMeshProUGUI Moneytext;
     private void Start()
     {
         Money = StartMoney;
         MoneyError.SetActive(false);
-        LimitError.SetActive(false);
         Moneytext.text = Money.ToString();
     }
     public void SetMoney(int amount)
@@ -28,18 +27,13 @@ public class PlayerMoney : MonoBehaviour
         Money += amount;
         Moneytext.text = Money.ToString();
     }
-    public int SpendMoney(int amount, int limit,int currentlvl)
+    public int SpendMoney(int amount)
     {
-        if(Money >=amount && currentlvl < limit)
+        if(Money >=amount)
         {
             Money -= amount;
             Moneytext.text = Money.ToString();
             return 1;
-        }
-        else if (Money >=amount && currentlvl == limit)
-        {
-            LimitMessage(2);
-            return 0;
         }
         else
         {
@@ -57,16 +51,5 @@ public class PlayerMoney : MonoBehaviour
         MoneyError.SetActive(true);
         yield return new WaitForSeconds(delayTime);
         MoneyError.SetActive(false);
-    }
-
-    void LimitMessage(float delayTime)
-    {
-        StartCoroutine(LimitAction(delayTime));
-    }
-    IEnumerator LimitAction(float delayTime)
-    {
-        LimitError.SetActive(true);
-        yield return new WaitForSeconds(delayTime);
-        LimitError.SetActive(false);
     }
 }

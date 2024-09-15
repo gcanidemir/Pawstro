@@ -8,7 +8,6 @@ public class Health : MonoBehaviour
     public float currenthealth;
     public HealthBar healthBar;
     public SpriteRenderer sprite;
-    public float shieldmod;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +26,7 @@ public class Health : MonoBehaviour
     {
         if (damage < currenthealth)
         {
-            currenthealth -= damage/shieldmod;
+            currenthealth -= damage;
         StartCoroutine(FlashRed());
 
         }
