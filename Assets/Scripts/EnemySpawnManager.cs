@@ -22,17 +22,17 @@ public class EnemySpawnManager : MonoBehaviour
 
             if(doesSpawnBoss)
             {
-                enemy = 3;
+                enemy = 2;
                 doesSpawnBoss = false;
             }
             else if(doesSpawnMiniBoss)
             {
-                enemy = 2;
+                enemy = 1;
                 doesSpawnMiniBoss = false;
             }
             else
             {
-                enemy = Random.Range(0, 2);
+                enemy = 0;
             }
 
             float posX = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;

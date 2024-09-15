@@ -80,6 +80,12 @@ public class Enemy : MonoBehaviour
                 case Type.MELEE:
                     navMeshAgent.stoppingDistance = 2.75f;
                     break;
+                case Type.BOSS:
+                    navMeshAgent.stoppingDistance = 3f;
+                    break;
+                case Type.MINI_BOSS:
+                    navMeshAgent.stoppingDistance = 4.5f;
+                    break;
             }
             
         }
@@ -91,17 +97,35 @@ public class Enemy : MonoBehaviour
                 case Type.MELEE:
                     navMeshAgent.stoppingDistance = 4f;
                     break;
+                case Type.BOSS:
+                    navMeshAgent.stoppingDistance = 4.5f;
+                    break;
+                case Type.MINI_BOSS:
+                    navMeshAgent.stoppingDistance = 6f;
+                    break;
             }
         }
-
-        Vector3 look = this.transform.GetChild(0).InverseTransformPoint(targetLocation);
-        float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg - 90;
-
-        transform.GetChild(0).Rotate(0, 0, angle);
+                
+        if(type == Type.MELEE)
+        {
+            Vector3 look = this.transform.GetChild(0).InverseTransformPoint(targetLocation);
+            float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg - 90;
+            transform.GetChild(0).Rotate(0, 0, angle);
+        } else if (type == Type.BOSS)
+        {
+            Vector3 look = this.transform.GetChild(0).InverseTransformPoint(targetLocation);
+            float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg - 180;
+            transform.GetChild(0).Rotate(0, 0, angle);
+        } else if (type == Type.MINI_BOSS)
+        {
+            Vector3 look = this.transform.GetChild(0).InverseTransformPoint(targetLocation);
+            float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg - 180;
+            transform.GetChild(0).Rotate(0, 0, angle);
+        }
     }
     /* --------------------------------------------------------- */
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         this.transform.Find("Canvas").Find("Healthbar").gameObject.SetActive(true);
 
@@ -151,6 +175,11 @@ public class Enemy : MonoBehaviour
             }
         }
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     private void Start()
