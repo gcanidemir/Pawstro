@@ -16,6 +16,9 @@ TagManager:
   - LegendaryGem
   - Building
   - Meteor
+  - GunControl
+  - OreProcess
+  - base
   layers:
   - Default
   - TransparentFX

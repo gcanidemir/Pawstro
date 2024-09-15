@@ -8,7 +8,7 @@ public class BaseHealthDamage : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        Turret1.SetActive(false); Turret2.SetActive(false); Turret3.SetActive(false); Turret4.SetActive(false);
+        //Turret1.SetActive(false); Turret2.SetActive(false); Turret3.SetActive(false); Turret4.SetActive(false);
         LaserDefense.SetActive(false);
     }
 
