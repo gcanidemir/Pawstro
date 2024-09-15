@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserHitbox : MonoBehaviour
 {
     private bool inArea = false;
+    public Enemy enemy;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,7 +28,8 @@ public class LaserHitbox : MonoBehaviour
     {
         while (inArea)
         {
-            Debug.Log("Enemy Hit");
+            Debug.Log("Ah");
+            enemy.TakeDamage(25);
             yield return new WaitForSeconds(3f);
         }
     }
