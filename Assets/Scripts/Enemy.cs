@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private bool canAttack;
     [SerializeField] private Type type;
+    public SpriteRenderer sprite;
     private float timer;
     private Vector3 targetLocation;
     private Transform targetTransform;
@@ -130,13 +131,24 @@ public class Enemy : MonoBehaviour
         this.transform.Find("Canvas").Find("Healthbar").gameObject.SetActive(true);
 
         if (damage < currenthealth)
+        {
             currenthealth -= damage;
+            StartCoroutine(FlashRed());
+
+        }
         else
         {
             currenthealth = 0;
             die();
         }
         healthBar.SetHealth(currenthealth);
+    }
+
+    public IEnumerator FlashRed()
+    {
+        sprite.color = new Color32(233, 108, 108, 255);
+        yield return new WaitForSeconds(0.5f);
+        sprite.color = Color.white;
     }
 
     void die()
