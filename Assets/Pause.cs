@@ -10,7 +10,6 @@ public class Pause : MonoBehaviour
     void Update(){
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("al la içeri");
 
             TogglePause();
         }

@@ -44,7 +44,7 @@ public class LaserHitbox : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.F) && canHit)
+        if (Input.GetMouseButton(0) && canHit)
             StartCoroutine(HitTimer());
     }
 }

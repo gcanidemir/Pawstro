@@ -15,6 +15,10 @@ public class Drill : MonoBehaviour
     public float attackRange;
     public int attackDamage = 1;
     public int damagemod = 1;
+    AudioManager audioManager;
+    void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +55,9 @@ public class Drill : MonoBehaviour
 
             foreach (Collider2D meteor in hitMeteor)
             {
+                audioManager.PlaySFX(audioManager.rockhit);
                 meteor.GetComponent<MeteorExplode>().takeDamage(attackDamage*damagemod);
+
             }
 
             canFire = false;

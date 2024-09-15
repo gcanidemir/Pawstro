@@ -142,12 +142,12 @@ public class Upgrades : MonoBehaviour
     }
     public void Upgradestacksize()
     {
-        Success = playerMoney.SpendMoney(100 * (StackSizelvl + 1), 4, FuelRegenlvl);
+        Success = playerMoney.SpendMoney(100 * (StackSizelvl + 1), 4, StackSizelvl);
         if (Success == 1)
         {
             StackSizelvl = StackSizelvl + 1;
             inventoryManager.maxStack = inventoryManager.maxStack + 1;
-            FuelUpgrade.text = (100 * (Fuellvl + 1)).ToString();
+            StackSizeUpgrade.text = (100 * (StackSizelvl + 1)).ToString();
         }
 
     }

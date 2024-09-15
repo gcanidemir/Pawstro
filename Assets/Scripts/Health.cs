@@ -9,6 +9,11 @@ public class Health : MonoBehaviour
     public HealthBar healthBar;
     public SpriteRenderer sprite;
     public float shieldmod;
+    AudioManager audioManager;
+    public GameObject lose;
+    void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +32,7 @@ public class Health : MonoBehaviour
     {
         if (damage < currenthealth)
         {
+            audioManager.PlaySFX(audioManager.BaseHit);
             currenthealth -= damage / shieldmod;
             StartCoroutine(FlashRed());
 
@@ -34,6 +40,12 @@ public class Health : MonoBehaviour
         else
             currenthealth = 0;
         healthBar.SetHealth(currenthealth);
+
+        if(currenthealth <= 0){
+            audioManager.PlaySFX(audioManager.Lose);
+            lose.SetActive(true);
+            
+        }
     }
 
 

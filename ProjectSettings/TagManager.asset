@@ -21,6 +21,7 @@ TagManager:
   - base
   - Border
   - SideBorder
+  - Audio
   layers:
   - Default
   - TransparentFX

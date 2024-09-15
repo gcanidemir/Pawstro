@@ -3009,6 +3009,7 @@ MonoBehaviour:
   healthBar: {fileID: 549938930}
   sprite: {fileID: 250462088}
   shieldmod: 1
+  lose: {fileID: 0}
 --- !u!114 &250462091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10145,7 +10146,7 @@ GameObject:
   - component: {fileID: 968590373}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15881,6 +15882,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1718550417}
+        m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
+        m_MethodName: UpgradeSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1510915962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18204,7 +18217,7 @@ MonoBehaviour:
         m_MethodName: PlaySFX
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 8300000, guid: 6ec7fa6bdf016ef4cb1dffca0816207c, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -19556,7 +19569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5fdb80cb92ad6448db1c5ff8056859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money: 4000
+  Money: 9999
   StartMoney: 4000
   ErrorTimer: 0
   ErrorInterval: 120
@@ -19683,6 +19696,7 @@ MonoBehaviour:
   healthBar: {fileID: 1944742624}
   sprite: {fileID: 1718550413}
   shieldmod: 1
+  lose: {fileID: 0}
 --- !u!114 &1718550419
 MonoBehaviour:
   m_ObjectHideFlags: 0

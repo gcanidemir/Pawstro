@@ -180,7 +180,7 @@ public class InventoryManager : MonoBehaviour
                     {
                         string text = tmpText.text;
                         int total = int.Parse(text);
-                        float totalstackprice = total * itemInSlot.count * proccessmodifier;
+                        float totalstackprice = total * itemInSlot.count * (proccessmodifier+1);
                         moneyScript.EarnMoney((int)totalstackprice);
                         Debug.Log(totalstackprice + " " + total);
                     }

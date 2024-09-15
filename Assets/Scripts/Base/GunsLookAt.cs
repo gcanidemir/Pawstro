@@ -13,6 +13,10 @@ public class GunsLookAt : MonoBehaviour
     private Rigidbody2D rb;
     private bool InBound = false;
     private bool isShooting = false;
+    AudioManager audioManager;
+    void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
@@ -68,6 +72,7 @@ public class GunsLookAt : MonoBehaviour
 
         while (InBound)
         {
+            audioManager.PlaySFX(audioManager.Laser);
             // Instantiate the bullet at the firePoint position
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 

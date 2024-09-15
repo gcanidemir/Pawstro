@@ -37,6 +37,10 @@ public class Enemy : MonoBehaviour
     /* --------------- */
 
     /* Enemy stats are set */
+    AudioManager audioManager;
+    void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     private void EnemyInit()
     {
         currenthealth = maxhealth;
@@ -132,6 +136,7 @@ public class Enemy : MonoBehaviour
 
         if (damage < currenthealth)
         {
+            audioManager.PlaySFX(audioManager.Mini);
             currenthealth -= damage;
             StartCoroutine(FlashRed());
 

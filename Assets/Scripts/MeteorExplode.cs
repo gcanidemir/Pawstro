@@ -14,6 +14,10 @@ public class MeteorExplode : MonoBehaviour
     public Animator animator;
     private ParticleSystem particle;
     private BoxCollider2D bc;
+    AudioManager audioManager;
+    void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +39,7 @@ public class MeteorExplode : MonoBehaviour
             Vector3 pos = transform.position;
             pos.x += spread * UnityEngine.Random.value - spread / 2;
             pos.y += spread * UnityEngine.Random.value - spread / 2;
+            audioManager.PlaySFX(audioManager.Rockplode);
             GameObject go = Instantiate(drop);
             go.transform.position = pos;
 
