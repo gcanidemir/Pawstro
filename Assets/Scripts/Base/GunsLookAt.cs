@@ -8,7 +8,8 @@ public class GunsLookAt : MonoBehaviour
     public float max;
     public float detectionRange = 1200f;
     public GameObject bulletPrefab;  // Bullet prefab to instantiate
-    public Transform firePoint;      // The position from where the bullets are fired
+    public Transform firePoint;
+    public float shootspeedmodifier = 1;// The position from where the bullets are fired
     private Rigidbody2D rb;
     private bool InBound = false;
     private bool isShooting = false;
@@ -71,7 +72,7 @@ public class GunsLookAt : MonoBehaviour
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
             // Wait for 3 seconds before shooting again
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3f/shootspeedmodifier);
         }
 
         isShooting = false;

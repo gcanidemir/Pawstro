@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot[] inventorySlots;
     public DemoScript demoScript;
     public PlayerMoney moneyScript;
-
+    public float proccessmodifier;
     private Dictionary<Item, GameObject> itemGameObjectMap = new Dictionary<Item, GameObject>();
 
     public bool AddItem(Item item, int id)
@@ -180,8 +180,8 @@ public class InventoryManager : MonoBehaviour
                     {
                         string text = tmpText.text;
                         int total = int.Parse(text);
-                        int totalstackprice = total * itemInSlot.count;
-                        moneyScript.EarnMoney(totalstackprice);
+                        float totalstackprice = total * itemInSlot.count * proccessmodifier;
+                        moneyScript.EarnMoney((int)totalstackprice);
                         Debug.Log(totalstackprice + " " + total);
                     }
                     

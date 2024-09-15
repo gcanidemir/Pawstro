@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float force = 10f;  // Force to apply to the bullet
     public float lifetime = 5f;  // How long the bullet lasts
+    public int bulletmodifier = 1;
     public Enemy enemy;
     public bool canHit;
 
@@ -33,7 +34,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.transform.parent.gameObject.CompareTag("Enemy"))
         {
             enemy = collision.gameObject.transform.parent.gameObject.GetComponent<Enemy>();
-            enemy.TakeDamage(25);
+            enemy.TakeDamage(25*bulletmodifier);
             Destroy(gameObject);
 
         }

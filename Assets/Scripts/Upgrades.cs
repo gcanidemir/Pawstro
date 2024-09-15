@@ -5,28 +5,52 @@ using UnityEngine;
 
 public class Upgrades : MonoBehaviour
 {
-
+    public GunsLookAt gunsLookAt1;
+    public GunsLookAt gunsLookAt2;
+    public GunsLookAt gunsLookAt3;
+    public GunsLookAt gunsLookAt4;
+    public Bullet bullet;
+    public BaseHealthDamage BaseHealthDamage;
+    public LaserHitbox laserHitbox;
     public player Player;
     public HealthBar healthBar;
     public Health health;
     public HealthBar OxygenBar;
     public Oxygen oxygen;
     public HealthBar FuelBar;
+    public HealthBar BaseHealth;
+    public Health BaseHp;
     public Fuel fuel;
     public Drill drill;
     public Trigger trigger;
     public PlayerMoney playerMoney;
-        public InventoryManager inventoryManager;
+    public InventoryManager inventoryManager;
     public Transform drillrange;
     public MeteorExplode meteorexplode;
     public Teleport teleport;
     public GameObject forcefield;
-    public int Dashlvl, MaxHealthlvl, Oxygenlvl, HPregenlvl, Speedlvl, Drillvl, Fuellvl, FuelRegenlvl, StackSizelvl, MiningRangelvl, Fortunelvl, BaseTPlvl, ForceShieldlvl;
+    public GameObject companionbed;
+    public GameObject BaseChosmetics;
+    public int Dashlvl, MaxHealthlvl, Oxygenlvl, HPregenlvl, Speedlvl, Drillvl, Fuellvl, FuelRegenlvl, StackSizelvl, MiningRangelvl, Fortunelvl, BaseTPlvl, ForceShieldlvl,BaseHealthlvl,BaseSheidllvl,OxygenRegenlvl,LaserDefenselvl,Turretlvl,OreProccesorlvl,CoinGeneratorlvl,CompanionBedlvl,BaseOverClocklvl,DeathRaylvl,BaseChosemeticslvl;
     public int Success;
+    public bool CoinGenOnline = false;
+    public float CoinGenTimer = 20;
     public TextMeshProUGUI DashUpgrade, HealthUpgrade, OxygenUpgrade, HPregenUpgrade, SpeedUpgrade, DrillUpgrade, FuelUpgrade, StackSizeUpgrade, MiningRangeUpgrade, FortuneUpgrade, BaseTPUpgrade, ForcceShieldUpgrade;
 
-    [Header("------------------Base Upgrades------------------")]
-    public TextMeshProUGUI FuelRegenUpgrade;
+    public TextMeshProUGUI FuelRegenUpgrade, BaseHealthUpgrade, BaseShieldUpgrade, OxygenRegenUpgrade, LaserDefenseUpgrade, TurretUpgrade, OreProccessorUpgrade, CoinGeneratorUpgrade, CompanionBedUpgrade, BaseOverclockUpgrade, DeathRayUpgrade, BaseChosmeticsUpgrade;
+
+    public void Update()
+    {
+        if(CoinGenOnline)
+        {
+            CoinGenTimer -= Time.deltaTime;
+            if (CoinGenTimer < 0)
+            {
+                CoinGenTimer = 20;
+                playerMoney.EarnMoney(10 * CoinGeneratorlvl);
+            }
+        }
+    }
     public void UpgradeDashSpeed()
     {
         Success = playerMoney.SpendMoney(100 * (Dashlvl + 1),2,Dashlvl);
@@ -116,18 +140,6 @@ public class Upgrades : MonoBehaviour
 
 
     }
-
-    public void UpgradeFuelRegen()
-    {
-        Success = playerMoney.SpendMoney(100 * (FuelRegenlvl + 1), 2, FuelRegenlvl);
-        if (Success == 1)
-        {
-            Player.fuelmod = Player.fuelmod + 0.2f;
-            FuelRegenlvl += 1;
-            FuelRegenUpgrade.text = (100 * (FuelRegenlvl + 1)).ToString();
-        }
-    }
-
     public void Upgradestacksize()
     {
         Success = playerMoney.SpendMoney(100 * (StackSizelvl + 1), 4, FuelRegenlvl);
@@ -186,4 +198,146 @@ public class Upgrades : MonoBehaviour
             ForcceShieldUpgrade.text = ("Sold");
         }
     }
+
+
+    //----------------------------------------------------------------------------------//
+
+    public void UpgradeFuelRegen()
+    {
+        Success = playerMoney.SpendMoney(100 * (FuelRegenlvl + 1), 2, FuelRegenlvl);
+        if (Success == 1)
+        {
+            Player.fuelmod = Player.fuelmod + 0.2f;
+            FuelRegenlvl += 1;
+            FuelRegenUpgrade.text = (100 * (FuelRegenlvl + 1)).ToString();
+        }
+    }
+    public void UpgradeBaseHealth()
+    {
+        Success = playerMoney.SpendMoney(100 * (BaseHealthlvl + 1), 2, BaseHealthlvl);
+        if (Success == 1)
+        {
+            BaseHealth.SetMaxHealth(BaseHp.maxhealth + 50);
+            BaseHealth.SetHealth(BaseHp.currenthealth + 50);
+            BaseHp.maxhealth = BaseHp.maxhealth + 50;
+            BaseHp.currenthealth = BaseHp.currenthealth + 50;
+            BaseHealthlvl = BaseHealthlvl + 1;
+            BaseHealthUpgrade.text = (100 * (BaseHealthlvl + 1)).ToString();
+
+        }
+    }
+    public void UpgradeBaseShield()
+    {
+        Success = playerMoney.SpendMoney(100 * (BaseSheidllvl + 1), 2, BaseSheidllvl);
+        if (Success == 1)
+        {
+            BaseSheidllvl = BaseSheidllvl + 1;
+            BaseHp.shieldmod = BaseHp.shieldmod + 1;
+            BaseShieldUpgrade.text = (100 * (BaseSheidllvl + 1)).ToString();
+        }
+    }
+
+    public void UpgradeOxygenRegen()
+    {
+        Success = playerMoney.SpendMoney(100 * (OxygenRegenlvl + 1), 2, OxygenRegenlvl);
+        if (Success == 1)
+        {
+            OxygenRegenlvl = OxygenRegenlvl + 1;
+            trigger.oxregen = trigger.oxregen + 1;
+            OxygenRegenUpgrade.text = (100 * (OxygenRegenlvl + 1)).ToString();
+
+        }
+    }
+
+    public void UpgradeLaserDefense()
+    {
+        Success = playerMoney.SpendMoney(100 * (LaserDefenselvl + 1), 2, LaserDefenselvl);
+        if (Success == 1)
+        {
+            LaserDefenselvl = LaserDefenselvl + 1;
+            laserHitbox.damagemodifier = laserHitbox.damagemodifier*2;
+            LaserDefenseUpgrade.text = (100 * (LaserDefenselvl + 1)).ToString();
+        }
+    }
+    public void UpgradeTurret()
+    {
+        Success = playerMoney.SpendMoney(100 * (Turretlvl + 1), 4, Turretlvl);
+        if (Success == 1)
+        {
+            Turretlvl = Turretlvl + 1;
+            BaseHealthDamage.turretlvl = BaseHealthDamage.turretlvl + 1;
+            TurretUpgrade.text = (100 * (LaserDefenselvl + 1)).ToString();
+        }
+    }
+
+    public void UpgradeOreProccessor()
+    {
+        Success = playerMoney.SpendMoney(200 * (OreProccesorlvl + 1), 2, OreProccesorlvl);
+        if (Success == 1)
+        {
+            OreProccesorlvl = OreProccesorlvl + 1;
+            inventoryManager.proccessmodifier = inventoryManager.proccessmodifier + 0.2f;
+            OreProccessorUpgrade.text = (200 * (OreProccesorlvl + 1)).ToString();
+        }
+    }
+
+    public void UpgradeCoinGenerator()
+    {
+        Success = playerMoney.SpendMoney(400 * (CoinGeneratorlvl + 1), 2, CoinGeneratorlvl);
+        if (Success == 1)
+        {
+            CoinGeneratorlvl = CoinGeneratorlvl + 1;
+            CoinGenOnline = true;
+            CoinGeneratorUpgrade.text = (400 * (CoinGeneratorlvl + 1)).ToString();
+        }
+    }
+
+    public void UpgradeCompanionBed()
+    {
+        Success = playerMoney.SpendMoney(500 * (CompanionBedlvl + 1), 1, CompanionBedlvl);
+        if (Success == 1)
+        {
+            companionbed.SetActive(true);
+            CompanionBedUpgrade.text = ("Sold");
+        }
+    }
+
+    public void UpgradeBaseOverClock()
+    {
+        Success = playerMoney.SpendMoney(2000 * (BaseOverClocklvl + 1), 1, BaseOverClocklvl);
+        if (Success == 1)
+        {
+            BaseOverClocklvl = BaseOverClocklvl + 1;
+            bullet.bulletmodifier = bullet.bulletmodifier + 1;
+            gunsLookAt1.shootspeedmodifier = gunsLookAt1.shootspeedmodifier + 1;
+            gunsLookAt2.shootspeedmodifier = gunsLookAt2.shootspeedmodifier + 1;
+            gunsLookAt3.shootspeedmodifier = gunsLookAt3.shootspeedmodifier + 1;
+            gunsLookAt4.shootspeedmodifier = gunsLookAt4.shootspeedmodifier + 1;
+            BaseOverclockUpgrade.text = ("Sold");
+        }
+    }
+
+    public void UpgradeDeathRay()
+    {
+        Success = playerMoney.SpendMoney(2000 * (DeathRaylvl + 1), 1, DeathRaylvl);
+        if (Success == 1)
+        {
+            DeathRaylvl = DeathRaylvl + 1;
+
+            DeathRayUpgrade.text = ("Sold");
+        }
+    }
+
+    public void UpgradeBaseChosmetics()
+    {
+        Success = playerMoney.SpendMoney(2000 * (BaseChosemeticslvl + 1), 1, BaseChosemeticslvl);
+        if (Success == 1)
+        {
+            BaseChosemeticslvl = BaseChosemeticslvl + 1;
+            BaseChosmetics.SetActive(true);
+            BaseChosmeticsUpgrade.text = ("Sold");
+        }
+    }
+
+
 }

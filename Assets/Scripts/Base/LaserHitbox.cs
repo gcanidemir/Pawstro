@@ -6,6 +6,7 @@ public class LaserHitbox : MonoBehaviour
 {
     public Enemy enemy;
     public bool canHit;
+    public int damagemodifier = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,7 +37,7 @@ public class LaserHitbox : MonoBehaviour
     private IEnumerator HitTimer()
     {
         canHit = false;
-        enemy.TakeDamage(25);
+        enemy.TakeDamage(15*damagemodifier);
         yield return new WaitForSeconds(1f);
         canHit = true;
     }

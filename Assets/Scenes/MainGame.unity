@@ -2658,6 +2658,7 @@ MonoBehaviour:
   - {fileID: 1439764564}
   demoScript: {fileID: 1718550408}
   moneyScript: {fileID: 1718550415}
+  proccessmodifier: 0
 --- !u!4 &230764780
 Transform:
   m_ObjectHideFlags: 0
@@ -2976,6 +2977,7 @@ Transform:
   - {fileID: 1189204630}
   - {fileID: 1346845422}
   - {fileID: 1345343182}
+  - {fileID: 1261710840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &250462090
@@ -3012,6 +3014,7 @@ MonoBehaviour:
   Turret3: {fileID: 1673053687}
   Turret4: {fileID: 1498033130}
   LaserDefense: {fileID: 361808405}
+  turretlvl: 0
 --- !u!1 &260188094
 GameObject:
   m_ObjectHideFlags: 0
@@ -3528,7 +3531,7 @@ GameObject:
   - component: {fileID: 295628482}
   - component: {fileID: 295628481}
   m_Layer: 5
-  m_Name: MiningRange
+  m_Name: BaseOverClock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3600,9 +3603,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeDashSpeed
+        m_MethodName: UpgradeBaseOverClock
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4338,6 +4341,7 @@ MonoBehaviour:
   detectionRange: 25
   bulletPrefab: {fileID: 5629358837054899760, guid: ef67a84cd2139044f854816019f8e648, type: 3}
   firePoint: {fileID: 1797633810}
+  shootspeedmodifier: 1
 --- !u!212 &349440670
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4720,6 +4724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   canHit: 1
+  damagemodifier: 1
 --- !u!61 &361808408
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6141,7 +6146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 2000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a603140e52261164bb982b5192e743c5, type: 2}
   m_sharedMaterial: {fileID: -3575766154149027985, guid: a603140e52261164bb982b5192e743c5, type: 2}
@@ -7076,7 +7081,7 @@ GameObject:
   - component: {fileID: 607325619}
   - component: {fileID: 607325618}
   m_Layer: 5
-  m_Name: BaseTp
+  m_Name: DeathRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7148,9 +7153,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeDashSpeed
+        m_MethodName: UpgradeDeathRay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7411,6 +7416,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77894e278cc2e854889592f004103c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSource: {fileID: 0}
+  SFXsource: {fileID: 0}
+  calmmusic: {fileID: 0}
+  movement: {fileID: 0}
+  rockhit: {fileID: 0}
+  upgrade: {fileID: 0}
 --- !u!1001 &644741895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8502,7 +8513,7 @@ GameObject:
   - component: {fileID: 773139357}
   - component: {fileID: 773139356}
   m_Layer: 5
-  m_Name: Fuel
+  m_Name: turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8574,9 +8585,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeDashSpeed
+        m_MethodName: UpgradeTurret
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8924,7 +8935,7 @@ GameObject:
   - component: {fileID: 806678405}
   - component: {fileID: 806678404}
   m_Layer: 5
-  m_Name: ForceField
+  m_Name: BaseChosmetics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8996,9 +9007,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeDashSpeed
+        m_MethodName: UpgradeBaseChosmetics
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10744,7 +10755,7 @@ GameObject:
   - component: {fileID: 1017787199}
   - component: {fileID: 1017787198}
   m_Layer: 5
-  m_Name: Oxygen
+  m_Name: OxygenRegen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10816,9 +10827,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeOxygen
+        m_MethodName: UpgradeOxygenRegen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10998,7 +11009,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 500
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a603140e52261164bb982b5192e743c5, type: 2}
   m_sharedMaterial: {fileID: -3575766154149027985, guid: a603140e52261164bb982b5192e743c5, type: 2}
@@ -12611,7 +12622,7 @@ GameObject:
   - component: {fileID: 1192075463}
   - component: {fileID: 1192075462}
   m_Layer: 5
-  m_Name: MiningSpeed
+  m_Name: OreProccessor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12683,9 +12694,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeDrillPower
+        m_MethodName: UpgradeOreProccessor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12931,7 +12942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 400
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a603140e52261164bb982b5192e743c5, type: 2}
   m_sharedMaterial: {fileID: -3575766154149027985, guid: a603140e52261164bb982b5192e743c5, type: 2}
@@ -13217,6 +13228,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245292621}
   m_CullTransparentMesh: 1
+--- !u!1 &1261710839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261710840}
+  m_Layer: 9
+  m_Name: Chosmetics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1261710840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261710839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1426647738}
+  - {fileID: 1570871339}
+  m_Father: {fileID: 250462089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287227706
 GameObject:
   m_ObjectHideFlags: 0
@@ -13574,7 +13618,7 @@ GameObject:
   - component: {fileID: 1313280956}
   - component: {fileID: 1313280955}
   m_Layer: 5
-  m_Name: StackSize
+  m_Name: CoinGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13646,9 +13690,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeDashSpeed
+        m_MethodName: UpgradeCoinGenerator
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13709,7 +13753,7 @@ GameObject:
   - component: {fileID: 1315341406}
   - component: {fileID: 1315341405}
   m_Layer: 5
-  m_Name: HealthRegen
+  m_Name: FuelRegen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13781,9 +13825,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeHPregen
+        m_MethodName: UpgradeFuelRegen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14252,7 +14296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 200
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a603140e52261164bb982b5192e743c5, type: 2}
   m_sharedMaterial: {fileID: -3575766154149027985, guid: a603140e52261164bb982b5192e743c5, type: 2}
@@ -14476,7 +14520,7 @@ GameObject:
   - component: {fileID: 1369392012}
   - component: {fileID: 1369392011}
   m_Layer: 5
-  m_Name: MaxHealth
+  m_Name: BaseShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14548,9 +14592,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeHealth
+        m_MethodName: UpgradeBaseShield
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14957,6 +15001,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419950171}
   m_CullTransparentMesh: 1
+--- !u!1 &1426647737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426647738}
+  - component: {fileID: 1426647739}
+  m_Layer: 9
+  m_Name: CatBed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1426647738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426647737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.43, y: 7.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1261710840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1426647739
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426647737}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 18
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!224 &1428790297 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6176293844473957097, guid: 5d04cdc8273fa914696c295ceede0960, type: 3}
@@ -15185,6 +15313,7 @@ MonoBehaviour:
   detectionRange: 25
   bulletPrefab: {fileID: 5629358837054899760, guid: ef67a84cd2139044f854816019f8e648, type: 3}
   firePoint: {fileID: 281657384}
+  shootspeedmodifier: 1
 --- !u!212 &1444044820
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16294,6 +16423,7 @@ MonoBehaviour:
   detectionRange: 25
   bulletPrefab: {fileID: 5629358837054899760, guid: ef67a84cd2139044f854816019f8e648, type: 3}
   firePoint: {fileID: 1329691859}
+  shootspeedmodifier: 1
 --- !u!212 &1569201870
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16346,6 +16476,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1570871337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1570871339}
+  - component: {fileID: 1570871338}
+  m_Layer: 9
+  m_Name: Chosmetics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1570871338
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570871337}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 18
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1570871339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570871337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.099, y: 0.593, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1261710840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1582541312
 GameObject:
   m_ObjectHideFlags: 0
@@ -19217,12 +19431,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6709147b1e3fd0b45885c81d89c89c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunsLookAt1: {fileID: 1444044819}
+  gunsLookAt2: {fileID: 349440669}
+  gunsLookAt3: {fileID: 2128341675}
+  gunsLookAt4: {fileID: 1569201869}
+  bullet: {fileID: 6195104409476234432, guid: ef67a84cd2139044f854816019f8e648, type: 3}
+  BaseHealthDamage: {fileID: 250462091}
+  laserHitbox: {fileID: 361808407}
   Player: {fileID: 1718550412}
   healthBar: {fileID: 1944742624}
   health: {fileID: 1718550418}
   OxygenBar: {fileID: 710511621}
   oxygen: {fileID: 1718550419}
   FuelBar: {fileID: 194292982}
+  BaseHealth: {fileID: 549938930}
+  BaseHp: {fileID: 250462090}
   fuel: {fileID: 1718550407}
   drill: {fileID: 974339674}
   trigger: {fileID: 1718550420}
@@ -19232,6 +19455,8 @@ MonoBehaviour:
   meteorexplode: {fileID: 4529783580278862327, guid: c1a6fd900e8f4b1428ce34ed38720085, type: 3}
   teleport: {fileID: 1718550422}
   forcefield: {fileID: 1884181272}
+  companionbed: {fileID: 1426647737}
+  BaseChosmetics: {fileID: 1570871337}
   Dashlvl: 0
   MaxHealthlvl: 0
   Oxygenlvl: 0
@@ -19245,7 +19470,20 @@ MonoBehaviour:
   Fortunelvl: 0
   BaseTPlvl: 0
   ForceShieldlvl: 0
+  BaseHealthlvl: 0
+  BaseSheidllvl: 0
+  OxygenRegenlvl: 0
+  LaserDefenselvl: 0
+  Turretlvl: 0
+  OreProccesorlvl: 0
+  CoinGeneratorlvl: 0
+  CompanionBedlvl: 0
+  BaseOverClocklvl: 0
+  DeathRaylvl: 0
+  BaseChosemeticslvl: 0
   Success: 0
+  CoinGenOnline: 0
+  CoinGenTimer: 20
   DashUpgrade: {fileID: 310707457}
   HealthUpgrade: {fileID: 1603107183}
   OxygenUpgrade: {fileID: 1666959352}
@@ -19258,7 +19496,18 @@ MonoBehaviour:
   FortuneUpgrade: {fileID: 1330786772}
   BaseTPUpgrade: {fileID: 1449214063}
   ForcceShieldUpgrade: {fileID: 228102296}
-  FuelRegenUpgrade: {fileID: 0}
+  FuelRegenUpgrade: {fileID: 2146889449}
+  BaseHealthUpgrade: {fileID: 1410685637}
+  BaseShieldUpgrade: {fileID: 1151870199}
+  OxygenRegenUpgrade: {fileID: 112183976}
+  LaserDefenseUpgrade: {fileID: 1245292623}
+  TurretUpgrade: {fileID: 352196317}
+  OreProccessorUpgrade: {fileID: 1339268706}
+  CoinGeneratorUpgrade: {fileID: 1226375570}
+  CompanionBedUpgrade: {fileID: 1026659780}
+  BaseOverclockUpgrade: {fileID: 508975798}
+  DeathRayUpgrade: {fileID: 1161821200}
+  BaseChosmeticsUpgrade: {fileID: 1983931335}
 --- !u!114 &1718550418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22010,7 +22259,7 @@ GameObject:
   - component: {fileID: 2013944430}
   - component: {fileID: 2013944429}
   m_Layer: 5
-  m_Name: Speed
+  m_Name: LaserDefense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22082,9 +22331,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeSpeed
+        m_MethodName: UpgradeLaserDefense
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22279,7 +22528,7 @@ GameObject:
   - component: {fileID: 2016871636}
   - component: {fileID: 2016871635}
   m_Layer: 5
-  m_Name: Fortune
+  m_Name: CompanionBed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22351,9 +22600,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeDashSpeed
+        m_MethodName: UpgradeCompanionBed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23482,6 +23731,7 @@ MonoBehaviour:
   detectionRange: 25
   bulletPrefab: {fileID: 5629358837054899760, guid: ef67a84cd2139044f854816019f8e648, type: 3}
   firePoint: {fileID: 976795346}
+  shootspeedmodifier: 1
 --- !u!212 &2128341676
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23547,7 +23797,7 @@ GameObject:
   - component: {fileID: 2131376720}
   - component: {fileID: 2131376719}
   m_Layer: 5
-  m_Name: DashSpeed
+  m_Name: BaseHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23619,9 +23869,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1718550417}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeDashSpeed
+        m_MethodName: UpgradeBaseHealth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
