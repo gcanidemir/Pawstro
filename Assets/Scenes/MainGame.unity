@@ -19399,7 +19399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829a26d530cb3041b89cbbbcd38df2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 250
+  maxhealth: 75
   currenthealth: 0
   healthBar: {fileID: 194292982}
 --- !u!114 &1718550408
@@ -19621,7 +19621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Money: 9999
-  StartMoney: 4000
+  StartMoney: 0
   ErrorTimer: 0
   ErrorInterval: 120
   MoneyError: {fileID: 1896824117}
@@ -19760,7 +19760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a73fd5d2a403a4aa6af1ec0a486ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 250
+  maxhealth: 75
   currenthealth: 0
   healthBar: {fileID: 710511621}
   player: {fileID: 1718550418}
@@ -19906,7 +19906,7 @@ MonoBehaviour:
   volume: {fileID: 1682074508}
   enemyAlertText: {fileID: 1713793169}
   navMeshSurface: {fileID: 1653329700}
-  win: {fileID: 0}
+  win: {fileID: 45913499}
 --- !u!4 &1730064316
 Transform:
   m_ObjectHideFlags: 0

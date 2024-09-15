@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Oxygen : MonoBehaviour
 {
-    public float maxhealth = 100;
+    public float maxhealth;
     public float currenthealth;
     public HealthBar healthBar;
     public Health player;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fuel : MonoBehaviour
 {
-    public float maxhealth = 100;
+    public float maxhealth;
     public float currenthealth;
     public HealthBar healthBar;
     // Start is called before the first frame update

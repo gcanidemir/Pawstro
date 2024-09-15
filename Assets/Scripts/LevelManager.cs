@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine.Rendering.PostProcessing;
 using NavMeshPlus.Components;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -41,8 +39,8 @@ public class LevelManager : MonoBehaviour
 
     private void SetTimer()
     {
-        minimumSpawnTime = 120f;
-        maximumSpawnTime = minimumSpawnTime + 30f;
+        minimumSpawnTime = 30f;
+        maximumSpawnTime = minimumSpawnTime + 15f;
         timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
         time = timeUntilSpawn;
         stormNotified = false;
