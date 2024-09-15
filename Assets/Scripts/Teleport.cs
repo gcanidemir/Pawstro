@@ -7,6 +7,7 @@ public class Teleport : MonoBehaviour
 {
     public Transform player;
     public HealthBar healthBar;
+    public Animator anim;
     public GameObject TpHud;
     public bool CanTeleport = false;
     public float TeleportCoolDown = 0f;
@@ -39,13 +40,18 @@ public class Teleport : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.B))
                 {
-                    player.localPosition = Vector3.zero;
-                TeleportCoolDown = 15;
-                healthBar.SetMaxHealth(TeleportCoolDown);
-                healthBar.SetHealth(TeleportCoolDown);
+                anim.SetBool("isTP", true);
                 }
         }
 
+    }
+    public void tp()
+    {
+        player.localPosition = Vector3.zero;
+        TeleportCoolDown = 15;
+        healthBar.SetMaxHealth(TeleportCoolDown);
+        healthBar.SetHealth(TeleportCoolDown);
+        anim.SetBool("isTP", false);
     }
    
 

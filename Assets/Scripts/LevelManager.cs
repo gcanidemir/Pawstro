@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
     private float intensity;
     [SerializeField] private UnityEngine.UI.Image enemyAlertText;
     [SerializeField] private NavMeshSurface navMeshSurface;
+    public GameObject win;
 
     private void LevelManagerInit()
     {
@@ -175,6 +176,10 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     {
+        if (level == 16)
+        {
+            win.SetActive(true);
+        }
         if (timeUntilSpawn >= 0)
             TimerTick();
 
