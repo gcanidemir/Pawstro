@@ -80,7 +80,7 @@ public class TutorialCharSelect : MonoBehaviour
                 text7.SetActive(false);
                 text8.SetActive(true);
                 break;
-             case 9:
+             default:
                 tutorialtext = false;
                 x = Mathf.Lerp(x, 0,OCT * Time.deltaTime);
             scaleChange = new Vector3(3.13f, x, 3.13f);

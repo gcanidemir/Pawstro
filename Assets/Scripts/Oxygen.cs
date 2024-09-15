@@ -7,11 +7,29 @@ public class Oxygen : MonoBehaviour
     public float maxhealth = 100;
     public float currenthealth;
     public HealthBar healthBar;
+    public Health player;
+    public bool flag;
     // Start is called before the first frame update
     void Start()
     {
         currenthealth = maxhealth;
         healthBar.SetMaxHealth(maxhealth);
+    }
+
+    private void Update()
+    {
+        if (currenthealth <= 0 && flag)
+        {
+            StartCoroutine(Ah());
+        }
+    }
+
+    IEnumerator Ah()
+    {
+        flag = false;
+        player.takedamage(2.0f);
+        yield return new WaitForSeconds(2.0f);
+        flag = true;
     }
 
     public void takedamage(float damage)

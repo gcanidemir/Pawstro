@@ -5793,7 +5793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &484126164
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19763,6 +19763,8 @@ MonoBehaviour:
   maxhealth: 250
   currenthealth: 0
   healthBar: {fileID: 710511621}
+  player: {fileID: 1718550418}
+  flag: 1
 --- !u!114 &1718550420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19904,6 +19906,7 @@ MonoBehaviour:
   volume: {fileID: 1682074508}
   enemyAlertText: {fileID: 1713793169}
   navMeshSurface: {fileID: 1653329700}
+  win: {fileID: 0}
 --- !u!4 &1730064316
 Transform:
   m_ObjectHideFlags: 0
