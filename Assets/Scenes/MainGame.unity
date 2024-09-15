@@ -1526,13 +1526,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: shield-Sheet_0
       objectReference: {fileID: 0}
+    - target: {fileID: 3302730166589474118, guid: 0ee1561593dac6c4ca55df21e2290a8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5175943504191428065, guid: 0ee1561593dac6c4ca55df21e2290a8d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -84.37138
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5175943504191428065, guid: 0ee1561593dac6c4ca55df21e2290a8d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -76.77934
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5175943504191428065, guid: 0ee1561593dac6c4ca55df21e2290a8d, type: 3}
       propertyPath: m_LocalPosition.z

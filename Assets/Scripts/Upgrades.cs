@@ -266,7 +266,7 @@ public class Upgrades : MonoBehaviour
         {
             Turretlvl = Turretlvl + 1;
             BaseHealthDamage.turretlvl = BaseHealthDamage.turretlvl + 1;
-            TurretUpgrade.text = (100 * (LaserDefenselvl + 1)).ToString();
+            TurretUpgrade.text = (100 * (Turretlvl + 1)).ToString();
         }
     }
 
