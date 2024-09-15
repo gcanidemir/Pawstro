@@ -773,3 +773,4 @@ MonoBehaviour:
   anim: {fileID: 7701267150355817913}
   canAttack: 1
   type: 2
+  sprite: {fileID: 3218392237203498907}

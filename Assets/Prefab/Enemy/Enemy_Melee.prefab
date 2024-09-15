@@ -700,3 +700,4 @@ MonoBehaviour:
   anim: {fileID: 7701267150355817913}
   canAttack: 1
   type: 1
+  sprite: {fileID: 685645807786789033}
