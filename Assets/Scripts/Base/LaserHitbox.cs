@@ -4,33 +4,46 @@ using UnityEngine;
 
 public class LaserHitbox : MonoBehaviour
 {
-    private bool inArea = false;
     public Enemy enemy;
+    public bool canHit;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision == null)
+            return;
+
+        if (collision.gameObject.transform.parent.gameObject.CompareTag("Enemy"))
         {
-            inArea = true;
-            StartCoroutine(HitTimer());
+            enemy = collision.gameObject.transform.parent.gameObject.GetComponent<Enemy>();
+            canHit = true;
+
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision == null)
+            return;
+
+        if (collision.gameObject.transform.parent.gameObject.CompareTag("Enemy"))
         {
-            inArea = false;
+            enemy = collision.gameObject.transform.parent.gameObject.GetComponent<Enemy>();
+            canHit = false;
+
         }
     }
 
     private IEnumerator HitTimer()
     {
-        while (inArea)
-        {
-            Debug.Log("Ah");
-            enemy.TakeDamage(25);
-            yield return new WaitForSeconds(3f);
-        }
+        canHit = false;
+        enemy.TakeDamage(25);
+        yield return new WaitForSeconds(1f);
+        canHit = true;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.F) && canHit)
+            StartCoroutine(HitTimer());
     }
 }
