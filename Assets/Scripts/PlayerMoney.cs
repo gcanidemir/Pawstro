@@ -28,23 +28,23 @@ public class PlayerMoney : MonoBehaviour
         Money += amount;
         Moneytext.text = Money.ToString();
     }
-    public int SpendMoney(int amount, int limit, int currentlvl)
+    public bool SpendMoney(int amount, int limit, int currentlvl)
     {
         if (Money >= amount && currentlvl < limit)
         {
             Money -= amount;
             Moneytext.text = Money.ToString();
-            return 1;
+            return true;
         }
         else if (Money >= amount && currentlvl == limit)
         {
             LimitMessage(2);
-            return 0;
+            return false;
         }
         else
         {
             ErrorMessage(2);
-            return 0;
+            return false;
         }
         void LimitMessage(float delayTime)
         {
