@@ -32,15 +32,23 @@ public class player : MonoBehaviour
     public GameObject Drill;
     public AudioManager audioManager;
     public Fuel fuel;
-
+    private GameObject pickedItem;
+    private DemoScript demoScript;
     Rigidbody2D rb;
+    public Transform _player;
+    public HealthBar TPBar;
+    public Animator anim;
+    public GameObject TpHud;
+    public bool CanTeleport = false;
+    public float TeleportCoolDown = 0f;
 
     void Start()
     {
 
         rb = GetComponent<Rigidbody2D>();
         speedConstant = 10;
-
+        demoScript = GetComponent<DemoScript>();
+        TpHud.SetActive(false);
     }
 
     void Update()
@@ -172,9 +180,44 @@ public class player : MonoBehaviour
                 DrillSprite.localScale = new Vector3(-1, 1, 1);
             }
         }
+      
+        if (CanTeleport) 
+        {
+            TpHud.SetActive(true);
+        }
+        else
+            TpHud.SetActive(false);
 
+        if (TeleportCoolDown > 0)
+        {
+            TeleportCoolDown -= Time.deltaTime;
+            TPBar.SetHealth(TeleportCoolDown);
+        }
+        if (TeleportCoolDown < 0f)
+        {
+            TeleportCoolDown = 0;
+        }
 
+        if (CanTeleport == true && TeleportCoolDown == 0)
+        {
+            if (Input.GetKey(KeyCode.B))
+                {
+                anim.SetBool("isTP", true);
+                }
+        }
+
+    
     }
+
+    public void tp()
+    {
+        _player.localPosition = Vector3.zero;
+        TeleportCoolDown = 15;
+        TPBar.SetMaxHealth(TeleportCoolDown);
+        TPBar.SetHealth(TeleportCoolDown);
+        anim.SetBool("isTP", false);
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         ContactPoint2D[] contacts = new ContactPoint2D[col.contactCount];
@@ -204,5 +247,34 @@ public class player : MonoBehaviour
         }
         
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        pickedItem = collision.gameObject;
+        if (collision.CompareTag("CommonOre")){
+            demoScript.PickItem(0);
+            Destroy(pickedItem);
+        }
+        if (collision.CompareTag("CommonGem")){
+            demoScript.PickItem(1);
+            Destroy(pickedItem);
+        }
+        if (collision.CompareTag("RareOre")){
+            demoScript.PickItem(2);
+            Destroy(pickedItem);
+        }
+        if (collision.CompareTag("RareGem")){
+            demoScript.PickItem(3);
+            Destroy(pickedItem);
+        }
+        if (collision.CompareTag("LegendaryOre")){
+            demoScript.PickItem(4);
+            Destroy(pickedItem);
+        }
+        if (collision.CompareTag("LegendaryGem")){
+            demoScript.PickItem(5);
+            Destroy(pickedItem);
+        }
     }
 }

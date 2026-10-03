@@ -1575,11 +1575,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ee1561593dac6c4ca55df21e2290a8d, type: 3}
---- !u!1 &94983701 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3302730166589474118, guid: 0ee1561593dac6c4ca55df21e2290a8d, type: 3}
-  m_PrefabInstance: {fileID: 94983700}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &94983702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5175943504191428065, guid: 0ee1561593dac6c4ca55df21e2290a8d, type: 3}
@@ -17789,7 +17784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1639346000
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19327,8 +19322,6 @@ GameObject:
   - component: {fileID: 1718550405}
   - component: {fileID: 1718550411}
   - component: {fileID: 1718550409}
-  - component: {fileID: 1718550422}
-  - component: {fileID: 1718550410}
   - component: {fileID: 1718550412}
   - component: {fileID: 1718550408}
   - component: {fileID: 1718550407}
@@ -19477,18 +19470,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5832968, y: 2.911229}
   m_EdgeRadius: 0
---- !u!114 &1718550410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718550404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d804a66788b1545a4d4c785342afe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1718550411
 Rigidbody2D:
   serializedVersion: 4
@@ -19542,6 +19523,12 @@ MonoBehaviour:
   Drill: {fileID: 974339672}
   audioManager: {fileID: 0}
   fuel: {fileID: 1718550407}
+  _player: {fileID: 1718550414}
+  TPBar: {fileID: 1639346001}
+  anim: {fileID: 1718550405}
+  TpHud: {fileID: 1639345999}
+  CanTeleport: 0
+  TeleportCoolDown: 0
 --- !u!212 &1718550413
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19670,46 +19657,19 @@ MonoBehaviour:
   OxygenBar: {fileID: 710511621}
   oxygen: {fileID: 1718550419}
   FuelBar: {fileID: 194292982}
+  fuel: {fileID: 1718550407}
   BaseHealth: {fileID: 549938930}
   BaseHp: {fileID: 250462090}
-  fuel: {fileID: 1718550407}
   drill: {fileID: 974339674}
   trigger: {fileID: 1718550420}
   playerMoney: {fileID: 1718550415}
   inventoryManager: {fileID: 230764779}
   drillrange: {fileID: 1868591505}
   meteorexplode: {fileID: 4529783580278862327, guid: c1a6fd900e8f4b1428ce34ed38720085, type: 3}
-  teleport: {fileID: 1718550422}
-  forcefield: {fileID: 94983701}
+  playerMovement: {fileID: 1718550412}
+  forcefield: {fileID: 0}
   companionbed: {fileID: 0}
   BaseChosmetics: {fileID: 0}
-  Dashlvl: 0
-  MaxHealthlvl: 0
-  Oxygenlvl: 0
-  HPregenlvl: 0
-  Speedlvl: 0
-  Drillvl: 0
-  Fuellvl: 0
-  FuelRegenlvl: 0
-  StackSizelvl: 0
-  MiningRangelvl: 0
-  Fortunelvl: 0
-  BaseTPlvl: 0
-  ForceShieldlvl: 0
-  BaseHealthlvl: 0
-  BaseSheidllvl: 0
-  OxygenRegenlvl: 0
-  LaserDefenselvl: 0
-  Turretlvl: 0
-  OreProccesorlvl: 0
-  CoinGeneratorlvl: 0
-  CompanionBedlvl: 0
-  BaseOverClocklvl: 0
-  DeathRaylvl: 0
-  BaseChosemeticslvl: 0
-  Success: 0
-  CoinGenOnline: 0
-  CoinGenTimer: 20
   DashUpgrade: {fileID: 310707457}
   HealthUpgrade: {fileID: 1603107183}
   OxygenUpgrade: {fileID: 1666959352}
@@ -19813,24 +19773,6 @@ MonoBehaviour:
   tran: {fileID: 1586975716}
   OCT: 3
   ssize: 7
---- !u!114 &1718550422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718550404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc4b227c9866bf469c5edc4489c8a96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1718550414}
-  healthBar: {fileID: 1639346001}
-  anim: {fileID: 1718550405}
-  TpHud: {fileID: 1639345999}
-  CanTeleport: 0
-  TeleportCoolDown: 0
 --- !u!114 &1718550423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20182,7 +20124,7 @@ RectTransform:
   m_Father: {fileID: 1639346000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

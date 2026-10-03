@@ -13,7 +13,7 @@ public class bordercol : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Debug log for detecting collisions
-        Debug.Log("Collision detected with: " + collision.gameObject.name);
+        //Debug.Log("Collision detected with: " + collision.gameObject.name);
         if(gameObject.transform.position.x > 0){
             mulx= 1;
         }

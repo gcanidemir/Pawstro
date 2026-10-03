@@ -27,7 +27,7 @@ public class Upgrades : MonoBehaviour
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private Transform drillrange;
     [SerializeField] private MeteorExplode meteorexplode;
-    [SerializeField] private Teleport teleport;
+    [SerializeField] private player playerMovement;
     [SerializeField] private GameObject forcefield;
     [SerializeField] private GameObject companionbed;
     [SerializeField] private GameObject BaseChosmetics;
@@ -137,7 +137,7 @@ public class Upgrades : MonoBehaviour
     public void UpgradeTP()
     {
         if (TryBuy(ref BaseTPlvl, 2000, 1, BaseTPUpgrade))
-            teleport.CanTeleport = true;
+            playerMovement.CanTeleport = true;
     }
     public void UpgradeForceField()
     {
