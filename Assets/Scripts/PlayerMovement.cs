@@ -8,273 +8,245 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    public float multiplier = 1;
-    private float targetspeedX = 10f;
-    private float targetspeedY = 10f;
-    private float speedConstant;
-    public float acceleration = 1f;
-    public float deceleration = 1f;
-    private float currentSpeedx = 0f;
-    private float currentSpeedy = 0f;
-    private float speedx, speedy;
-    public float scale = 1;
-    public float speedbonus = 1;
-    public float fuelmod = 1;
-    public float Speedtolerance = 0.1f;
-    private Vector2 bouncepoint = Vector2.zero;
-    private Vector2 playerposition = Vector2.zero;
-    private Vector2 bounceboxposition = Vector2.zero;
-    private bool FuelEmpty = false;
-    public Transform bouncebox;
-    public Transform PlayerSprite;
-    public Transform DrillSprite;
-    public GameObject playerpos;
-    public GameObject Drill;
-    public AudioManager audioManager;
-    public Fuel fuel;
-    private GameObject pickedItem;
+
+    [Header("Upgrade Stats")]
+    public float multiplier = 1; // sprint/dash upgrade
+    public float speedbonus = 1; // speed upgrade
+    public float fuelmod = 1; // fuel efficiency upgrade
+    public bool CanTeleport = false;
+
+    [Header("Movement")]
+    //replaces old 'acceleration'
+    [SerializeField] private float walkAcceleration = 1f;
+    //replaces old 'acceleration' when sprinting
+    [SerializeField] private float sprintAcceleration = 3f;
+    //public -> [SerializeField] private
+    [SerializeField] private float deceleration = 1f;
+    //public -> [SerializeField] private
+    [SerializeField] private float Speedtolerance = 0.1f;
+    //replaces hardcoded '/ 5' in OnCollisionEnter2D
+    [SerializeField] private float bounceDamping = 5f;
+
+    [Header("Fuel")]
+    //replaces 0.01 per frame (now frame-rate independent, same as 60 FPS)
+    [SerializeField] private float moveFuelPerSecond = 0.6f;
+    //replaces 0.05 per frame (now frame-rate independent, same as 60 FPS)
+    [SerializeField] private float sprintFuelPerSecond = 3f;
+    //public -> [SerializeField] private
+    [SerializeField] private Fuel fuel;
+
+    [Header("Teleport")]
+    //replaces hardcoded '15' in tp()
+    [SerializeField] private float teleportCooldownTime = 15f;
+    //public -> [SerializeField] private
+    [SerializeField] private HealthBar TPBar;
+    //public -> [SerializeField] private
+    [SerializeField] private GameObject TpHud;
+    //public -> [SerializeField] private
+    [SerializeField] private Transform _player;
+
+    [Header("Sprites & Animation")]
+    //public -> [SerializeField] private
+    [SerializeField] private Transform PlayerSprite;
+    //public -> [SerializeField] private
+    [SerializeField] private Transform DrillSprite;
+    //public -> [SerializeField] private
+    [SerializeField] private GameObject Drill;
+    //public -> [SerializeField] private
+    [SerializeField] private Animator anim;
+
+    [Header("Collision")]
+    //public -> [SerializeField] private
+    [SerializeField] private Transform bouncebox;
+    //public -> [SerializeField] private
+    [SerializeField] private GameObject playerpos;
+
+    [Header("Audio")]
+    //public -> [SerializeField] private (currently unused in this script)
+    [SerializeField] private AudioManager audioManager;
+
+    // ── Constants ──
+    //replaces private 'speedConstant' (was set to 10)
+    private const float BaseSpeed = 10f;
+    //replaces hardcoded '/ 10' when fuel is empty
+    private const float EmptyFuelSlowdown = 10f;
+
+    // ── Private Fields ──
+    //6 copy-pasted if-blocks replaced by a single array of tags
+    private static readonly string[] PickupTags = {"CommonOre", "CommonGem", "RareOre", "RareGem", "LegendaryOre", "LegendaryGem"};
+
     private DemoScript demoScript;
     Rigidbody2D rb;
-    public Transform _player;
-    public HealthBar TPBar;
-    public Animator anim;
-    public GameObject TpHud;
-    public bool CanTeleport = false;
-    public float TeleportCoolDown = 0f;
+    private Vector2 input;
+    private Vector2 currentSpeed;
+    private float teleportCooldown;
 
-    void Start()
+    // CHANGED: removed 'speedConstant = 10' (now const BaseSpeed)
+    private void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
-        speedConstant = 10;
         demoScript = GetComponent<DemoScript>();
         TpHud.SetActive(false);
     }
 
-    void Update()
+    // CHANGED: was ~150 lines doing everything; now reads input once and calls 4 methods
+    private void Update()
     {
-        if (Mathf.Abs(speedx) > 0 || Mathf.Abs(speedy) > 0)
-        {
-            fuel.takedamage(0.01f/fuelmod);
-        }
+        //one Vector2 instead of separate speedx / speedy
+        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (fuel.currenthealth == 0)
-            FuelEmpty = true;
-        else
-            FuelEmpty = false;
+        bool isMoving = input != Vector2.zero;
+        //replaces 'FuelEmpty' field; '> 0' instead of '== 0' (safer with floats)
+        bool hasFuel = fuel.currenthealth > 0f;
+        // FIX: sprint now requires fuel AND movement (old code kept sprint speed when Shift was held at 0 fuel)
+        bool isSprinting = isMoving && hasFuel && Input.GetKey(KeyCode.LeftShift);
 
-        if (Input.GetKey(KeyCode.LeftShift) && fuel.currenthealth > 0)
-        {
-            fuel.takedamage(0.05f/ fuelmod);
-            targetspeedX = 2 * speedConstant * multiplier * speedbonus;
-            targetspeedY = 2 * speedConstant * multiplier * speedbonus;
-
-            acceleration = 3 * speedbonus;
-        }
-
-        else if (!Input.GetKey(KeyCode.LeftShift))
-        {
-            targetspeedX = speedConstant * multiplier;
-            targetspeedY = speedConstant * multiplier;
-            acceleration = 1 * speedbonus;
-        }
-
-
-        speedx = Input.GetAxisRaw("Horizontal");
-        speedy = Input.GetAxisRaw("Vertical");
-        if (Mathf.Abs(speedx) > 0)
-        {
-            if (!Input.GetKey(KeyCode.LeftShift))
-                targetspeedX = 10 * speedbonus;
-            
-        }
-        else
-            targetspeedX = 0;
-
-
-        if (Mathf.Abs(speedy) > 0)
-        {
-            if (!Input.GetKey(KeyCode.LeftShift))
-                targetspeedY = 10 * speedbonus;
-           
-        }
-        else
-            targetspeedY = 0;
-
-
-        if (Mathf.Abs(currentSpeedx) <= targetspeedX && speedx > 0)
-        {
-            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeedX, acceleration * Time.deltaTime);
-        }
-        else if (Mathf.Abs(currentSpeedx) <= targetspeedX && speedx < 0)
-        {
-            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeedX * -1, acceleration * Time.deltaTime);
-        }
-        //X axis acceleration
-        if (Mathf.Abs(currentSpeedx) >= targetspeedX && speedx >= 0)
-        {
-            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeedX, deceleration * Time.deltaTime);
-        }
-        else if (Mathf.Abs(currentSpeedx) >= targetspeedX && speedx < 0)
-        {
-            currentSpeedx = Mathf.Lerp(currentSpeedx, targetspeedX * -1, deceleration * Time.deltaTime);
-        }
-        //X axis deceleration
-
-        if (Mathf.Abs(currentSpeedy) <= targetspeedY && speedy > 0)
-        {
-            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeedY, acceleration * Time.deltaTime);
-        }
-        else if (Mathf.Abs(currentSpeedy) <= targetspeedY && speedy < 0)
-        {
-            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeedY * -1, acceleration * Time.deltaTime);
-        }
-        //Y axis acceleration
-        if (Mathf.Abs(currentSpeedy) >= targetspeedY && speedy >= 0)
-        {
-            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeedY, deceleration * Time.deltaTime);
-        }
-        else if (Mathf.Abs(currentSpeedy) >= targetspeedY && speedy < 0)
-        {
-            currentSpeedy = Mathf.Lerp(currentSpeedy, targetspeedY * -1, deceleration * Time.deltaTime);
-        }
-        //Y axis deceleration
-
-        if (FuelEmpty)
-        {
-            if (Mathf.Abs(speedx) > 0 && Mathf.Abs(speedy) > 0)
-                rb.velocity = new Vector2(currentSpeedx / 10*Mathf.Sqrt(2), currentSpeedy / 10*Mathf.Sqrt(2));
-            else
-                rb.velocity = new Vector2(currentSpeedx/10, currentSpeedy/10);
-        }
-        else
-        {
-            if (Mathf.Abs(speedx) > 0 && Mathf.Abs(speedy) > 0)
-                rb.velocity = new Vector2(currentSpeedx / Mathf.Sqrt(2), currentSpeedy / Mathf.Sqrt(2));
-            else
-                rb.velocity = new Vector2(currentSpeedx, currentSpeedy);
-        }
-
-        if (currentSpeedx < -Speedtolerance) 
-        {
-            PlayerSprite.localScale = new Vector3 (-1,1,1);
-            DrillSprite.localScale = new Vector3(-1, 1, 1);
-        }
-        else if(currentSpeedx > Speedtolerance)
-        {
-            PlayerSprite.localScale = new Vector3(1, 1, 1);
-            DrillSprite.localScale = new Vector3(1, 1, 1);
-        }
-
-        if (Speedtolerance >= currentSpeedx && currentSpeedx >= -Speedtolerance) 
-        {
-            float Drillrotation = Drill.transform.rotation.z;
-            if(0.9 >= Drillrotation &&  Drillrotation >= -0.9)
-            {
-                PlayerSprite.localScale = new Vector3(1, 1, 1);
-                DrillSprite.localScale = new Vector3(1, 1, 1);
-            }
-            else
-            {
-                PlayerSprite.localScale = new Vector3(-1, 1, 1);
-                DrillSprite.localScale = new Vector3(-1, 1, 1);
-            }
-        }
-      
-        if (CanTeleport) 
-        {
-            TpHud.SetActive(true);
-        }
-        else
-            TpHud.SetActive(false);
-
-        if (TeleportCoolDown > 0)
-        {
-            TeleportCoolDown -= Time.deltaTime;
-            TPBar.SetHealth(TeleportCoolDown);
-        }
-        if (TeleportCoolDown < 0f)
-        {
-            TeleportCoolDown = 0;
-        }
-
-        if (CanTeleport == true && TeleportCoolDown == 0)
-        {
-            if (Input.GetKey(KeyCode.B))
-                {
-                anim.SetBool("isTP", true);
-                }
-        }
-
-    
+        HandleFuel(isMoving, isSprinting);
+        HandleMovement(isSprinting, hasFuel);
+        HandleFacing();
+        HandleTeleport();
     }
 
-    public void tp()
+    // ── Fuel ──
+
+    //extracted from Update()
+    private void HandleFuel(bool isMoving, bool isSprinting)
+    {
+        float drain = 0f;
+        if (isMoving) drain += moveFuelPerSecond;
+        // FIX: sprint only drains while moving (old code drained when standing with Shift held)
+        if (isSprinting) drain += sprintFuelPerSecond;
+
+        // FIX: multiplied by Time.deltaTime (old code drained per frame, so higher FPS = faster fuel loss)
+        if (drain > 0f)
+            fuel.takedamage(drain * Time.deltaTime / fuelmod);
+    }
+
+    // ── Movement ──
+
+    //Extracted from Update(); replaces targetspeedX/Y logic and the shift / non-shift if-blocks
+    private void HandleMovement(bool isSprinting, bool hasFuel)
+    {
+        // Same values as before: walk = 10 * speedbonus, sprint = 20 * multiplier * speedbonus
+        float targetSpeed = isSprinting
+            ? 2f * BaseSpeed * multiplier * speedbonus
+            : BaseSpeed * speedbonus;
+
+        // Same values as before: walk = 1 * speedbonus, sprint = 3 * speedbonus
+        float accel = (isSprinting ? sprintAcceleration : walkAcceleration) * speedbonus;
+
+        //8 near-identical if-blocks replaced by one helper called per axis
+        currentSpeed.x = Approach(currentSpeed.x, input.x, targetSpeed, accel);
+        currentSpeed.y = Approach(currentSpeed.y, input.y, targetSpeed, accel);
+
+        //4 rb.velocity branches merged into 2 simple modifiers
+        Vector2 velocity = currentSpeed;
+        if (input.x != 0f && input.y != 0f) velocity /= Mathf.Sqrt(2f); // diagonal
+        // FIX: old empty-fuel diagonal was '/ 10 * Sqrt(2)' = (x / 10) * 1.41, which made diagonal FASTER than straight
+        if (!hasFuel) velocity /= EmptyFuelSlowdown;
+
+        rb.velocity = velocity;
+    }
+
+    // replaces the 8 acceleration/deceleration if-blocks (same behavior)
+    //  Below max speed -> accelerate, above -> decelerate. No input -> slow to 0.
+    private float Approach(float current, float axisInput, float speed, float accel)
+    {
+        float max = axisInput != 0f ? speed : 0f;
+        float target = Mathf.Sign(axisInput) * max;
+        float rate = Mathf.Abs(current) <= max ? accel : deceleration;
+        return Mathf.Lerp(current, target, rate * Time.deltaTime);
+    }
+
+    // ── Sprite facing ──
+
+    // extracted from Update(); 3 if-blocks with 6 duplicated scale lines
+    //  merged into one decision + one assignment (same behavior)
+    private void HandleFacing()
+    {
+        bool faceRight;
+
+        if (currentSpeed.x > Speedtolerance)
+            faceRight = true;
+        else if (currentSpeed.x < -Speedtolerance)
+            faceRight = false;
+        else
+            // UNCHANGED logic: rotation.z is a quaternion component, not an angle
+            // (0.9 ≈ 128°). For an exact 90° check use: Drill.transform.right.x >= 0f
+            faceRight = Mathf.Abs(Drill.transform.rotation.z) <= 0.9f;
+
+        Vector3 scale = faceRight ? Vector3.one : new Vector3(-1f, 1f, 1f);
+        PlayerSprite.localScale = scale;
+        DrillSprite.localScale = scale;
+    }
+
+    // ── Teleport ──
+
+    // extracted from Update()
+    private void HandleTeleport()
+    {
+        // CHANGED: only calls SetActive when the value changes (was every frame)
+        if (TpHud.activeSelf != CanTeleport)
+            TpHud.SetActive(CanTeleport);
+
+        // CHANGED: two if-blocks merged; Mathf.Max clamps at 0
+        if (teleportCooldown > 0f)
+        {
+            teleportCooldown = Mathf.Max(0f, teleportCooldown - Time.deltaTime);
+            TPBar.SetHealth(teleportCooldown);
+        }
+
+        // CHANGED: nested ifs merged into one condition
+        if (CanTeleport && teleportCooldown == 0f && Input.GetKey(KeyCode.B))
+            anim.SetBool("isTP", true);
+    }
+
+        public void tp()
     {
         _player.localPosition = Vector3.zero;
-        TeleportCoolDown = 15;
-        TPBar.SetMaxHealth(TeleportCoolDown);
-        TPBar.SetHealth(TeleportCoolDown);
+        // hardcoded 15 -> teleportCooldownTime
+        teleportCooldown = teleportCooldownTime;
+        TPBar.SetMaxHealth(teleportCooldownTime);
+        TPBar.SetHealth(teleportCooldownTime);
         anim.SetBool("isTP", false);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    // ── Collisions ──
+
+    // made private (Unity calls it either way)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        ContactPoint2D[] contacts = new ContactPoint2D[col.contactCount];
-        col.GetContacts(contacts);
-        bouncepoint = new Vector2(currentSpeedx,currentSpeedy);
-        bouncebox.localPosition = bouncepoint;
-        playerposition = playerpos.transform.position;
-        bounceboxposition = bouncebox.transform.position;
-        Vector2 directionVector = bounceboxposition - playerposition;
+        // early exit instead of wrapping everything in 'if (contacts.Length > 0)'
+        if (col.contactCount == 0) return;
 
-        if (contacts.Length > 0)
-        {
-            Vector2 normal = contacts[0].normal;
+        // bouncepoint / playerposition / bounceboxposition fields -> one local
+        bouncebox.localPosition = currentSpeed;
+        Vector2 direction = bouncebox.position - playerpos.transform.position;
+        // FIX: GetContact(0) instead of allocating a new array on every collision
+        Vector2 normal = col.GetContact(0).normal;
 
-          
-            if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
-            {
-                directionVector.x = -1*directionVector.x;
-                currentSpeedx = directionVector.x / 5;
-            }
-            else if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
-            {
-                directionVector.y = -1*directionVector.y;
-                currentSpeedy = directionVector.y / 5;
-            }
-     
-        }
-        
-        
+        // hardcoded '/ 5' -> bounceDamping; '-1 *' simplified to '-'
+        if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+            currentSpeed.x = -direction.x / bounceDamping;
+        else if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
+            currentSpeed.y = -direction.y / bounceDamping;
     }
 
+    // 6 copy-pasted if-blocks replaced by a loop over PickupTags
+    //  (array index = item id, same as before: 0 = CommonOre ... 5 = LegendaryGem)
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        pickedItem = collision.gameObject;
-        if (collision.CompareTag("CommonOre")){
-            demoScript.PickItem(0);
-            Destroy(pickedItem);
-        }
-        if (collision.CompareTag("CommonGem")){
-            demoScript.PickItem(1);
-            Destroy(pickedItem);
-        }
-        if (collision.CompareTag("RareOre")){
-            demoScript.PickItem(2);
-            Destroy(pickedItem);
-        }
-        if (collision.CompareTag("RareGem")){
-            demoScript.PickItem(3);
-            Destroy(pickedItem);
-        }
-        if (collision.CompareTag("LegendaryOre")){
-            demoScript.PickItem(4);
-            Destroy(pickedItem);
-        }
-        if (collision.CompareTag("LegendaryGem")){
-            demoScript.PickItem(5);
-            Destroy(pickedItem);
+        for (int i = 0; i < PickupTags.Length; i++)
+        {
+            if (collision.CompareTag(PickupTags[i]))
+            {
+                demoScript.PickItem(i);
+                // CHANGED: 'pickedItem' field removed, uses collision.gameObject
+                Destroy(collision.gameObject);
+                // NEW: stop after a match (old code checked all 6 tags every time)
+                return;
+            }
         }
     }
+
 }

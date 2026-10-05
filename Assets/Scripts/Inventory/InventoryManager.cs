@@ -182,7 +182,7 @@ public class InventoryManager : MonoBehaviour
                         int total = int.Parse(text);
                         float totalstackprice = total * itemInSlot.count * (proccessmodifier+1);
                         moneyScript.EarnMoney((int)totalstackprice);
-                        Debug.Log(totalstackprice + " " + total);
+                        //Debug.Log(totalstackprice + " " + total);
                     }
                     
                 }

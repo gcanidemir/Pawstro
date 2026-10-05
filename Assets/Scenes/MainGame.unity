@@ -19322,15 +19322,15 @@ GameObject:
   - component: {fileID: 1718550405}
   - component: {fileID: 1718550411}
   - component: {fileID: 1718550409}
-  - component: {fileID: 1718550412}
   - component: {fileID: 1718550408}
+  - component: {fileID: 1718550417}
+  - component: {fileID: 1718550421}
+  - component: {fileID: 1718550412}
   - component: {fileID: 1718550407}
   - component: {fileID: 1718550406}
-  - component: {fileID: 1718550421}
   - component: {fileID: 1718550420}
   - component: {fileID: 1718550419}
   - component: {fileID: 1718550418}
-  - component: {fileID: 1718550417}
   - component: {fileID: 1718550416}
   - component: {fileID: 1718550415}
   - component: {fileID: 1718550423}
@@ -19396,7 +19396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829a26d530cb3041b89cbbbcd38df2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 75
+  maxhealth: 750
   currenthealth: 0
   healthBar: {fileID: 194292982}
 --- !u!114 &1718550408
@@ -19510,25 +19510,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
-  acceleration: 1
-  deceleration: 1
-  scale: 1
   speedbonus: 1
   fuelmod: 1
+  CanTeleport: 0
+  walkAcceleration: 1
+  sprintAcceleration: 3
+  deceleration: 1
   Speedtolerance: 0.1
-  bouncebox: {fileID: 2000823467}
+  bounceDamping: 5
+  moveFuelPerSecond: 0.6
+  sprintFuelPerSecond: 3
+  fuel: {fileID: 1718550407}
+  teleportCooldownTime: 15
+  TPBar: {fileID: 1639346001}
+  TpHud: {fileID: 1639345999}
+  _player: {fileID: 1718550414}
   PlayerSprite: {fileID: 1718550414}
   DrillSprite: {fileID: 974339673}
-  playerpos: {fileID: 1718550404}
   Drill: {fileID: 974339672}
-  audioManager: {fileID: 0}
-  fuel: {fileID: 1718550407}
-  _player: {fileID: 1718550414}
-  TPBar: {fileID: 1639346001}
   anim: {fileID: 1718550405}
-  TpHud: {fileID: 1639345999}
-  CanTeleport: 0
-  TeleportCoolDown: 0
+  bouncebox: {fileID: 2000823467}
+  playerpos: {fileID: 1718550404}
+  audioManager: {fileID: 0}
 --- !u!212 &1718550413
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19612,7 +19615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Money: 9999
-  StartMoney: 0
+  StartMoney: 9999
   ErrorTimer: 0
   ErrorInterval: 120
   MoneyError: {fileID: 1896824117}
@@ -19724,7 +19727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a73fd5d2a403a4aa6af1ec0a486ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 75
+  maxhealth: 750
   currenthealth: 0
   healthBar: {fileID: 710511621}
   player: {fileID: 1718550418}
