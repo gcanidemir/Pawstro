@@ -297,7 +297,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeTP
         m_Mode: 1
@@ -3255,7 +3255,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: Upgradestacksize
         m_Mode: 1
@@ -3695,7 +3695,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeBaseOverClock
         m_Mode: 1
@@ -6289,7 +6289,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeForceField
         m_Mode: 1
@@ -7082,7 +7082,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeDeathRay
         m_Mode: 1
@@ -7546,7 +7546,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeHealth
         m_Mode: 1
@@ -8188,6 +8188,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 860191821}
+        m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
+        m_MethodName: UpgradeHPregen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 968590373}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlaySFX
@@ -8491,7 +8503,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeTurret
         m_Mode: 1
@@ -8638,7 +8650,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeDashSpeed
         m_Mode: 1
@@ -8937,7 +8949,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeBaseChosmetics
         m_Mode: 1
@@ -9654,6 +9666,7 @@ GameObject:
   - component: {fileID: 860191819}
   - component: {fileID: 860191818}
   - component: {fileID: 860191820}
+  - component: {fileID: 860191821}
   m_Layer: 0
   m_Name: GameManger
   m_TagString: Untagged
@@ -9701,6 +9714,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 578395376}
+--- !u!114 &860191821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860191817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6709147b1e3fd0b45885c81d89c89c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunsLookAt1: {fileID: 1444044819}
+  gunsLookAt2: {fileID: 349440669}
+  gunsLookAt3: {fileID: 2128341675}
+  gunsLookAt4: {fileID: 1569201869}
+  bullet: {fileID: 6195104409476234432, guid: ef67a84cd2139044f854816019f8e648, type: 3}
+  BaseHealthDamage: {fileID: 250462091}
+  laserHitbox: {fileID: 361808407}
+  Player: {fileID: 1718550412}
+  healthBar: {fileID: 1944742624}
+  health: {fileID: 1718550418}
+  OxygenBar: {fileID: 710511621}
+  oxygen: {fileID: 1718550419}
+  FuelBar: {fileID: 194292982}
+  fuel: {fileID: 1718550407}
+  BaseHealth: {fileID: 549938930}
+  BaseHp: {fileID: 250462090}
+  drill: {fileID: 974339674}
+  trigger: {fileID: 1718550420}
+  playerMoney: {fileID: 1718550415}
+  inventoryManager: {fileID: 230764779}
+  drillrange: {fileID: 1868591505}
+  meteorexplode: {fileID: 4529783580278862327, guid: c1a6fd900e8f4b1428ce34ed38720085, type: 3}
+  playerMovement: {fileID: 1718550412}
+  forcefield: {fileID: 633954163}
+  companionbed: {fileID: 570388131}
+  BaseChosmetics: {fileID: 1261710839}
+  DashUpgrade: {fileID: 310707457}
+  HealthUpgrade: {fileID: 1603107183}
+  OxygenUpgrade: {fileID: 1666959352}
+  HPregenUpgrade: {fileID: 667762138}
+  SpeedUpgrade: {fileID: 2051080155}
+  DrillUpgrade: {fileID: 2068766370}
+  FuelUpgrade: {fileID: 2053758062}
+  StackSizeUpgrade: {fileID: 883432776}
+  MiningRangeUpgrade: {fileID: 1553612244}
+  FortuneUpgrade: {fileID: 1330786772}
+  BaseTPUpgrade: {fileID: 1449214063}
+  ForcceShieldUpgrade: {fileID: 228102296}
+  FuelRegenUpgrade: {fileID: 2146889449}
+  BaseHealthUpgrade: {fileID: 1410685637}
+  BaseShieldUpgrade: {fileID: 1151870199}
+  OxygenRegenUpgrade: {fileID: 112183976}
+  LaserDefenseUpgrade: {fileID: 1245292623}
+  TurretUpgrade: {fileID: 352196317}
+  OreProccessorUpgrade: {fileID: 1339268706}
+  CoinGeneratorUpgrade: {fileID: 1226375570}
+  CompanionBedUpgrade: {fileID: 1026659780}
+  BaseOverclockUpgrade: {fileID: 508975798}
+  DeathRayUpgrade: {fileID: 1161821200}
+  BaseChosmeticsUpgrade: {fileID: 1983931335}
 --- !u!1 &869043380
 GameObject:
   m_ObjectHideFlags: 0
@@ -10962,7 +11037,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeOxygenRegen
         m_Mode: 1
@@ -12012,7 +12087,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeMiningRange
         m_Mode: 1
@@ -12981,7 +13056,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeOreProccessor
         m_Mode: 1
@@ -14040,7 +14115,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeCoinGenerator
         m_Mode: 1
@@ -14187,7 +14262,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeFuelRegen
         m_Mode: 1
@@ -14334,7 +14409,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeFuel
         m_Mode: 1
@@ -14871,7 +14946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1346845422}
   m_Layer: 9
-  m_Name: Turtel
+  m_Name: TurretsBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14978,7 +15053,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeBaseShield
         m_Mode: 1
@@ -15984,6 +16059,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 860191821}
+        m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
+        m_MethodName: UpgradeSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 968590373}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlaySFX
@@ -15991,18 +16078,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 6ec7fa6bdf016ef4cb1dffca0816207c, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1718550417}
-        m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
-        m_MethodName: UpgradeSpeed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -18230,7 +18305,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeOxygen
         m_Mode: 1
@@ -19303,7 +19378,6 @@ GameObject:
   - component: {fileID: 1718550411}
   - component: {fileID: 1718550409}
   - component: {fileID: 1718550408}
-  - component: {fileID: 1718550417}
   - component: {fileID: 1718550421}
   - component: {fileID: 1718550412}
   - component: {fileID: 1718550407}
@@ -19615,68 +19689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerShop: {fileID: 1290297110}
   BaseShop: {fileID: 1287227706}
---- !u!114 &1718550417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718550404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6709147b1e3fd0b45885c81d89c89c41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunsLookAt1: {fileID: 1444044819}
-  gunsLookAt2: {fileID: 349440669}
-  gunsLookAt3: {fileID: 2128341675}
-  gunsLookAt4: {fileID: 1569201869}
-  bullet: {fileID: 6195104409476234432, guid: ef67a84cd2139044f854816019f8e648, type: 3}
-  BaseHealthDamage: {fileID: 250462091}
-  laserHitbox: {fileID: 361808407}
-  Player: {fileID: 1718550412}
-  healthBar: {fileID: 1944742624}
-  health: {fileID: 1718550418}
-  OxygenBar: {fileID: 710511621}
-  oxygen: {fileID: 1718550419}
-  FuelBar: {fileID: 194292982}
-  fuel: {fileID: 1718550407}
-  BaseHealth: {fileID: 549938930}
-  BaseHp: {fileID: 250462090}
-  drill: {fileID: 974339674}
-  trigger: {fileID: 1718550420}
-  playerMoney: {fileID: 1718550415}
-  inventoryManager: {fileID: 230764779}
-  drillrange: {fileID: 1868591505}
-  meteorexplode: {fileID: 4529783580278862327, guid: c1a6fd900e8f4b1428ce34ed38720085, type: 3}
-  playerMovement: {fileID: 1718550412}
-  forcefield: {fileID: 633954163}
-  companionbed: {fileID: 570388131}
-  BaseChosmetics: {fileID: 1261710839}
-  DashUpgrade: {fileID: 310707457}
-  HealthUpgrade: {fileID: 1603107183}
-  OxygenUpgrade: {fileID: 1666959352}
-  HPregenUpgrade: {fileID: 667762138}
-  SpeedUpgrade: {fileID: 2051080155}
-  DrillUpgrade: {fileID: 2068766370}
-  FuelUpgrade: {fileID: 2053758062}
-  StackSizeUpgrade: {fileID: 883432776}
-  MiningRangeUpgrade: {fileID: 1553612244}
-  FortuneUpgrade: {fileID: 1330786772}
-  BaseTPUpgrade: {fileID: 1449214063}
-  ForcceShieldUpgrade: {fileID: 228102296}
-  FuelRegenUpgrade: {fileID: 2146889449}
-  BaseHealthUpgrade: {fileID: 1410685637}
-  BaseShieldUpgrade: {fileID: 1151870199}
-  OxygenRegenUpgrade: {fileID: 112183976}
-  LaserDefenseUpgrade: {fileID: 1245292623}
-  TurretUpgrade: {fileID: 352196317}
-  OreProccessorUpgrade: {fileID: 1339268706}
-  CoinGeneratorUpgrade: {fileID: 1226375570}
-  CompanionBedUpgrade: {fileID: 1026659780}
-  BaseOverclockUpgrade: {fileID: 508975798}
-  DeathRayUpgrade: {fileID: 1161821200}
-  BaseChosmeticsUpgrade: {fileID: 1983931335}
 --- !u!114 &1718550418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20356,7 +20368,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeFortune
         m_Mode: 1
@@ -22208,7 +22220,7 @@ GameObject:
   - component: {fileID: 2011150316}
   - component: {fileID: 2011150315}
   m_Layer: 5
-  m_Name: MiningSpeed
+  m_Name: DrillPower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22280,7 +22292,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeDrillPower
         m_Mode: 1
@@ -22427,7 +22439,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeLaserDefense
         m_Mode: 1
@@ -22708,7 +22720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeCompanionBed
         m_Mode: 1
@@ -22963,7 +22975,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'BASE
 
-    OVERCLOCK'
+    DAMAGE'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8f707bdbf118444bb1e01cf8457fab3, type: 2}
   m_sharedMaterial: {fileID: 2284793034432162675, guid: d8f707bdbf118444bb1e01cf8457fab3, type: 2}
@@ -24117,7 +24129,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1718550417}
+      - m_Target: {fileID: 860191821}
         m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
         m_MethodName: UpgradeBaseHealth
         m_Mode: 1

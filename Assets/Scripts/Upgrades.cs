@@ -66,7 +66,7 @@ public class Upgrades : MonoBehaviour
     public void UpgradeDashSpeed()
     {
         if (TryBuy(ref Dashlvl, 100, 2, DashUpgrade))
-            Player.multiplier = Player.multiplier + 0.5f;
+            Player.multiplier += 0.5f;
     }
     public void UpgradeHealth()
     {
@@ -74,8 +74,8 @@ public class Upgrades : MonoBehaviour
         {
             healthBar.SetMaxHealth(health.maxhealth + 50);
             healthBar.SetHealth(health.currenthealth + 50);
-            health.maxhealth = health.maxhealth + 50;
-            health.currenthealth = health.currenthealth + 50;
+            health.maxhealth += 50;
+            health.currenthealth += 50;
         }
     }
     public void UpgradeOxygen()
@@ -84,21 +84,21 @@ public class Upgrades : MonoBehaviour
         {
             OxygenBar.SetMaxHealth(oxygen.maxhealth + 50);
             OxygenBar.SetHealth(oxygen.currenthealth + 50);
-            oxygen.maxhealth = oxygen.maxhealth + 50;
-            oxygen.currenthealth = oxygen.currenthealth + 50;
-            trigger.oxlast = trigger.oxlast + 0.2f;
+            oxygen.maxhealth += 50;
+            oxygen.currenthealth += 50;
+            trigger.oxlast += 0.2f;
         }
     }
     public void UpgradeHPregen()
     {
         if (TryBuy(ref HPregenlvl, 100, 2, HPregenUpgrade))
-            trigger.HPregen = trigger.HPregen + 0.2f;
+            trigger.HPregen += 0.2f;
     }
 
     public void UpgradeSpeed()
     {
         if (TryBuy(ref Speedlvl, 100, 2, SpeedUpgrade))
-            Player.multiplier = Player.multiplier + 0.5f;
+            Player.multiplier += 0.5f;
 
     }
 
@@ -106,21 +106,21 @@ public class Upgrades : MonoBehaviour
     {
         if (TryBuy(ref Fuellvl, 100, 2, FuelUpgrade))
         {
-            FuelBar.SetMaxHealth(oxygen.maxhealth + 50);
-            FuelBar.SetHealth(oxygen.currenthealth + 50);
-            fuel.maxhealth = fuel.maxhealth + 50;
-            fuel.currenthealth = fuel.currenthealth + 50;
+            FuelBar.SetMaxHealth(fuel.maxhealth + 50);
+            FuelBar.SetHealth(fuel.currenthealth + 50);
+            fuel.maxhealth += 50;
+            fuel.currenthealth += 50;
         }
     }
     public void UpgradeDrillPower()
     {
         if (TryBuy(ref Drillvl, 100, 2, DrillUpgrade))
-            drill.damagemod = drill.damagemod * 2;
+            drill.damagemod *= 2;
     }
     public void Upgradestacksize()
     {
         if (TryBuy(ref StackSizelvl, 100, 2, StackSizeUpgrade))
-            inventoryManager.maxStack = inventoryManager.maxStack + 1;
+            inventoryManager.maxStack += 1;
     }
     public void UpgradeMiningRange()
     {
@@ -131,7 +131,7 @@ public class Upgrades : MonoBehaviour
     public void UpgradeFortune()
     {
         if (TryBuy(ref Fortunelvl, 200, 3, FortuneUpgrade))
-            meteorexplode.rarity = meteorexplode.rarity + 10;
+            meteorexplode.rarity += 10;
 
     }
     public void UpgradeTP()
@@ -154,7 +154,7 @@ public class Upgrades : MonoBehaviour
     public void UpgradeFuelRegen()
     {
         if (TryBuy(ref FuelRegenlvl, 100, 2, FuelRegenUpgrade))
-            Player.fuelmod = Player.fuelmod + 0.2f;
+            Player.fuelmod += 0.2f;
     }
     public void UpgradeBaseHealth()
     {
@@ -162,14 +162,14 @@ public class Upgrades : MonoBehaviour
         {
             BaseHealth.SetMaxHealth(BaseHp.maxhealth + 50);
             BaseHealth.SetHealth(BaseHp.currenthealth + 50);
-            BaseHp.maxhealth = BaseHp.maxhealth + 50;
-            BaseHp.currenthealth = BaseHp.currenthealth + 50;
+            BaseHp.maxhealth += 50;
+            BaseHp.currenthealth += 50;
         }
     }
     public void UpgradeBaseShield()
     {
         if (TryBuy(ref BaseSheidllvl, 100, 2, BaseShieldUpgrade))
-            BaseHp.shieldmod = BaseHp.shieldmod + 1;
+            BaseHp.shieldmod += 1;
     }
 
     public void UpgradeOxygenRegen()
@@ -181,7 +181,7 @@ public class Upgrades : MonoBehaviour
     public void UpgradeLaserDefense()
     {
         if (TryBuy(ref LaserDefenselvl, 100, 2, LaserDefenseUpgrade))
-            laserHitbox.damagemodifier = laserHitbox.damagemodifier * 2;
+            laserHitbox.damagemodifier *= 2;
     }
     public void UpgradeTurret()
     {
@@ -193,7 +193,7 @@ public class Upgrades : MonoBehaviour
     {
         if (TryBuy(ref OreProccesorlvl, 200, 2, OreProccessorUpgrade))
         {
-            inventoryManager.proccessmodifier = inventoryManager.proccessmodifier + 0.2f;
+            inventoryManager.proccessmodifier += 0.2f;
         }
     }
 
