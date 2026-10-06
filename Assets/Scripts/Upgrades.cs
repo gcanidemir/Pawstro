@@ -49,6 +49,7 @@ public class Upgrades : MonoBehaviour
                 playerMoney.EarnMoney(10 * CoinGeneratorlvl);
             }
         }
+        
     }
 
     private bool TryBuy(ref int level, int baseCost, int maxLevel, TextMeshProUGUI label)
@@ -109,7 +110,6 @@ public class Upgrades : MonoBehaviour
             FuelBar.SetHealth(oxygen.currenthealth + 50);
             fuel.maxhealth = fuel.maxhealth + 50;
             fuel.currenthealth = fuel.currenthealth + 50;
-
         }
     }
     public void UpgradeDrillPower()
@@ -206,7 +206,9 @@ public class Upgrades : MonoBehaviour
     public void UpgradeCompanionBed()
     {
         if (TryBuy(ref CompanionBedlvl, 500, 1, CompanionBedUpgrade))
+        { 
             companionbed.SetActive(true);
+        }
     }
 
     public void UpgradeBaseOverClock()

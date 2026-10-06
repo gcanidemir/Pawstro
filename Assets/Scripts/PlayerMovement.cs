@@ -73,7 +73,7 @@ public class player : MonoBehaviour
 
     // ── Private Fields ──
     //6 copy-pasted if-blocks replaced by a single array of tags
-    private static readonly string[] PickupTags = {"CommonOre", "CommonGem", "RareOre", "RareGem", "LegendaryOre", "LegendaryGem"};
+    private static readonly string[] PickupTags = { "CommonOre", "CommonGem", "RareOre", "RareGem", "LegendaryOre", "LegendaryGem" };
 
     private DemoScript demoScript;
     Rigidbody2D rb;
@@ -198,10 +198,13 @@ public class player : MonoBehaviour
 
         // CHANGED: nested ifs merged into one condition
         if (CanTeleport && teleportCooldown == 0f && Input.GetKey(KeyCode.B))
+        {
+
             anim.SetBool("isTP", true);
+        }
     }
 
-        public void tp()
+    public void tp()
     {
         _player.localPosition = Vector3.zero;
         // hardcoded 15 -> teleportCooldownTime
