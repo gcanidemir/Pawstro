@@ -15,26 +15,32 @@ public class Drill : MonoBehaviour
     public float attackRange;
     public int attackDamage = 1;
     public int damagemod = 1;
+
+    [Header("Laser")]
+    [SerializeField] private LineRenderer laserLineRenderer;
+    [SerializeField] private float laserRange;
+
     AudioManager audioManager;
-    void Awake(){
+    void Awake()
+    {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        camTake();
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        laserLineRenderer.positionCount = 2;
+        laserLineRenderer.useWorldSpace = true;
+        laserLineRenderer.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         look();
-        fire();
+        laser();
     }
-    private void camTake()
-    {
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-    }
+
     private void look()
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -46,35 +52,55 @@ public class Drill : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
-    private void fire()
+    private void laser()
     {
-        if (Input.GetMouseButton(0) && canFire)
-        {
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-            Collider2D[] hitMeteor = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, meteorLayer);
-
-            foreach (Collider2D meteor in hitMeteor)
-            {
-                audioManager.PlaySFX(audioManager.rockhit);
-                meteor.GetComponent<MeteorExplode>().takeDamage(attackDamage*damagemod);
-
-            }
-
-            canFire = false;
-        }
         if (!canFire)
         {
             timer += Time.deltaTime;
-            if (timer > timeBetweenFire)
+            if (timer >= timeBetweenFire)
             {
                 canFire = true;
                 timer = 0;
             }
-
         }
+
+        bool isFiring = Input.GetMouseButton(0);
+        laserLineRenderer.enabled = isFiring;
+        if(!isFiring)
+        {
+            return;
+        }   
+        
+        Vector2 origin = attackPoint.position;
+        Vector2 direction = transform.right;
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, laserRange, meteorLayer);//şimdilik enemy vurmuyo
+
+        Vector2 endPosition = hit.collider != null ? hit.point : origin + direction * laserRange;
+        laserLineRenderer.SetPosition(0, origin);
+        laserLineRenderer.SetPosition(1, endPosition);
+        //damage part
+        if (hit.collider != null && canFire)
+        {
+            MeteorExplode meteorexplode = hit.collider.GetComponent<MeteorExplode>();
+            if (meteorexplode != null)
+            {
+                meteorexplode.takeDamage(attackDamage * damagemod);
+                audioManager.PlaySFX(audioManager.rockhit);
+            }
+            canFire = false;
+        }
+
+
     }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        if (attackPoint == null)
+            return;
+            Gizmos.color = Color.red;
+        Gizmos.DrawLine(attackPoint.position, attackPoint.position + transform.right * laserRange);
+    }
+    public void UpgradeRange(float amount)
+    {
+        laserRange += amount;
     }
 }

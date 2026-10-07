@@ -8,7 +8,9 @@ public class GunsControls : MonoBehaviour
     public GameObject Laser;
     public GameObject GunCam;
     private bool inArea =false;
+    private bool usingGun = false;
     private Rigidbody2D rb;
+    private readonly List<GameObject> savedActiveChildren = new List<GameObject>();
     void Start()
     {
 
@@ -32,53 +34,45 @@ public class GunsControls : MonoBehaviour
         }
     }
 
-    public void ToggleGuns(){
-        Laser.SetActive(!Laser.activeSelf);
-        GunCam.SetActive(!GunCam.activeSelf);
-        bool hasActiveChild = false;
+    public void ToggleGuns()
+    {
+        usingGun = !usingGun;
+        Laser.SetActive(usingGun);
+        GunCam.SetActive(usingGun);
 
-        foreach (Transform child in player.transform)
+        if (usingGun)
         {
-
-            if (child.gameObject.activeSelf)
-            {
-                hasActiveChild = true;
-                break;
-            }
-
-        }
-
-        if (hasActiveChild){
+            // Entering gun: remember what was active, then hide it
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            savedActiveChildren.Clear();
 
             foreach (Transform child in player.transform)
             {
-
-                child.gameObject.SetActive(false);
-
+                if (child.gameObject.activeSelf)
+                {
+                    savedActiveChildren.Add(child.gameObject);
+                    child.gameObject.SetActive(false);
+                }
             }
-
         }
-        else{
-            rb.constraints = RigidbodyConstraints2D.None;
+        else
+        {
+            // Exiting gun: restore only what was active before
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            foreach (Transform child in player.transform)
+
+            foreach (GameObject child in savedActiveChildren)
             {
-
-                child.gameObject.SetActive(true);
-
+                if (child != null) child.SetActive(true);
             }
-
+            savedActiveChildren.Clear();
         }
-
-        
     }
 
-    void Update(){
-        if (Input.GetKeyDown(KeyCode.E) && inArea){
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && inArea)
+        {
             ToggleGuns();
         }
-
-        
     }
 }
