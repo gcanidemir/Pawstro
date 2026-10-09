@@ -3,115 +3,89 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Shop : MonoBehaviour
+public class Shop : MonoBehaviour, IInteractable
 
 {
-    public GameObject shop;
-    public GameObject Background;
-    public GameObject ToolTip;
-    public bool inShop = false;
-    public bool inGuns = false;
-    public bool inOre = false;
-    public bool shopOpenable = true;
-    public bool inGunsOpenable = true;
-    public bool inOreOpenable = true;
+    [Header("UI")]
+    [SerializeField] private GameObject shopUI;
+    [SerializeField] private GameObject Background;
+    [SerializeField] private Transform panel;
+
+    [Header("Animation")]
+    [SerializeField] private float openSpeed = 3f;
+    [SerializeField] private float panelSize = 5f;
+    [SerializeField] private float closeSpeedMultiplier = 9f;
+
+    private const float ClosedTreshold = 0.005f;
+
+
+    private bool isOpen;
+
     private Vector3 scaleChange;
-    public Transform tran;
-    private float x = 0f;
-    public float OCT = 3f;
-    public float ssize = 5f;
+    private float currentHeight = 0f;
+    public bool ShowPrompt => !isOpen;
+    public void Interact()
+    {
+        if (isOpen)
+        {
+            Close();
+        }
+        else
+        {
+            Open();
+        }
+    }
+    public void OnPlayerExit()
+    {
+        if (isOpen)
+        {
+            Close();
+        }
+    }
+
     void Start()
     {
-        shop.SetActive(false);
-        Background.SetActive(false);
+        SetUIActive(false);
     }
-    public void EnableInv()
+    public void Open()
     {
-        shop.SetActive(true);
-        Background.SetActive(true);
+        isOpen = true;
+        SetUIActive(true);
+        applyScaleChange();
+
     }
-    public void disableInv()
+    public void Close()
     {
-        shop.SetActive(false);
-        Background.SetActive(false);
+        isOpen = false;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("OpenShop"))
-        inShop = true;
-        if (collision.CompareTag("GunControl"))
-        {
-            inGuns = true; 
-        }
-        if (collision.CompareTag("OreProcess"))
-        {
-            inOre = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("OpenShop"))
-        {
-            inShop = false;
-            shopOpenable = true;
-        }
-        if (collision.CompareTag("GunControl"))
-        {
-            inGuns = false;
-        }
-        if (collision.CompareTag("OreProcess"))
-        {
-            inOre = false;
-        }
-    }
 
     private void Update()
     {
-        if(inShop && shopOpenable)
+        if (!shopUI.activeSelf)
         {
-            ToolTip.SetActive(true);
+            return;
         }
-        else if (inGuns && shopOpenable)
-            ToolTip.SetActive(true);
-        else if (inOre && shopOpenable)
-            ToolTip.SetActive(true);
-        else
+        float target = isOpen ? panelSize : 0f;
+        float speed = isOpen ? openSpeed : openSpeed * closeSpeedMultiplier;
+        currentHeight = Mathf.Lerp(currentHeight, target, speed * Time.deltaTime);
+        applyScaleChange();
+
+        if (!isOpen && currentHeight < ClosedTreshold)
         {
-            ToolTip.SetActive(false);
+            SetUIActive(false);
+            currentHeight = 0f;
         }
 
-
- 
-        if (Input.GetKeyDown(KeyCode.E) && inShop && shopOpenable)
-        {
-            EnableInv();
-            shopOpenable = false;
-
-        }
-
-        else if (Input.GetKeyDown(KeyCode.E) && inShop && !shopOpenable)
-        {
-            shopOpenable = true;
-        }
-        if (!shopOpenable)
-        {
-            x = Mathf.Lerp(x, ssize, OCT * Time.deltaTime);
-            scaleChange = new Vector3(ssize, x, ssize);
-            tran.localScale = scaleChange;
-        }
-        else if (shopOpenable || inShop == false)
-        {
-            x = Mathf.Lerp(x, 0, 9 * OCT * Time.deltaTime);
-            scaleChange = new Vector3(ssize, x, ssize);
-            tran.localScale = scaleChange;
-            if (x < 0.005)
-            {
-                disableInv();
-            }
-        }
-        
+    }
+    private void SetUIActive(bool active)
+    {
+        shopUI.SetActive(active);
+        Background.SetActive(active);
+    }
+    private void applyScaleChange()
+    {
+        panel.localScale = new Vector3(panelSize, currentHeight, panelSize);
     }
 
 }

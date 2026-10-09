@@ -6,41 +6,53 @@ using UnityEngine.Events;
 public class Trigger : MonoBehaviour
 
 {
-    public player Player;
-    public Fuel fuel;
-    public Health health;
-    public Oxygen oxygen;
-    public float oxregen = 1f;
+    [Header("Upgrade Stats")]
     public float oxlast = 1f;
+    public float oxregen = 1f;
     public float HPregen = 1f;
-    public bool inspace = true;
- 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    [Header("Rates")]
+    [SerializeField] private float oxygenDrainPerSecond = 0.6f;
+    [SerializeField] private float oxygenRegenPerSecond = 0.6f;
+    [SerializeField] private float healthRegenPerSecond = 1.2f;
+    [SerializeField] private float fuelRegenPerSecond = 6f;
+
+    [Header("References")]
+    [SerializeField] private player Player;
+    [SerializeField] private Fuel fuel;
+    [SerializeField] private Health health;
+    [SerializeField] private Oxygen oxygen;
+
+    private bool inSpace = true;
+
+    private const string SafeZoneTag = "Heal";
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.tag == "Heal")
-        {
-            inspace = false;
-        }
+         if (other.CompareTag(SafeZoneTag))
+        inSpace = false;
     }
-        private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (collision.tag == "Heal")
-        {
-            inspace = true;
-        }
+         if (other.CompareTag(SafeZoneTag))
+        inSpace = true;
 
     }
 
     void Update()
     {
-        if (inspace)
-            oxygen.takedamage(0.01f / oxlast);
-        else if (!inspace)
+        float dt = Time.deltaTime;
+ 
+        if (inSpace)
         {
-            oxygen.Heal(0.01f * oxregen);
-        health.Heal(0.02f * HPregen);
-        fuel.Heal(0.1f * Player.fuelmod);
-         }
-       
+            oxygen.takedamage(oxygenDrainPerSecond * dt / oxlast);
+        }
+        else
+        {
+            oxygen.Heal(oxygenRegenPerSecond * dt * oxregen);
+            health.Heal(healthRegenPerSecond * dt * HPregen);
+            fuel.Heal(fuelRegenPerSecond * dt * Player.fuelmod);
+        }
+
     }
 }

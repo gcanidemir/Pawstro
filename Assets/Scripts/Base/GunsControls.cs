@@ -2,77 +2,91 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunsControls : MonoBehaviour
+public class GunsControls : MonoBehaviour, IInteractable
 {
-    public GameObject player;
-    public GameObject Laser;
-    public GameObject GunCam;
-    private bool inArea =false;
-    private bool usingGun = false;
+    [Header("Player")]
+    [SerializeField] private GameObject playerObject;
+
+    [Header("Gun Mode")]
+    [SerializeField] private GameObject Laser;
+    [SerializeField] private GameObject GunCam;
+
+    [Header("Others")]
     private Rigidbody2D rb;
-    private readonly List<GameObject> savedActiveChildren = new List<GameObject>();
+    private player playerMovement;
+    private RigidbodyConstraints2D savedConstraints;
+    private bool usingGun = false;
+    private readonly List<GameObject> hiddenChildren  = new List<GameObject>();
+
+    public bool ShowPrompt => !usingGun;
+
     void Start()
     {
 
-    rb = player.GetComponent<Rigidbody2D>();
+    rb = playerObject.GetComponent<Rigidbody2D>();
+    playerMovement = playerObject.GetComponent<player>();
+
     Laser.SetActive(false);
     GunCam.SetActive(false);
-
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Interact()
     {
-        if (collision.CompareTag("Player")){
-            inArea = true;
-        }
+        if(usingGun){ExitGuns();}
+        else{EnterGuns();}
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnPlayerExit()
     {
-        if (collision.CompareTag("Player")){
-            inArea = false;
-        }
+        if(usingGun){ExitGuns();}
     }
-
-    public void ToggleGuns()
+    private void EnterGuns()
     {
-        usingGun = !usingGun;
-        Laser.SetActive(usingGun);
-        GunCam.SetActive(usingGun);
+        usingGun = true;
+        Laser.SetActive(true);
+        GunCam.SetActive(true);
 
-        if (usingGun)
+        savedConstraints = rb.constraints;
+        rb.velocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        if (playerMovement != null)
         {
-            // Entering gun: remember what was active, then hide it
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            savedActiveChildren.Clear();
+            playerMovement.enabled = false;
+        }
 
-            foreach (Transform child in player.transform)
+        hiddenChildren.Clear();
+        foreach (Transform child in playerObject.transform)
+        {
+            if (child.gameObject.activeSelf)
             {
-                if (child.gameObject.activeSelf)
-                {
-                    savedActiveChildren.Add(child.gameObject);
-                    child.gameObject.SetActive(false);
-                }
+                hiddenChildren.Add(child.gameObject);
+                child.gameObject.SetActive(false);
             }
         }
-        else
-        {
-            // Exiting gun: restore only what was active before
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-            foreach (GameObject child in savedActiveChildren)
-            {
-                if (child != null) child.SetActive(true);
-            }
-            savedActiveChildren.Clear();
-        }
     }
 
-    void Update()
+    private void ExitGuns()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inArea)
+        usingGun = false;
+        Laser.SetActive(false);
+        GunCam.SetActive(false);
+
+        rb.constraints = savedConstraints;
+
+        if (playerMovement != null)
         {
-            ToggleGuns();
+            playerMovement.enabled = true;
         }
+
+        foreach (GameObject child in hiddenChildren)
+        {
+            if (child != null)
+            {
+                child.SetActive(true);
+            }
+        }
+        hiddenChildren.Clear();
     }
+    
 }
