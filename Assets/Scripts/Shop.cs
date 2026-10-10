@@ -9,44 +9,50 @@ public class Shop : MonoBehaviour, IInteractable
     [Header("UI")]
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject Background;
-    [SerializeField] private Transform panel;
+    //[SerializeField] private Transform panel; dont know what it does used to be tran
 
     [Header("Animation")]
     [SerializeField] private float openSpeed = 3f;
-    [SerializeField] private float panelSize = 5f;
     [SerializeField] private float closeSpeedMultiplier = 9f;
+
 
     private const float ClosedTreshold = 0.005f;
 
 
     private bool isOpen;
 
-    private Vector3 scaleChange;
-    private float currentHeight = 0f;
+    private Transform shopTransform;
+    private Vector3 fullScale;
+    private float heightPercent;
     public bool ShowPrompt => !isOpen;
-    public void Interact()
+
+    private void Awake()
     {
-        if (isOpen)
-        {
-            Close();
-        }
-        else
-        {
-            Open();
-        }
-    }
-    public void OnPlayerExit()
-    {
-        if (isOpen)
-        {
-            Close();
-        }
+        shopTransform = shopUI.transform;
+        fullScale = shopTransform.localScale;
     }
 
-    void Start()
+
+    private void Start()
     {
+        heightPercent = 0f;
+        applyScaleChange();
         SetUIActive(false);
     }
+
+    // ── IInteractable ──
+    public void Interact()
+    {
+        if (isOpen) { Close(); }
+        else { Open(); }
+    }
+
+    public void OnPlayerExit()
+    {
+        Close();
+    }
+
+
     public void Open()
     {
         isOpen = true;
@@ -54,6 +60,8 @@ public class Shop : MonoBehaviour, IInteractable
         applyScaleChange();
 
     }
+
+    // Public so a "close" button in the shop UI can call it
     public void Close()
     {
         isOpen = false;
@@ -62,19 +70,18 @@ public class Shop : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (!shopUI.activeSelf)
-        {
-            return;
-        }
-        float target = isOpen ? panelSize : 0f;
+        if (!shopUI.activeSelf) { return; }
+
+        float target = isOpen ? 1f : 0f;
         float speed = isOpen ? openSpeed : openSpeed * closeSpeedMultiplier;
-        currentHeight = Mathf.Lerp(currentHeight, target, speed * Time.deltaTime);
+
+        heightPercent = Mathf.Lerp(heightPercent, target, speed * Time.deltaTime);
         applyScaleChange();
 
-        if (!isOpen && currentHeight < ClosedTreshold)
+        if (!isOpen && heightPercent < ClosedTreshold)
         {
             SetUIActive(false);
-            currentHeight = 0f;
+            heightPercent = 0f;
         }
 
     }
@@ -85,7 +92,7 @@ public class Shop : MonoBehaviour, IInteractable
     }
     private void applyScaleChange()
     {
-        panel.localScale = new Vector3(panelSize, currentHeight, panelSize);
+        shopTransform.localScale = new Vector3(fullScale.x, fullScale.y*heightPercent, fullScale.z);
     }
 
 }
